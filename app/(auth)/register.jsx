@@ -1,14 +1,29 @@
-import { View, Text } from 'react-native'
+import { StyleSheet, Text, View , ImageBackground } from 'react-native'
 import React from 'react'
-import { Link } from 'expo-router'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-const Register = () => {
+const register = () => {
   return (
-    <View>
+    <SafeAreaView style={styles.safearea}>
+    <ImageBackground source={require('../../assets/two.jpg')} style={styles.img}></ImageBackground>
+    <View style={styles.container}>
       <Text>Register</Text>
-      <Link href='/login' style={{color:"green"}}>Back to index</Link>
+      <Text>Back to index</Text>
     </View>
+    </SafeAreaView>
   )
 }
 
-export default Register
+export default register
+
+const styles = StyleSheet.create({
+  safearea:{
+    height:'100%',
+    width:'100%',
+  },
+  img:{
+    height: '100%',
+    width: '100%',
+    resizeMode: 'cover',
+  },
+})

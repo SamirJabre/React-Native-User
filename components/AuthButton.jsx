@@ -29,7 +29,6 @@ button:{
   buttons_text:{
     color:'white',
     fontSize:20,
-    fontFamily: 'Inter-Regular',
-    
+    fontFamily: 'Inter-SemiBold',
   },
 })

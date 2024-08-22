@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as React from 'react';
 import AuthButton from '../components/AuthButton';
+import ProgressBar from '../components/ProgressBar';
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
   const [fontsLoaded , error] = useFonts({
     'Inter-Regular': require('../assets/fonts/Inter-Regular.otf'),
     'Inter-ExtraBold': require('../assets/fonts/Inter-ExtraBold.otf'),
+    'Inter-SemiBold': require('../assets/fonts/Inter-SemiBold.otf'),
   });
 
   useEffect(()=>{
@@ -41,15 +43,7 @@ export default function App() {
       
       <View style={styles.progress}>
 
-      <View style={styles.first_hor_line}>
-        <View style={styles.first_circle}></View>
-      </View>
-
-      <View style={styles.circle}></View>
-
-      <View style={styles.second_hor_line}>
-        <View style={styles.circle}></View>
-      </View>
+      <ProgressBar circle_two={`#A5A5A5`} circle_three={`#A5A5A5`} line_one={`#A5A5A5`} line_two={`#A5A5A5`}/>
 
       </View>
       
@@ -118,35 +112,5 @@ const styles = StyleSheet.create({
   },
 
 
-  first_hor_line:{
-    justifyContent: 'center',
-    alignItems:'flex-start',
-    width:'50%',
-    height:'20%',
-    backgroundColor:'#A5A5A5',
-    borderTopStartRadius:100,
-    borderBottomStartRadius:100,
-  },
-  second_hor_line:{
-    justifyContent: 'center',
-    alignItems:'flex-end',
-    width:'50%',
-    height:'20%',
-    backgroundColor:'#A5A5A5',
-    borderTopEndRadius:100,
-    borderBottomEndRadius:100,
-  },
-
-  first_circle:{
-    width:15,
-    height:15,
-    borderRadius:100,
-    backgroundColor:'#0C3B2E',
-  },
-  circle:{
-    width:15,
-    height:15,
-    borderRadius:100,
-    backgroundColor:'#A5A5A5',
-  },
+  
 });
