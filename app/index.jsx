@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet , Text , View , ImageBackground, TouchableOpacity } from 'react-native';
-import { Link , SplashScreen  } from 'expo-router';
+import { Link , SplashScreen , Redirect , router } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as React from 'react';
-import { TouchableHighlight } from 'react-native-web';
+import AuthButton from '../components/AuthButton';
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -54,13 +54,10 @@ export default function App() {
       </View>
       
       <View style={styles.buttons}>
-      <TouchableOpacity style={styles.button}><Text style={styles.buttons_text}>Get Started</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.button}><Text style={styles.buttons_text}>Log In</Text></TouchableOpacity>
+      <AuthButton title="Get Started" handlePress={()=>router.push('/register')}/>
+      <AuthButton title="Log In" handlePress={()=>router.push('/login')}/>
       </View>
-
-
-
-      <StatusBar style="dark"/>
+      <StatusBar style='dark'/>
     </View>
     </>
   );
@@ -109,21 +106,7 @@ const styles = StyleSheet.create({
     justifyContent:'space-between',
     alignItems:'center',
   }, 
-  button:{
-    width:'100%',
-    height:'45%',
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'#6D9773',
-    borderRadius:100,
-  },
-
-  buttons_text:{
-    color:'white',
-    fontSize:20,
-    fontFamily: 'Inter-Regular',
-    
-  },
+  
 
   progress:{
     height:"5%",
