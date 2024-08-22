@@ -47,12 +47,12 @@ export default function App() {
 
       </View>
       
-      <View style={styles.buttons}>
+      
       <AuthButton title="Get Started" handlePress={()=>router.push('/register')}/>
       <AuthButton title="Log In" handlePress={()=>router.push('/login')}/>
       </View>
       <StatusBar style='dark'/>
-    </View>
+      
     </>
   );
 }
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     color:'#727272',
     fontFamily: 'Inter-Regular',
     fontSize: 15,
+    marginTop:10,
   },
 
   

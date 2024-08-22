@@ -18,8 +18,9 @@ export default AuthButton
 
 const styles = StyleSheet.create({
 button:{
-    width:'100%',
-    height:'45%',
+    width:'85%',
+    height:60,
+    marginBottom:15,
     justifyContent:'center',
     alignItems:'center',
     backgroundColor:'#6D9773',
