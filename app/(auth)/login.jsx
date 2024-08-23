@@ -4,6 +4,8 @@ import AuthButton from '../../components/AuthButton'
 import AuthInput from '../../components/AuthInput'
 import { StatusBar } from 'expo-status-bar'
 import Checkbox from 'expo-checkbox';
+import Authback from '../../components/Authback'
+
 
 const login = () => {
 
@@ -56,7 +58,11 @@ const login = () => {
   return (
     <SafeAreaView>
     <ImageBackground source={require('../../assets/two.jpg')} style={styles.img}>
-    <View style={styles.upper}><Text>back button</Text></View>
+    <View style={styles.upper}>
+    <Authback/>
+    </View>
+
+
     <View style={styles.container}>
       <Text style={styles.maintxt}>Log In</Text>
       <Text style={styles.sectxt}>Enter your details to proceed further</Text>
@@ -101,8 +107,8 @@ const styles = StyleSheet.create({
   upper:{
     width:'100%',
     height:'30%',
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent:'flex-start',
+    alignItems:'flex-start',
   },
   container:{
     backgroundColor:'#EAEAEA',
