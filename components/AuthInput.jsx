@@ -1,9 +1,8 @@
 import { StyleSheet, Text, View ,TextInput , Image} from 'react-native'
 import React,{useState} from 'react'
 
-const AuthInput = ({placeholder , value , onchange , imageSource}) => {
+const AuthInput = ({placeholder , value , onchange , imageSource , showPassword}) => {
 
-  const [showPassword,setShowPassword]=useState(false);
 
   return (
 
@@ -34,9 +33,9 @@ const styles = StyleSheet.create({
   },
   input: {
     height: '100%',
-    width:'85%',
+    width:'86%',
     marginBottom: 15,
-    padding: 15,
+    padding: 10,
     fontFamily: 'Inter-SemiBold',
     color: 'grey',
     fontSize: 16,

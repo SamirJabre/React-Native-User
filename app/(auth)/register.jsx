@@ -46,16 +46,16 @@ const register = () => {
 
       <AuthInput value={form.name} placeholder={"Full Name"} onchange={(e)=>setForm({...form, name: e})} imageSource={require('../../assets/icons/person.png')} keyboardType="name"/>
       <AuthInput value={form.email} placeholder={"Email"} onchange={(e)=>setForm({...form, email: e})} imageSource={require('../../assets/icons/email.png')} keyboardType="mail-address"/>
-      <AuthInput value={form.password} placeholder={"Password"} onchange={(e)=>setForm({...form, password: e})} imageSource={require('../../assets/icons/password.png')}/>
+      <AuthInput value={form.password} placeholder={"Password"} onchange={(e)=>setForm({...form, password: e})} imageSource={require('../../assets/icons/password.png')} showPassword={showPassword}/>
 
       <View style={styles.checkboxContainer}>
-      <Checkbox style={styles.checkbox}/>
+      <Checkbox style={styles.checkbox} color={'gray'} value={showPassword} onValueChange={setShowPassword}/>
         <Text style={styles.checkboxText}>Show Password</Text>
       </View>
 
 
       <View style={styles.checkboxContaine}>
-      <Checkbox style={styles.checkbox}/>
+      <Checkbox style={styles.checkbox} color={'gray'} value={acceptTerms} onValueChange={setAcceptTerms}/>
         <Text style={styles.checkboxText}>I agree the terms and conditions</Text>
       </View>
 
