@@ -13,6 +13,8 @@ const register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [form,setForm] = useState({
     name:'',
     email:'',
@@ -25,14 +27,57 @@ const register = () => {
   // const [email,setEmail] = useState('');
   // const [password,setPassword] = useState('');
 
-  // const [nameError, setNameError] = useState('');
-  // const [emailError, setEmailError] = useState('');
-  // const [passwordError, setPasswordError] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
 
   const handleSubmit = () => {
-    router.push('/verification');
+
+    let valid = true;
+
+
+    if (!form.name) {
+      alert('Name is required');
+      valid = false;
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email) {
+      alert('Email is required');
+      valid = false;
+      return;
+    } else if (!emailRegex.test(form.email)) {
+      alert('Invalid email format');
+      valid = false;
+      return;
+    }
+
+
+    const passwordRegex = /^(?=.*[!@#$%^&*])/;
+    if (!form.password) {
+      alert('Password is required');
+      valid = false;
+      return;
+    } else if (!passwordRegex.test(form.password)) {
+      alert('Password must contain at least one special symbol');
+      valid = false;
+      return;
+    }
+
+
+    if (!acceptTerms) {
+      alert('Please accept the terms and conditions');
+      valid = false;
+      return;
+    }
+
+    if (valid) {
+      router.push('/verification');
+    }
   };
+
   return (
     <SafeAreaView>
     <ImageBackground source={require('../../assets/two.jpg')} style={styles.img}>
@@ -62,7 +107,7 @@ const register = () => {
 
 
 
-      <AuthButton title="Sign Up" handlePress={()=>handleSubmit()}/>
+      <AuthButton title="Sign Up" handlePress={handleSubmit} isLoading={isSubmitting}/>
       
     </View>
 
