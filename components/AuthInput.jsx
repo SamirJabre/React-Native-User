@@ -7,7 +7,7 @@ const AuthInput = ({placeholder , value , onchange , imageSource , showPassword}
   return (
 
     <View style={styles.inputcontainer}>
-    <TextInput style={styles.input} placeholder={placeholder} value={value} onChangeText={onchange} secureTextEntry={placeholder === 'Password' && !showPassword} underlineColorAndroid="transparent" er>
+    <TextInput style={styles.input} placeholder={placeholder} value={value} onChangeText={onchange} secureTextEntry={placeholder === 'Password' && !showPassword} underlineColorAndroid="transparent">
     </TextInput>
     <Image source={imageSource} style={styles.icon}/>
     </View>
