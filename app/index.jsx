@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
   },
 
   img_container:{
-    backgroundColor:"blue",
     width: '100%',
     height: '45%',
     marginBottom: 30,
