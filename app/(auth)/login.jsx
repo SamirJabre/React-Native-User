@@ -59,7 +59,7 @@ const login = () => {
     <SafeAreaView>
     <ImageBackground source={require('../../assets/two.jpg')} style={styles.img}>
     <View style={styles.upper}>
-    <Authback/>
+    <Authback route={'/'}/>
     </View>
 
 
