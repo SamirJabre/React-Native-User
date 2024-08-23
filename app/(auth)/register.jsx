@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View , ImageBackground , SafeAreaView } from 'react-native'
 import React, { useState } from 'react'
-import { Link, Redirect , router } from 'expo-router'
-import { useSafeAreaInsets  } from 'react-native-safe-area-context'
 import ProgressBar from '../../components/ProgressBar'
 import AuthButton from '../../components/AuthButton'
 import AuthInput from '../../components/AuthInput'
 import { StatusBar } from 'expo-status-bar'
 import Checkbox from 'expo-checkbox';
+import Authback from '../../components/Authback'
+import { router } from 'expo-router'
 
 const register = () => {
 
@@ -81,7 +81,9 @@ const register = () => {
   return (
     <SafeAreaView>
     <ImageBackground source={require('../../assets/two.jpg')} style={styles.img}>
-    <View style={styles.upper}><Text>back button</Text></View>
+    <View style={styles.upper}>
+    <Authback/>
+    </View>
     <View style={styles.container}>
       <Text style={styles.maintxt}>Get Started</Text>
       <Text style={styles.sectxt}>Enter your details to proceed further</Text>
@@ -135,8 +137,8 @@ const styles = StyleSheet.create({
   upper:{
     width:'100%',
     height:'20%',
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent:'flex-start',
+    alignItems:'flex-start',
   },
   container:{
     backgroundColor:'#EAEAEA',
