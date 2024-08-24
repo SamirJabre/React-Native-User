@@ -21,7 +21,10 @@ const register = () => {
     password:''
   });
 
-
+  console.log(form.name);
+  console.log(form.email);
+  console.log(form.password);
+  
 
   // const [name,setName] = useState('');
   // const [email,setEmail] = useState('');
@@ -74,7 +77,7 @@ const register = () => {
     }
 
     if (valid) {
-      router.push('/verification');
+      router.push(`/verification?name=${form.name}&email=${form.email}&password=${form.password}`);
     }
   };
 

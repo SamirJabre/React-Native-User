@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View , ImageBackground , SafeAreaView , Image , TextInput} from 'react-native'
 import React, { useState , useRef } from 'react'
 import AuthButton from '../../components/AuthButton'
-import AuthInput from '../../components/AuthInput'
 import { StatusBar } from 'expo-status-bar'
-import Checkbox from 'expo-checkbox';
 import Authback from '../../components/Authback'
 import ProgressBar from '../../components/ProgressBar'
-import { router } from 'expo-router'
+import { useLocalSearchParams } from 'expo-router'
 
 
 const verification = () => {
+  const { name , email , password } = useLocalSearchParams();
+  
 
   const [code, setCode] = useState(['', '', '', '']);
   const inputs = useRef([]);
@@ -38,7 +38,7 @@ const verification = () => {
       </View>
 
       <Text style={styles.maintxt}>We have sent a verification code to</Text>
-      <Text style={styles.sectxt}>example123@gmail.com</Text>
+      <Text style={styles.sectxt}>{email}</Text>
       
       <View style={styles.progress}>
       <ProgressBar circle_two={`#0C3B2E`} circle_three={`#0C3B2E`} line_one={`#0C3B2E`} line_two={`#0C3B2E`}/>
