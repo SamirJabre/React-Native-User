@@ -21,19 +21,9 @@ const register = () => {
     password:''
   });
 
-  console.log(form.name);
-  console.log(form.email);
-  console.log(form.password);
-  
-
   // const [name,setName] = useState('');
   // const [email,setEmail] = useState('');
   // const [password,setPassword] = useState('');
-
-  const [nameError, setNameError] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-
 
   const handleSubmit = () => {
 
