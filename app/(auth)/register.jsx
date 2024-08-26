@@ -7,6 +7,8 @@ import { StatusBar } from 'expo-status-bar'
 import Checkbox from 'expo-checkbox';
 import Authback from '../../components/Authback'
 import { router } from 'expo-router'
+import api from '../../services/api'
+import axios from 'axios'
 
 const register = () => {
 
@@ -20,6 +22,30 @@ const register = () => {
     email:'',
     password:''
   });
+
+
+  const fetchData = async () => {
+
+    try{
+    axios.post(`http://192.168.1.119:8000/api/register`, form)
+    .then(res => console.log(res))
+    router.push(`/verification?name=${form.name}&email=${form.email}&password=${form.password}`);
+  }
+    catch(error){
+      alert(error);
+    };
+        
+
+
+    // try {
+    //   await axios.post('http://127.0.0.1:8000/api/register', form);
+    //   router.push(`/verification?name=${form.name}&email=${form.email}&password=${form.password}`);
+    // } catch (error) {
+    //   console.error('Error during registration:', error);
+    //   alert('An error occurred during registration. Please try again.');
+    // }
+}
+
 
 
   const handleSubmit = () => {
@@ -64,7 +90,7 @@ const register = () => {
     }
 
     if (valid) {
-      router.push(`/verification?name=${form.name}&email=${form.email}&password=${form.password}`);
+      fetchData();
     }
   };
 
