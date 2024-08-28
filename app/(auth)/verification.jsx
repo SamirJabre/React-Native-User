@@ -42,11 +42,22 @@ const verification = () => {
   }
 
 
+  const handleBack = () => {
+    axios.post('http://192.168.1.105:8000/api/delete-unverified',{
+      email: email
+    });
+    console.log(email);
+    
+    router.push('/register');
+  }
+
+
+
   return (
     <SafeAreaView>
     <ImageBackground source={require('../../assets/two.jpg')} style={styles.img}>
     <View style={styles.upper}>
-    <Authback route={'register'}/>
+    <Authback onpress={handleBack}/>
     </View>
     <View style={styles.container}>
 

@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View , Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { router } from 'expo-router'
+import axios from 'axios'
 
-const Authback = ({route}) => {
+const Authback = ({onpress}) => {
   return (
     <TouchableOpacity 
-    onPress={()=>router.push(route)}
+    onPress={onpress}
     activeOpacity={0.7}>
     <View style={styles.container}>
       <Image style={styles.icon} source={require('../assets/icons/back.png')}/>
