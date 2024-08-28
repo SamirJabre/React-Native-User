@@ -26,7 +26,6 @@ const register = () => {
 
     let valid = true;
 
-
     if (!form.name) {
       alert('Name is required');
       valid = false;
@@ -44,7 +43,6 @@ const register = () => {
       return;
     }
 
-
     const passwordRegex = /^(?=.*[!@#$%^&*])/;
     if (!form.password) {
       alert('Password is required');
@@ -56,7 +54,6 @@ const register = () => {
       return;
     }
 
-
     if (!acceptTerms) {
       alert('Please accept the terms and conditions');
       valid = false;
@@ -67,6 +64,23 @@ const register = () => {
       fetchData();
     }
   };
+
+  
+  const fetchData = () => {
+    try{
+      axios.post(`http://192.168.1.110:8000/api/register`, form)
+      .then(res => {
+        console.log(res.data.authorisation.token);
+        
+      }
+      )
+      router.push(`/verification?email=${form.email}`);
+    }
+      catch(error){
+        alert(error);
+      };
+  }
+  
 
   return (
     <SafeAreaView>
