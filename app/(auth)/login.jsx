@@ -5,13 +5,16 @@ import AuthInput from '../../components/AuthInput'
 import { StatusBar } from 'expo-status-bar'
 import Checkbox from 'expo-checkbox';
 import Authback from '../../components/Authback'
+import { router } from 'expo-router'
+import axios from 'axios'
 
 
 const login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+
 
   const [form,setForm] = useState({
     email:'',
@@ -59,7 +62,7 @@ const login = () => {
     <SafeAreaView>
     <ImageBackground source={require('../../assets/two.jpg')} style={styles.img}>
     <View style={styles.upper}>
-    <Authback route={'/'}/>
+    <Authback onpress={()=>router.push('/')}/>
     </View>
 
 

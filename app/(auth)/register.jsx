@@ -70,7 +70,7 @@ const register = () => {
   
   const fetchData = () => {
     try{
-      axios.post(`http://192.168.1.105:8000/api/register`, form)
+      axios.post(`http://192.168.1.108:8000/api/register`, form)
       .then(res => {
         AsyncStorage.setItem('token', res.data.authorisation.token);
       }
