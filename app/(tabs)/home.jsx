@@ -1,10 +1,13 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { router } from 'expo-router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, BackHandler } from 'react-native'
 
 const home = () => {
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
+    AsyncStorage.getItem('Message')
     const backAction = () => {
       return true;
     };
@@ -19,7 +22,7 @@ const home = () => {
 
   return (
     <View>
-      <Text>home</Text>
+      <Text>home {message}</Text>
     </View>
   )
 }

@@ -63,10 +63,11 @@ const login = () => {
     try{
       axios.post(`http://192.168.1.108:8000/api/login`, form)
       .then(res => {
-        AsyncStorage.setItem('token', res.data.authorisation.token);
+        const result =res.data.message;
+        AsyncStorage.setItem('Message', "res.data.message");
+        result === 'incorrect' ? alert('Incorrect Email or Password') : result === 'unexisted' ? alert('Email does not exist') : router.push('/home');
       }
       )
-      router.push(`/home`);
     }
       catch(error){
         alert(error);
