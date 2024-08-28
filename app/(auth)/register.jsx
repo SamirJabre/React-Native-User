@@ -62,14 +62,6 @@ const register = () => {
     
         
 
-
-    // try {
-    //   await axios.post('http://127.0.0.1:8000/api/register', form);
-    //   router.push(`/verification?name=${form.name}&email=${form.email}&password=${form.password}`);
-    // } catch (error) {
-    //   console.error('Error during registration:', error);
-    //   alert('An error occurred during registration. Please try again.');
-    // }
 }
 
 
