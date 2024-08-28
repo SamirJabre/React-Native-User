@@ -34,12 +34,6 @@ const register = () => {
       alert(error);
     };
 
-
-
-
-
-
-  
   
 
   // try{
