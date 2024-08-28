@@ -42,8 +42,6 @@ const verification = () => {
 
 
 
-
-
   return (
     <SafeAreaView>
     <ImageBackground source={require('../../assets/two.jpg')} style={styles.img}>
