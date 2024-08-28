@@ -33,35 +33,6 @@ const register = () => {
     catch(error){
       alert(error);
     };
-
-
-
-
-
-
-  
-  
-
-  // try{
-    //       fetch('http://192.168.1.110:8000/api/register' , {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify(form),
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       console.log('Success:', data);
-    //       router.push(`/verification?name=${form.name}&email=${form.email}&password=${form.password}`);
-    //     })
-    //   }
-    // catch(error){
-    //   alert('An error occurred during registration. Please try again.');
-    // }
-    
-        
-
 }
 
 
