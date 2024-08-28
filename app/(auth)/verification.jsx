@@ -9,7 +9,6 @@ import { useLocalSearchParams } from 'expo-router'
 
 const verification = () => {
   const { name , email , password } = useLocalSearchParams();
-  
 
   const [code, setCode] = useState(['', '', '', '']);
   const inputs = useRef([]);
@@ -23,6 +22,10 @@ const verification = () => {
     if (text && index < 3) {
       inputs.current[index + 1].focus();
     }
+    const codeAsInteger = parseInt(newCode.join(''), 10);
+    console.log(codeAsInteger);
+    
+    
   };
 
   return (
