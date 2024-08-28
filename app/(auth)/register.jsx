@@ -9,12 +9,14 @@ import Authback from '../../components/Authback'
 import { router } from 'expo-router'
 import api from '../../services/api'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const register = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [token, setToken] = useState('');
 
   const [form,setForm] = useState({
     name:'',
@@ -70,8 +72,8 @@ const register = () => {
     try{
       axios.post(`http://192.168.1.110:8000/api/register`, form)
       .then(res => {
-        console.log(res.data.authorisation.token);
-        
+        localStorage.setItem('token' , res.data.authorisation.token);
+        AsyncStorage.setItem('token', res.data.authorisation.token);
       }
       )
       router.push(`/verification?email=${form.email}`);
@@ -80,6 +82,7 @@ const register = () => {
         alert(error);
       };
   }
+
   
 
   return (
