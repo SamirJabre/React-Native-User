@@ -7,6 +7,7 @@ import Checkbox from 'expo-checkbox';
 import Authback from '../../components/Authback'
 import { router } from 'expo-router'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const login = () => {
@@ -54,9 +55,23 @@ const login = () => {
 
 
     if (valid) {
-      router.push('/verification');
+      fetchData();
     }
   };
+
+  const fetchData = () => {
+    try{
+      axios.post(`http://192.168.1.108:8000/api/login`, form)
+      .then(res => {
+        AsyncStorage.setItem('token', res.data.authorisation.token);
+      }
+      )
+      router.push(`/home`);
+    }
+      catch(error){
+        alert(error);
+      };
+  }
 
   return (
     <SafeAreaView>
