@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar'
 import Authback from '../../components/Authback'
 import ProgressBar from '../../components/ProgressBar'
 import { useLocalSearchParams } from 'expo-router'
+import axios from 'axios'
 
 
 const verification = () => {
@@ -24,9 +25,24 @@ const verification = () => {
     }
     setOtp(parseInt(newCode.join(''), 10))
     console.log(otp);
-    
-    
   };
+
+
+  const handleVerfication = () => {
+    try{
+      axios.post('http://192.168.1.110:8000/api/validateotp' , {
+        email: email,
+        otp: otp
+      })
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
+
+
+
 
   return (
     <SafeAreaView>
