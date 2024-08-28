@@ -14,7 +14,6 @@ const register = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [form,setForm] = useState({
@@ -27,8 +26,12 @@ const register = () => {
   const fetchData = () => {
   try{
     axios.post(`http://192.168.1.110:8000/api/register`, form)
-    .then(res => console.log(res))
-    router.push(`/verification?name=${form.name}&email=${form.email}&password=${form.password}`);
+    .then(res => {
+      console.log(res.data.authorisation.token);
+      
+    }
+    )
+    router.push(`/verification?email=${form.email}`);
   }
     catch(error){
       alert(error);

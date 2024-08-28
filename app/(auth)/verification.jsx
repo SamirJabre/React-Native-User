@@ -4,12 +4,12 @@ import AuthButton from '../../components/AuthButton'
 import { StatusBar } from 'expo-status-bar'
 import Authback from '../../components/Authback'
 import ProgressBar from '../../components/ProgressBar'
-import { useLocalSearchParams } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import axios from 'axios'
 
 
 const verification = () => {
-  const { name , email , password } = useLocalSearchParams();
+  const {  email  } = useLocalSearchParams();
 
   const [code, setCode] = useState(['', '', '', '']);
   const [otp, setOtp] = useState('');
@@ -30,11 +30,12 @@ const verification = () => {
 
   const handleVerfication = () => {
     try{
-      axios.post('http://192.168.1.110:8000/api/validateotp' , {
+      axios.post('http://192.168.1.110:8000/api/validate-otp' , {
         email: email,
         otp: otp
-      })
-    }
+    })
+    .then(res => {res.data.status === 'success' ? router.push('/home') : alert('Invalid OTP')});
+  }
     catch(error){
       console.log(error);
     }
