@@ -75,7 +75,7 @@ const verification = () => {
           </View>
 
 
-      <AuthButton title={'Verify'}/>
+      <AuthButton title={'Verify'} handlePress={handleVerfication}/>
     </View>
 
     </ImageBackground>
