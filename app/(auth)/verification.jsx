@@ -11,6 +11,7 @@ const verification = () => {
   const { name , email , password } = useLocalSearchParams();
 
   const [code, setCode] = useState(['', '', '', '']);
+  const [otp, setOtp] = useState('');
   const inputs = useRef([]);
 
   const handleChange = (text, index) => {
@@ -18,12 +19,11 @@ const verification = () => {
     newCode[index] = text;
     setCode(newCode);
 
-    // Move to the next input if the current one is filled
     if (text && index < 3) {
       inputs.current[index + 1].focus();
     }
-    const codeAsInteger = parseInt(newCode.join(''), 10);
-    console.log(codeAsInteger);
+    setOtp(parseInt(newCode.join(''), 10))
+    console.log(otp);
     
     
   };
