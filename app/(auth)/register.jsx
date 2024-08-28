@@ -22,24 +22,6 @@ const register = () => {
     password:''
   });
 
-
-  const fetchData = () => {
-  try{
-    axios.post(`http://192.168.1.110:8000/api/register`, form)
-    .then(res => {
-      console.log(res.data.authorisation.token);
-      
-    }
-    )
-    router.push(`/verification?email=${form.email}`);
-  }
-    catch(error){
-      alert(error);
-    };
-}
-
-
-
   const handleSubmit = () => {
 
     let valid = true;
