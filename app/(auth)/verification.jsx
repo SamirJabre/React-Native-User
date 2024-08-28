@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View , ImageBackground , SafeAreaView , Image , TextInput} from 'react-native'
+import { StyleSheet, Text, View , ImageBackground , SafeAreaView , Image , TextInput, TouchableOpacity} from 'react-native'
 import React, { useState , useRef } from 'react'
 import AuthButton from '../../components/AuthButton'
 import { StatusBar } from 'expo-status-bar'
 import Authback from '../../components/Authback'
 import ProgressBar from '../../components/ProgressBar'
-import { router, useLocalSearchParams } from 'expo-router'
+import { Link, router, useLocalSearchParams } from 'expo-router'
 import axios from 'axios'
 
 
@@ -52,6 +52,13 @@ const verification = () => {
   }
 
 
+  const resendOtp = () => {
+    alert('OTP has been resent');
+    axios.post('http://192.168.1.108:8000/api/sendotp' ,{
+      email: email
+    })
+  }
+
 
   return (
     <SafeAreaView>
@@ -88,6 +95,8 @@ const verification = () => {
 
 
       <AuthButton title={'Verify'} handlePress={handleVerfication}/>
+
+      <TouchableOpacity onPress={resendOtp}><Text style={styles.otpRequest}>Haven't recieved a code yet?</Text></TouchableOpacity>
     </View>
 
     </ImageBackground>
@@ -169,5 +178,11 @@ const styles = StyleSheet.create({
     color:'#484848',
     fontFamily: 'Inter-SemiBold',
     fontSize: 20,
+  },
+  otpRequest:{
+    color:'#0C3B2E',
+    fontFamily: 'Inter-Regular',
+    fontSize: 12,
+    marginTop:20,
   },
 })
