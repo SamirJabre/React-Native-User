@@ -34,6 +34,14 @@ const register = () => {
       alert(error);
     };
 
+
+
+
+
+
+  
+  
+
   // try{
     //       fetch('http://192.168.1.110:8000/api/register' , {
     //       method: 'POST',
