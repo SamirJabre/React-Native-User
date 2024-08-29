@@ -183,3 +183,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  line:{
+    height: '80%',
+    width: 1,
+    backgroundColor: 'gray',
+  },
