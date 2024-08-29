@@ -119,3 +119,10 @@ const styles = StyleSheet.create({
     marginTop: 0,
     justifyContent: 'space-between',
   },
+  container:{
+    height: '100%',
+    width: '100%',
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
