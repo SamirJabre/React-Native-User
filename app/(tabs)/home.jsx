@@ -109,3 +109,4 @@ const home = () => {
     </SafeAreaView>
   )
 }
+export default home
