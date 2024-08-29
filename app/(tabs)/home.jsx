@@ -31,3 +31,7 @@ const home = () => {
         <Text style={styles.hello}>Hello,</Text>
         <Text style={styles.name}>Samir</Text>
         </View>
+        <View style={styles.notificationIcon}>
+        <TouchableOpacity><Image source={require('../../assets/icons/notification.png')} style={{height:'100%', width:'100%'}}/></TouchableOpacity>
+        </View>
+        </View>
