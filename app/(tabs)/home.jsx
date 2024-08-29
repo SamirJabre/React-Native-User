@@ -41,3 +41,6 @@ const home = () => {
         <Text style={styles.date}>2024</Text>
         <Text style={styles.date}>08 10</Text>
         </View>
+
+
+    </View>
