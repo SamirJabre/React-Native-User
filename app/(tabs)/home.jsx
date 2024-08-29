@@ -150,3 +150,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: 'Inter-Regular',
   },
+  name:{
+    color: 'white',
+    fontSize: 25,
+    fontFamily: 'Inter-SemiBold',
+  },
