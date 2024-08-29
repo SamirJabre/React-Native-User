@@ -19,3 +19,7 @@ const home = () => {
 
     return () => backHandler.remove();
   }, []);
+
+  return (
+    <SafeAreaView style={styles.safearea}>
+    <View style={styles.container}></View>
