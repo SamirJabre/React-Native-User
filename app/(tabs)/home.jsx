@@ -200,3 +200,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  uppertext:{
+    color: 'black',
+    fontSize: 15,
+    fontFamily: 'Inter-Regular',
+    marginTop:10,
+  },
