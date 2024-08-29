@@ -11,3 +11,8 @@ const home = () => {
     const backAction = () => {
       return true;
     };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction
+    );
