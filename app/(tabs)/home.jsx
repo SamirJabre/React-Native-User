@@ -126,3 +126,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  upperbox:{
+    height: '30%',
+    width: '90%',
+    backgroundColor: '#0C3B2E',
+    marginTop: 20,
+    borderRadius: 30,
+  },
