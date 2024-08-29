@@ -194,3 +194,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  right:{
+    height: '100%',
+    width: '50%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
