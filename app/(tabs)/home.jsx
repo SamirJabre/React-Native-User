@@ -59,3 +59,5 @@ const home = () => {
       <Text style={styles.uppertext}>Total miles traveled</Text>
       <Text style={styles.lowertext}>10.3 Miles</Text>
       </View>
+
+      </View>
