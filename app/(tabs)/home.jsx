@@ -22,9 +22,9 @@ const home = () => {
 
   return (
     <SafeAreaView style={styles.safearea}>
-    <View style={styles.container}></View>
+    <View style={styles.container}>
 
-    <View style={styles.upperbox}>
+      <View style={styles.upperbox}>
 
       <View style={styles.greeting}>
         <View style={styles.text}>
@@ -43,12 +43,13 @@ const home = () => {
         </View>
 
 
-    </View>
+      </View>
 
 
-    <View style={styles.stats}>
 
-    <View style={styles.left}>
+      <View style={styles.stats}>
+
+      <View style={styles.left}>
       <Text style={styles.uppertext}>Rides taken</Text>
       <Text style={styles.lowertext}>0</Text>
       </View>
@@ -70,7 +71,6 @@ const home = () => {
 
       <Text style={styles.latest}>Here's your latest rides</Text>
 
-
       <TouchableOpacity style={styles.recent}>
 
       <View style={styles.fromTo}>
@@ -100,7 +100,9 @@ const home = () => {
 
       </TouchableOpacity>
 
-      </View>
+      
+      
+    </View>
 
     <View style={styles.navbar}>
 
@@ -109,6 +111,7 @@ const home = () => {
     </SafeAreaView>
   )
 }
+
 export default home
 
 const styles = StyleSheet.create({
@@ -212,3 +215,57 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-SemiBold',
     marginTop:2,
   },
+  redirect:{
+    borderRadius: 15,
+    backgroundColor: '#D1D1D1',
+    height: '7%',
+    width: '90%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 15,
+  },
+  book:{
+    color: 'black',
+    fontSize: 15,
+    fontFamily: 'Inter-SemiBold',
+    margin: 10,
+  },
+  latest:{
+    color: 'black',
+    fontSize: 16,
+    fontFamily: 'Inter-Regular',
+    alignSelf: 'flex-start',
+    width: '90%',
+    alignSelf: 'center',
+  },
+  recent:{
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    height: '15%',
+    width: '90%',
+    backgroundColor: 'gray',
+    borderRadius: 20,
+    marginTop: 10,
+  },
+  fromTo:{
+    justifyContent: 'space-around',
+    height: '100%',
+    width: '42%',
+  },
+  recentText:{
+    color: 'black',
+    fontSize: 15,
+    fontFamily: 'Inter-Regular',
+  },
+  otherInfo:{
+    justifyContent: 'space-around',
+    height: '100%',
+    width: '42%',
+  },
+  navbar:{
+    height: '10%',
+    width: '100%',
+    backgroundColor: 'blue',
+  },
+})
