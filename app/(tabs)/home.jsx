@@ -44,3 +44,6 @@ const home = () => {
 
 
     </View>
+
+
+    <View style={styles.stats}>
