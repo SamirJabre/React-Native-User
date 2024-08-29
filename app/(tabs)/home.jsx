@@ -155,3 +155,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: 'Inter-SemiBold',
   },
+  notificationIcon:{
+    margin: 20,
+    height: '27%',
+    width: '7%',
+  },
