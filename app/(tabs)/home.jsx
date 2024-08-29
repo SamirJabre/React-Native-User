@@ -99,3 +99,13 @@ const home = () => {
       </View>
 
       </TouchableOpacity>
+
+      </View>
+
+    <View style={styles.navbar}>
+
+    </View>
+
+    </SafeAreaView>
+  )
+}
