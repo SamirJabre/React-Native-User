@@ -67,3 +67,5 @@ const home = () => {
         <Text style={styles.book}>Book your next bus now!</Text>
         <Image source={require('../../assets/icons/redirect.png')} style={{height:'50%' , width:'10%',marginRight:10}}/>
       </TouchableOpacity>
+
+      <Text style={styles.latest}>Here's your latest rides</Text>
