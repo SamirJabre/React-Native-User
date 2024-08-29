@@ -35,3 +35,9 @@ const home = () => {
         <TouchableOpacity><Image source={require('../../assets/icons/notification.png')} style={{height:'100%', width:'100%'}}/></TouchableOpacity>
         </View>
         </View>
+
+        <View style={styles.dateContainer}>
+        <Text style={styles.date}>WED</Text>
+        <Text style={styles.date}>2024</Text>
+        <Text style={styles.date}>08 10</Text>
+        </View>
