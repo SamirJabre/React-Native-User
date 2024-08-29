@@ -206,3 +206,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Regular',
     marginTop:10,
   },
+  lowertext:{
+    color: 'black',
+    fontSize: 15,
+    fontFamily: 'Inter-SemiBold',
+    marginTop:2,
+  },
