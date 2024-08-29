@@ -188,3 +188,9 @@ const styles = StyleSheet.create({
     width: 1,
     backgroundColor: 'gray',
   },
+  left:{
+    height: '100%',
+    width: '50%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
