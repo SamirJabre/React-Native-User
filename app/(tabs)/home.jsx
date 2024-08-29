@@ -160,3 +160,10 @@ const styles = StyleSheet.create({
     height: '27%',
     width: '7%',
   },
+  dateContainer:{
+    height: '55%',
+    width: '30%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    marginLeft: 20,
+  },
