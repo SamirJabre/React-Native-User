@@ -47,3 +47,8 @@ const home = () => {
 
 
     <View style={styles.stats}>
+
+    <View style={styles.left}>
+      <Text style={styles.uppertext}>Rides taken</Text>
+      <Text style={styles.lowertext}>0</Text>
+      </View>
