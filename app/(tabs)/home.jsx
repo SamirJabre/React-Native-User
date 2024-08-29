@@ -23,3 +23,11 @@ const home = () => {
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}></View>
+
+    <View style={styles.upperbox}>
+
+      <View style={styles.greeting}>
+        <View style={styles.text}>
+        <Text style={styles.hello}>Hello,</Text>
+        <Text style={styles.name}>Samir</Text>
+        </View>
