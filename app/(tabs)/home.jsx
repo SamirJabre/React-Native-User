@@ -167,3 +167,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginLeft: 20,
   },
+  date:{
+    color: 'gray',
+    color: 'white',
+    fontSize: 18,
+    fontFamily: 'Inter-Regular',
+  },
