@@ -16,3 +16,6 @@ const home = () => {
       'hardwareBackPress',
       backAction
     );
+
+    return () => backHandler.remove();
+  }, []);
