@@ -145,3 +145,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginLeft: 20,
   },
+  hello:{
+    color: 'white',
+    fontSize: 25,
+    fontFamily: 'Inter-Regular',
+  },
