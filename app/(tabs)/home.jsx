@@ -138,3 +138,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  text:{
+    width: '30%',
+    height: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    marginLeft: 20,
+  },
