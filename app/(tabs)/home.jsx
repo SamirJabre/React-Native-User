@@ -112,3 +112,10 @@ const home = () => {
 export default home
 
 const styles = StyleSheet.create({
+  safearea:{
+    height: '100%',
+    width: '100%',
+    paddingTop: 0,
+    marginTop: 0,
+    justifyContent: 'space-between',
+  },
