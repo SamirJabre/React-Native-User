@@ -173,3 +173,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Inter-Regular',
   },
+  stats:{
+    backgroundColor: '#D1D1D1',
+    height: '11%',
+    width : '90%',
+    marginTop: 15,
+    borderRadius: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
