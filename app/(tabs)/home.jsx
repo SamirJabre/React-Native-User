@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, BackHandler , SafeAreaView, Image, TouchableOpacity} from 'react-native'
 import { useFonts } from 'expo-font';
 import { SplashScreen } from 'expo-router';
+import NavigationBar from '../../components/NavigationBar';
 
 const home = () => {
   const [message, setMessage] = useState('')
@@ -104,9 +105,7 @@ const home = () => {
       
     </View>
 
-    <View style={styles.navbar}>
-
-    </View>
+    <NavigationBar/>
 
     </SafeAreaView>
   )
