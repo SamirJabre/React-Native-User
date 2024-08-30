@@ -5,6 +5,7 @@ import * as React from 'react';
 import Authback from '../../components/Authback';
 import FilterToggle from '../../components/FilterToggle';
 import { router } from 'expo-router';
+import NavigationBar from '../../components/NavigationBar';
 
 export default function result() {
 
@@ -62,7 +63,7 @@ export default function result() {
     <View style={styles.navbar}>
 
     </View>
-      
+    <NavigationBar/>
     </SafeAreaView>
   );
 }

@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import * as React from 'react';
 import AuthButton from '../components/AuthButton';
 import ProgressBar from '../components/ProgressBar';
-import NavigationBar from '../components/NavigationBar';
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -53,7 +52,6 @@ export default function App() {
       <AuthButton title="Log In" handlePress={()=>router.push('/login')}/>
       </View>
       <StatusBar style='dark'/>
-      <NavigationBar/>
     </>
   );
 }
