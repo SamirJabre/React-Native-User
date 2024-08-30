@@ -5,3 +5,10 @@ import * as React from 'react';
 import Authback from '../../components/Authback';
 import FilterToggle from '../../components/FilterToggle';
 
+export default function result() {
+
+  const [price, setPrice] = useState(false);
+  const [time, setTime] = useState(false);
+  const [latest, setLatest] = useState(false);
+  const [rating, setRating] = useState(false);
+
