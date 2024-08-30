@@ -66,3 +66,93 @@ export default function result() {
   );
 }
 
+const styles = StyleSheet.create({
+  safearea:{
+    height: '100%',
+    width: '100%',
+    paddingTop: 0,
+    marginTop: 0,
+    justifyContent: 'space-between',
+  },
+  container: {
+    height: '100%',
+    width: '100%',
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  backBtncontainer:{
+    height: '12%',
+    width: '100%',
+    alignItems: 'flex-start',
+  },
+  upcomingText:{
+    width: '90%',
+    color: '#0C3B2E',
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 20,
+    margin: 15,
+  },
+  filters:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: '5%',
+    width: '90%',
+  },
+  buses:{
+    height: '70%',
+    width: '100%',
+    backgroundColor: '#E5E5E5',
+    borderRadius: 30,
+    marginTop: 20,
+  },
+  bus:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 120,
+    width: '90%',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    alignSelf: 'center',
+    marginTop: 10,
+  },
+  left:{
+    width: '60%',
+    height: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-start',
+  },
+  busInfo:{
+    color: '#0C3B2E',
+    fontFamily: 'Inter-Regular',
+    fontSize: 15,
+    marginLeft: 10,
+  },
+  busInfo2:{
+    color: '#0C3B2E',
+    fontFamily: 'Inter-Regular',
+    fontSize: 15,
+  },
+  right:{
+    width: '40%',
+    height: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-start',
+  },
+  images:{
+    flexDirection: 'row',
+    height: '15%',
+    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  image:{
+    height: 20,
+    width: 20,
+  },
+  navbar:{
+    height: '10%',
+    width: '100%',
+    backgroundColor: 'blue',
+  },
+});
