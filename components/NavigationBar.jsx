@@ -1,11 +1,13 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
+import { router } from 'expo-router';
 
 
 const NavigationBar = () => { 
   const [selected, setSelected] = useState('Home');
   const handlePress = (screen) => {
     setSelected(screen);
+    router.push(`/${screen.toLowerCase()}`);
   };
 
 
@@ -18,7 +20,7 @@ const NavigationBar = () => {
   return (
     <View style={styles.navbarcontainer}>
       {Object.keys(icons).map((screen) => (
-        <TouchableOpacity key={screen} onPress={() => handlePress(screen)} style={styles.navItem}>
+        <TouchableOpacity key={screen} onPress={() =>handlePress(screen)} style={styles.element}>
           <Image source={icons[screen]} style={styles.icon} />
         </TouchableOpacity>
       ))}
