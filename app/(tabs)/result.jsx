@@ -30,4 +30,26 @@ export default function result() {
         <ScrollView style={styles.buses}>
           
 
-          
+          <TouchableOpacity style={styles.bus}>
+
+            <View style={styles.left}>
+              <Text style={styles.busInfo}>From: Tripoli</Text>
+              <Text style={styles.busInfo}>To: Beirut</Text>
+              <Text style={styles.busInfo}>Driver: Samir Jabre</Text>
+            </View>
+
+            <View style={styles.right}>
+              <Text style={styles.busInfo2}>Price: 10$</Text>
+              <Text style={styles.busInfo2}>Seats: 50</Text>
+              <View style={styles.images}>
+                <Image source={require('../../assets/icons/star.png')} style={styles.image}/>
+                <Image source={require('../../assets/icons/star.png')} style={styles.image}/>
+                <Image source={require('../../assets/icons/star.png')} style={styles.image}/>
+                <Image source={require('../../assets/icons/star.png')} style={styles.image}/>
+                <Image source={require('../../assets/icons/star.png')} style={styles.image}/>
+              </View>
+            </View>
+
+          </TouchableOpacity>
+        
+        
