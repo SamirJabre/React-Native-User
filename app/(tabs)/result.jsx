@@ -52,4 +52,17 @@ export default function result() {
 
           </TouchableOpacity>
         
-        
+        </ScrollView>
+
+      </View>
+    
+    <StatusBar style='dark'/>
+
+    <View style={styles.navbar}>
+
+    </View>
+      
+    </SafeAreaView>
+  );
+}
+
