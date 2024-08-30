@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View , Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { router } from 'expo-router'
-import axios from 'axios'
 
 const Authback = ({onpress}) => {
   return (

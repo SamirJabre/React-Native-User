@@ -4,6 +4,7 @@ import {  useState } from 'react';
 import * as React from 'react';
 import Authback from '../../components/Authback';
 import FilterToggle from '../../components/FilterToggle';
+import { router } from 'expo-router';
 
 export default function result() {
 
@@ -17,7 +18,7 @@ export default function result() {
     <SafeAreaView style={styles.safearea}>
       <View style={styles.container}>
         <View style={styles.backBtncontainer}>
-          <Authback/>
+          <Authback onpress={()=> router.push('/search')}/>
         </View>
         <Text style={styles.upcomingText}>Upcoming Buses</Text>
 
