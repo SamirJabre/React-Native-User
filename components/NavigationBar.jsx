@@ -1,29 +1,27 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import home from '../assets/icons/home-white.png'
+import React, { useState } from 'react'
 
-const NavigationBar = () => {
-    const test = () => {
-        console.log('test')
-    }
+
+const NavigationBar = () => { 
+  const [selected, setSelected] = useState('Home');
+  const handlePress = (screen) => {
+    setSelected(screen);
+  };
+
+
+  const icons = {
+    Home: selected === 'Home' ? require('../assets/icons/home-green.png') : require('../assets/icons/home-white.png'),
+    Search: selected === 'Search' ? require('../assets/icons/search-green.png') : require('../assets/icons/search-white.png'),
+    Buses: selected === 'Buses' ? require('../assets/icons/bus-green.png') : require('../assets/icons/bus-white.png'),
+    Profile: selected === 'Profile' ? require('../assets/icons/person-gren.png') : require('../assets/icons/person-white.png')
+  };
   return (
     <View style={styles.navbarcontainer}>
-      <TouchableOpacity style={styles.element} onFocus={test}>
-      <Image source={home} style={styles.icon}/>
-        <Text style={styles.text}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.element}>
-      <Image source={home} style={styles.icon}/>
-        <Text style={styles.text}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.element}>
-      <Image source={home} style={styles.icon}/>
-        <Text style={styles.text}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.element}>
-      <Image source={home} style={styles.icon}/>
-        <Text style={styles.text}>Home</Text>
-      </TouchableOpacity>
+      {Object.keys(icons).map((screen) => (
+        <TouchableOpacity key={screen} onPress={() => handlePress(screen)} style={styles.navItem}>
+          <Image source={icons[screen]} style={styles.icon} />
+        </TouchableOpacity>
+      ))}
     </View>
   )
 }
