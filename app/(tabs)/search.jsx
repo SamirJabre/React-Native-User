@@ -4,3 +4,7 @@ import NavigationBar from '../../components/NavigationBar'
 import { StatusBar } from 'expo-status-bar'
 import Slider from '@react-native-community/slider';
 import { Picker } from '@react-native-picker/picker';
+
+const search = () => {
+  const [price, setPrice] = useState(0);
+  const [rating, setRating] = useState(1);
