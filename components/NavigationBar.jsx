@@ -1,21 +1,32 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { router } from 'expo-router';
+import { useRouter, usePathname } from 'expo-router';
 
 
 const NavigationBar = () => { 
-  const [selected, setSelected] = useState('Home');
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+
+  const getCurrentScreen = () => {
+    const currentPath = pathname.replace('/', '');
+    return currentPath.charAt(0).toUpperCase() + currentPath.slice(1);
+  };
+
+  const currentScreen = getCurrentScreen();
+
+
   const handlePress = (screen) => {
-    setSelected(screen);
     router.push(`/${screen.toLowerCase()}`);
   };
 
 
   const icons = {
-    Home: selected === 'Home' ? require('../assets/icons/home-green.png') : require('../assets/icons/home-white.png'),
-    Search: selected === 'Search' ? require('../assets/icons/search-green.png') : require('../assets/icons/search-white.png'),
-    Buses: selected === 'Buses' ? require('../assets/icons/bus-green.png') : require('../assets/icons/bus-white.png'),
-    Profile: selected === 'Profile' ? require('../assets/icons/person-gren.png') : require('../assets/icons/person-white.png')
+    Home: currentScreen === 'Home' ? require('../assets/icons/home-green.png') : require('../assets/icons/home-white.png'),
+    Search: currentScreen === 'Search' ? require('../assets/icons/search-green.png') : require('../assets/icons/search-white.png'),
+    Buses: currentScreen === 'Buses' ? require('../assets/icons/bus-green.png') : require('../assets/icons/bus-white.png'),
+    Profile: currentScreen === 'Profile' ? require('../assets/icons/person-gren.png') : require('../assets/icons/person-white.png')
   };
   return (
     <View style={styles.navbarcontainer}>

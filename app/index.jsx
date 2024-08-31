@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet , Text , View , ImageBackground, TouchableOpacity } from 'react-native';
-import { Link , SplashScreen , Redirect , router } from 'expo-router';
+import { StyleSheet , Text , View , ImageBackground } from 'react-native';
+import {  SplashScreen , router } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as React from 'react';
 import AuthButton from '../components/AuthButton';
 import ProgressBar from '../components/ProgressBar';
+import NavigationBar from '../components/NavigationBar';
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -26,11 +27,6 @@ export default function App() {
 
   return (
     <>
-    {/* <View>
-    <ImageBackground source={require('../assets/one.jpg')} style={{width: '100%', height: '70%'}}>
-    <StatusBar style="dark"/>
-    </ImageBackground>
-    </View> */}
     <View style={styles.container}>
     <View style={styles.img_container}>
       <ImageBackground source={require('../assets/one.jpg')} style={styles.img}>
@@ -52,6 +48,7 @@ export default function App() {
       <AuthButton title="Log In" handlePress={()=>router.push('/login')}/>
       </View>
       <StatusBar style='dark'/>
+      <NavigationBar/>
     </>
   );
 }
