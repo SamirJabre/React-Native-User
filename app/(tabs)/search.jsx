@@ -36,3 +36,11 @@ const search = () => {
     </View>
 
     </View>
+
+    <View style={styles.right}>
+      <TouchableOpacity style={{height:35,width:35}}>
+      <Image source={require('../../assets/icons/switch.png')} style={{height:"100%",width:"100%"}}/>
+      </TouchableOpacity>
+    </View>
+
+    </View>
