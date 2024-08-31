@@ -8,14 +8,12 @@ import { Picker } from '@react-native-picker/picker';
 const search = () => {
   const [depature, setDepature] = useState('');
   const [destination, setDestination] = useState('');
-  const [temp, setTemp] = useState('');
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(1);
 
   const switchInputs = () => {
     setDepature(destination);
-    setDestination(temp);
-    setTemp(depature);
+    setDestination(depature);
   } 
 
   return (
@@ -35,14 +33,14 @@ const search = () => {
 
     <View style={styles.top}>
     <Text style={{fontSize:12, color:'#B8B8B8', margin:5 , fontFamily:'Inter-Regular'}}>From</Text>
-    <TextInput style={styles.input} value={depature} onChange={(e)=>{setDepature(e.target.value); setTemp(e.target.value)}}></TextInput>
+    <TextInput style={styles.input} value={depature} onChangeText={setDepature}></TextInput>
     </View>
 
     <View style={styles.mid}></View>
 
     <View style={styles.low}>
     <Text style={{fontSize:12, color:'#B8B8B8', margin:5, fontFamily:'Inter-Regular'}}>To</Text>
-    <TextInput style={styles.input} value={destination} onChange={(e)=>setDestination(e.target.value)}></TextInput>
+    <TextInput style={styles.input} value={destination} onChangeText={setDestination}></TextInput>
     </View>
 
     </View>
