@@ -148,3 +148,56 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 10,
   },
+  top:{
+    height: '49%',
+    width: '100%',
+  },
+  mid:{
+    height: '2%',
+    width: '100%',
+    backgroundColor: '#CCCCCC',
+  },
+  low:{
+    height: '49%',
+    width: '100%',
+  },
+  input:{
+    width: '100%',
+    padding: 5,
+    fontSize: 20,
+    color:"#0C3B2E",
+  },
+  right:{
+    width: '15%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  priceRange:{
+    width: '90%',
+    margin:15,
+    color: 'black',
+    fontSize: 20,
+  },
+  slider:{
+    width: '90%',
+    height: 25,
+  },
+  ratingText:{
+    fontSize: 20,
+    color: 'black',
+  },
+  picker: {
+    height: 50,
+    width: 150,
+  },
+  searchBtn:{
+    backgroundColor: '#0C3B2E',
+    marginTop: 20,
+    height: 40,
+    width: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+  },
+})
