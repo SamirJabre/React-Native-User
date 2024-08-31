@@ -19,3 +19,20 @@ const search = () => {
     </View>
     <Image source={require('../../assets/bus-background.png')} style={styles.image}/>
     </View>
+
+    <View style={styles.inputContainer}>
+    <View style={styles.left}>
+
+    <View style={styles.top}>
+    <Text style={{fontSize:12, color:'#B8B8B8', margin:5}}>From</Text>
+    <TextInput style={styles.input} placeholder='From'></TextInput>
+    </View>
+
+    <View style={styles.mid}></View>
+
+    <View style={styles.low}>
+    <Text style={{fontSize:12, color:'#B8B8B8', margin:5}}>To</Text>
+    <TextInput style={styles.input} placeholder='To'></TextInput>
+    </View>
+
+    </View>
