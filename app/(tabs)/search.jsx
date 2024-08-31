@@ -12,7 +12,7 @@ const search = () => {
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>
     <View style={styles.upperbox}>
-    <Text style={{marginTop:10,fontSize:20,color:'white'}}>Bus Booking</Text>
+    <Text style={{marginTop:10,fontSize:20,color:'white',fontFamily:'Inter-SemiBold'}}>Bus Booking</Text>
     <View style={styles.greeting}>
     <Text style={styles.hello}>Hello,</Text>
     <Text style={styles.title}>Search +100 Bus For Your Journey</Text>
@@ -24,14 +24,14 @@ const search = () => {
     <View style={styles.left}>
 
     <View style={styles.top}>
-    <Text style={{fontSize:12, color:'#B8B8B8', margin:5}}>From</Text>
+    <Text style={{fontSize:12, color:'#B8B8B8', margin:5 , fontFamily:'Inter-Regular'}}>From</Text>
     <TextInput style={styles.input} placeholder='From'></TextInput>
     </View>
 
     <View style={styles.mid}></View>
 
     <View style={styles.low}>
-    <Text style={{fontSize:12, color:'#B8B8B8', margin:5}}>To</Text>
+    <Text style={{fontSize:12, color:'#B8B8B8', margin:5, fontFamily:'Inter-Regular'}}>To</Text>
     <TextInput style={styles.input} placeholder='To'></TextInput>
     </View>
 
@@ -76,7 +76,7 @@ const search = () => {
       </Picker>
     </View>
     <TouchableOpacity style={styles.searchBtn}>
-    <Text style={{fontSize:20,color:'white'}}>Search</Text>
+    <Text style={{fontSize:20,color:'white',fontFamily: 'Inter-SemiBold',}}>Search</Text>
     </TouchableOpacity>
 
     </View>
@@ -123,10 +123,12 @@ const styles = StyleSheet.create({
   hello:{
     color: 'white',
     fontSize: 25,
+    fontFamily: 'Inter-SemiBold',
   },
   title:{
     color: 'white',
     fontSize: 15,
+    fontFamily: 'Inter-Regular',
   },
   image:{
     width: '100%',
@@ -166,6 +168,7 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 20,
     color:"#0C3B2E",
+    fontFamily: 'Inter-SemiBold',
   },
   right:{
     width: '15%',
@@ -178,6 +181,7 @@ const styles = StyleSheet.create({
     margin:15,
     color: 'black',
     fontSize: 20,
+    fontFamily: 'Inter-Regular',
   },
   slider:{
     width: '90%',
@@ -186,10 +190,12 @@ const styles = StyleSheet.create({
   ratingText:{
     fontSize: 20,
     color: 'black',
+    fontFamily: 'Inter-Regular',
   },
   picker: {
     height: 50,
     width: 150,
+    fontFamily: 'Inter-Regular',
   },
   searchBtn:{
     backgroundColor: '#0C3B2E',
