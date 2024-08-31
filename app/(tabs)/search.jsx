@@ -37,6 +37,7 @@ const search = () => {
 
     </View>
 
+
     <View style={styles.right}>
       <TouchableOpacity style={{height:35,width:35}}>
       <Image source={require('../../assets/icons/switch.png')} style={{height:"100%",width:"100%"}}/>
@@ -44,6 +45,7 @@ const search = () => {
     </View>
 
     </View>
+
 
     <Text style={styles.priceRange}>Price Range : {price}</Text>
 
@@ -59,7 +61,7 @@ const search = () => {
       thumbTintColor="#0C3B2E"
     />
 
-<View style={{flexDirection:'row' , width:"90%",justifyContent:'space-between' , alignItems:'center'}}>
+    <View style={{flexDirection:'row' , width:"90%",justifyContent:'space-between' , alignItems:'center'}}>
     <Text style={styles.ratingText}>Rating</Text>
     <Picker
         selectedValue={rating}
@@ -81,3 +83,68 @@ const search = () => {
     <NavigationBar/>
     
     </SafeAreaView>
+  )
+}
+
+export default search
+
+const styles = StyleSheet.create({
+  safearea:{
+    height:'100%',
+    width:'100%',
+    flex: 1,
+    backgroundColor:'#FFFFFF',
+    paddingTop: StatusBar.currentHeight,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+  },
+  container:{
+    height: '100%',
+    width: '100%',
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#ECECEC',
+  },
+  upperbox:{
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: '45%',
+    width: '100%',
+    backgroundColor: '#0C3B2E',
+  },
+  greeting:{
+    width: '90%',
+    height: '20%',
+    justifyContent: 'space-between',
+    marginTop: 15,
+  },
+  hello:{
+    color: 'white',
+    fontSize: 25,
+  },
+  title:{
+    color: 'white',
+    fontSize: 15,
+  },
+  image:{
+    width: '100%',
+    height: 160,
+    marginTop: 20,
+    resizeMode: 'cover',
+  },
+  inputContainer:{
+    flexDirection: 'row',
+    height: "20%",
+    width: '90%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  left:{
+    height: '100%',
+    width: '85%',
+    alignItems: 'center',
+    paddingLeft: 10,
+  },
