@@ -6,8 +6,18 @@ import Slider from '@react-native-community/slider';
 import { Picker } from '@react-native-picker/picker';
 
 const search = () => {
+  const [depature, setDepature] = useState('');
+  const [destination, setDestination] = useState('');
+  const [temp, setTemp] = useState('');
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(1);
+
+  const switchInputs = () => {
+    setDepature(destination);
+    setDestination(temp);
+    setTemp(depature);
+  } 
+
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>
@@ -25,21 +35,21 @@ const search = () => {
 
     <View style={styles.top}>
     <Text style={{fontSize:12, color:'#B8B8B8', margin:5 , fontFamily:'Inter-Regular'}}>From</Text>
-    <TextInput style={styles.input} placeholder='From'></TextInput>
+    <TextInput style={styles.input} value={depature} onChange={(e)=>{setDepature(e.target.value); setTemp(e.target.value)}}></TextInput>
     </View>
 
     <View style={styles.mid}></View>
 
     <View style={styles.low}>
     <Text style={{fontSize:12, color:'#B8B8B8', margin:5, fontFamily:'Inter-Regular'}}>To</Text>
-    <TextInput style={styles.input} placeholder='To'></TextInput>
+    <TextInput style={styles.input} value={destination} onChange={(e)=>setDestination(e.target.value)}></TextInput>
     </View>
 
     </View>
 
 
     <View style={styles.right}>
-      <TouchableOpacity style={{height:35,width:35}}>
+      <TouchableOpacity style={{height:35,width:35}} onPress={switchInputs}>
       <Image source={require('../../assets/icons/switch.png')} style={{height:"100%",width:"100%"}}/>
       </TouchableOpacity>
     </View>
