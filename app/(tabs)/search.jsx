@@ -44,3 +44,17 @@ const search = () => {
     </View>
 
     </View>
+
+    <Text style={styles.priceRange}>Price Range : {price}</Text>
+
+    <Slider
+      style={styles.slider}
+      minimumValue={0}
+      maximumValue={100}
+      step={1}
+      value={price}
+      onValueChange={setPrice}
+      minimumTrackTintColor="#6D9773"
+      maximumTrackTintColor="#d3d3d3"
+      thumbTintColor="#0C3B2E"
+    />
