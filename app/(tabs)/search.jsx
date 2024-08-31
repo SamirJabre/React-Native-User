@@ -58,3 +58,26 @@ const search = () => {
       maximumTrackTintColor="#d3d3d3"
       thumbTintColor="#0C3B2E"
     />
+
+<View style={{flexDirection:'row' , width:"90%",justifyContent:'space-between' , alignItems:'center'}}>
+    <Text style={styles.ratingText}>Rating</Text>
+    <Picker
+        selectedValue={rating}
+        style={styles.picker}
+        onValueChange={(itemValue) => setRating(itemValue)}
+      >
+        <Picker.Item label="1 Star" value={1} />
+        <Picker.Item label="2 Stars" value={2} />
+        <Picker.Item label="3 Stars" value={3} />
+        <Picker.Item label="4 Stars" value={4} />
+        <Picker.Item label="5 Stars" value={5} />
+      </Picker>
+    </View>
+    <TouchableOpacity style={styles.searchBtn}>
+    <Text style={{fontSize:20,color:'white'}}>Search</Text>
+    </TouchableOpacity>
+
+    </View>
+    <NavigationBar/>
+    
+    </SafeAreaView>
