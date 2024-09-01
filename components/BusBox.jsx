@@ -1,27 +1,25 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const BusBox = () => {
+const BusBox = ({from, to, price, seats, driver, day, departure, rating}) => {
   return (
     <TouchableOpacity style={styles.bus}>
             <View style={styles.left}>
-              <Text style={styles.busInfo}>From: Tripoli</Text>
-              <Text style={styles.busInfo}>To: Beirut</Text>
-              <Text style={styles.busInfo}>Driver: Samir Jabre</Text>
-              <Text style={styles.busInfo}>Day: Monday</Text>
+              <Text style={styles.busInfo}>From: {from}</Text>
+              <Text style={styles.busInfo}>To: {to}</Text>
+              <Text style={styles.busInfo}>Driver: {driver}</Text>
+              <Text style={styles.busInfo}>Day: {day}</Text>
             </View>
 
             <View style={styles.right}>
-              <Text style={styles.busInfo2}>Price: 10$</Text>
-              <Text style={styles.busInfo2}>Seats: 50</Text>
+              <Text style={styles.busInfo2}>Price: {price}$</Text>
+              <Text style={styles.busInfo2}>Seats: {seats}</Text>
               <View style={styles.images}>
-                <Image source={require('../assets/icons/star.png')} style={styles.image}/>
-                <Image source={require('../assets/icons/star.png')} style={styles.image}/>
-                <Image source={require('../assets/icons/star.png')} style={styles.image}/>
-                <Image source={require('../assets/icons/star.png')} style={styles.image}/>
-                <Image source={require('../assets/icons/star.png')} style={styles.image}/>
+              {Array.from({ length: rating }, (_, i) => (
+                <Image key={i} source={require('../assets/icons/star.png')} style={styles.image} />
+                ))}
               </View>
-              <Text style={styles.busInfo2}>Departure: 12:00 AM</Text>
+              <Text style={styles.busInfo2}>Departure: {departure}</Text>
             </View>
 
           </TouchableOpacity>

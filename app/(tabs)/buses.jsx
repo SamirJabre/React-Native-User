@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet , Text , View , SafeAreaView , ScrollView } from 'react-native';
+import { StyleSheet , Text , View , SafeAreaView , ScrollView , FlatList } from 'react-native';
 import {  useState , useEffect } from 'react';
 import * as React from 'react';
 import FilterToggle from '../../components/FilterToggle';
@@ -14,10 +14,11 @@ export default function buses() {
   const [latest, setLatest] = useState(false);
   const [rating, setRating] = useState(false);
 
+  const [trips, setTrips] = useState([]);
 
   useEffect(()=>{
     axios.get('http://192.168.1.108:8000/api/trips')
-    .then(res=>console.log(res))
+    .then(res=>setTrips(res.data))
   },[])
 
 
@@ -32,8 +33,20 @@ export default function buses() {
         <FilterToggle text='Latest' onpress={()=>setLatest(!latest)} status={latest}/>
         <FilterToggle text='Rating' onpress={()=>setRating(!rating)} status={rating}/>
         </View>
-        <ScrollView style={styles.buses}>
-          <BusBox/>
+        <ScrollView style={styles.buses} >
+        {trips.map((trip)=>{
+          return <BusBox 
+          key={trip.id} 
+          from={trip.from} 
+          to={trip.to} 
+          price={trip.price} 
+          seats={trip.passenger_load}
+          driver={trip.name}
+          day={trip.day}
+          departure={trip.departure_time}
+          rating={trip.rating}
+          />
+        })}
         </ScrollView>
 
       </View>
