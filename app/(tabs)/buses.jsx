@@ -7,7 +7,7 @@ import FilterToggle from '../../components/FilterToggle';
 import { router } from 'expo-router';
 import NavigationBar from '../../components/NavigationBar';
 
-export default function result() {
+export default function buses() {
 
   const [price, setPrice] = useState(false);
   const [time, setTime] = useState(false);
