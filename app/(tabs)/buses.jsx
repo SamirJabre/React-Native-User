@@ -21,7 +21,7 @@ export default function buses() {
         <View style={styles.backBtncontainer}>
           <Authback onpress={()=> router.push('/search')}/>
         </View>
-        <Text style={styles.upcomingText}>Search Result</Text>
+        <Text style={styles.upcomingText}>Upcoming Trips</Text>
 
         <View style={styles.filters}>
         <FilterToggle text='Price' onpress={()=>setPrice(!price)} status={price}/>
