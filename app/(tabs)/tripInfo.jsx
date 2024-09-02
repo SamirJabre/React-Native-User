@@ -1,14 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const tripInfo = () => {
   return (
-    <View>
-      <Text>tripInfo</Text>
-    </View>
+    <SafeAreaView style={styles.safe}>
+
+    </SafeAreaView>
   )
 }
 
 export default tripInfo
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    safe:{
+
+    },
+})
