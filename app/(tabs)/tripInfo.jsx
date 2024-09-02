@@ -3,7 +3,7 @@ import React from 'react'
 
 const tripInfo = () => {
   return (
-    <SafeAreaView style={styles.safe}>
+    <SafeAreaView style={styles.safearea}>
 
     </SafeAreaView>
   )
@@ -12,7 +12,11 @@ const tripInfo = () => {
 export default tripInfo
 
 const styles = StyleSheet.create({
-    safe:{
-
-    },
+    safearea:{
+    height: '100%',
+    width: '100%',
+    paddingTop: 0,
+    marginTop: 0,
+    justifyContent: 'space-between',
+  },
 })
