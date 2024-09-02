@@ -6,6 +6,7 @@ import FilterToggle from '../../components/FilterToggle';
 import NavigationBar from '../../components/NavigationBar';
 import BusBox from '../../components/BusBox';
 import axios from 'axios';
+import { BASE_URL } from '@env';
 
 export default function buses() {
 
@@ -17,7 +18,7 @@ export default function buses() {
   const [trips, setTrips] = useState([]);
 
   useEffect(()=>{
-    axios.get('http://172.34.132.104:8000/api/trips')
+    axios.get(`${BASE_URL}/trips`)
     .then(res=>setTrips(res.data))
   },[])
 

@@ -6,6 +6,7 @@ import Authback from '../../components/Authback'
 import ProgressBar from '../../components/ProgressBar'
 import { Link, router, useLocalSearchParams } from 'expo-router'
 import axios from 'axios'
+import { BASE_URL } from '@env';
 
 
 const verification = () => {
@@ -30,7 +31,7 @@ const verification = () => {
 
   const handleVerfication = () => {
     try{
-      axios.post('http://172.34.132.104:8000/api/validate-otp' , {
+      axios.post(`${BASE_URL}/validate-otp` , {
         email: email,
         otp: otp
     })
@@ -43,7 +44,7 @@ const verification = () => {
 
 
   const handleBack = () => {
-    axios.post('http://172.34.132.104:8000/api/delete-unverified',{
+    axios.post(`${BASE_URL}/delete-unverified`,{
       email: email
     });
     console.log(email);
@@ -54,7 +55,7 @@ const verification = () => {
 
   const resendOtp = () => {
     alert('OTP has been resent');
-    axios.post('http://172.34.132.104:8000/api/sendotp' ,{
+    axios.post(`%{${BASE_URL}}/sendotp` ,{
       email: email
     })
   }

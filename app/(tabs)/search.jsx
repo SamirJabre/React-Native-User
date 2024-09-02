@@ -6,6 +6,7 @@ import Slider from '@react-native-community/slider';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { router } from 'expo-router';
 import axios from 'axios';
+import { BASE_URL } from '@env';
 
 const search = () => {
   const [from, setFrom] = useState();
@@ -28,7 +29,7 @@ const search = () => {
 
   const searchTrips=()=>{
     try{
-      axios.post('http://172.34.132.104:8000/api/search', {
+      axios.post(`${BASE_URL}/search`, {
         from: from,
         to: to,
         price: price,

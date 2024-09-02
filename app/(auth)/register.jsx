@@ -7,9 +7,11 @@ import { StatusBar } from 'expo-status-bar'
 import Checkbox from 'expo-checkbox';
 import Authback from '../../components/Authback'
 import { router } from 'expo-router'
-import api from '../../services/api'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { BASE_URL } from '@env';
+
+
 
 const register = () => {
 
@@ -70,7 +72,7 @@ const register = () => {
   
   const fetchData = () => {
     try{
-      axios.post(`http://172.34.132.104:8000/api/register`, form)
+      axios.post(`${BASE_URL}/register`, form)
       .then(res => {
         AsyncStorage.setItem('token', res.data.authorisation.token);
       }

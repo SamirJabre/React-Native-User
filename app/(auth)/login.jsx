@@ -8,6 +8,7 @@ import Authback from '../../components/Authback'
 import { router } from 'expo-router'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { BASE_URL } from '@env';
 
 
 const login = () => {
@@ -61,7 +62,7 @@ const login = () => {
 
   const fetchData = () => {
     try{
-      axios.post(`http://172.34.132.104:8000/api/login`, form)
+      axios.post(`${BASE_URL}/login`, form)
       .then(res => {
         const result =res.data.message;
         AsyncStorage.setItem('Message', "res.data.message");
