@@ -30,7 +30,7 @@ const verification = () => {
 
   const handleVerfication = () => {
     try{
-      axios.post('http://192.168.1.108:8000/api/validate-otp' , {
+      axios.post('http://172.34.132.104:8000/api/validate-otp' , {
         email: email,
         otp: otp
     })
@@ -43,7 +43,7 @@ const verification = () => {
 
 
   const handleBack = () => {
-    axios.post('http://192.168.1.108:8000/api/delete-unverified',{
+    axios.post('http://172.34.132.104:8000/api/delete-unverified',{
       email: email
     });
     console.log(email);
@@ -54,7 +54,7 @@ const verification = () => {
 
   const resendOtp = () => {
     alert('OTP has been resent');
-    axios.post('http://192.168.1.108:8000/api/sendotp' ,{
+    axios.post('http://172.34.132.104:8000/api/sendotp' ,{
       email: email
     })
   }

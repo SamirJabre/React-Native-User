@@ -3,18 +3,44 @@ import React, { useState } from 'react'
 import NavigationBar from '../../components/NavigationBar'
 import { StatusBar } from 'expo-status-bar'
 import Slider from '@react-native-community/slider';
-import { Picker } from '@react-native-picker/picker';
+import DateTimePicker from '@react-native-community/datetimepicker'
+import { router } from 'expo-router';
+import axios from 'axios';
 
 const search = () => {
-  const [depature, setDepature] = useState('');
-  const [destination, setDestination] = useState('');
-  const [price, setPrice] = useState(0);
-  const [rating, setRating] = useState(1);
+  const [from, setFrom] = useState();
+  const [to, setTo] = useState();
+  const [price, setPrice] = useState();
+  const [date, setDate] = useState();
+  const [show, setShow] = useState(false);
+  const [data,setData]=useState([])
 
   const switchInputs = () => {
     setDepature(destination);
     setDestination(depature);
   } 
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    setDate(currentDate);
+    alert(date);
+  };
+
+  const searchTrips=()=>{
+    try{
+      axios.post('http://172.34.132.104:8000/api/search', {
+        from: from,
+        to: to,
+        price: price,
+        date: date,
+      })
+      .then(res=> console.log(res) );
+      router.push('/result?data=${data}')
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
 
   return (
     <SafeAreaView style={styles.safearea}>
@@ -33,14 +59,14 @@ const search = () => {
 
     <View style={styles.top}>
     <Text style={{fontSize:12, color:'#B8B8B8', margin:5 , fontFamily:'Inter-Regular'}}>From</Text>
-    <TextInput style={styles.input} value={depature} onChangeText={setDepature}></TextInput>
+    <TextInput style={styles.input} value={from} onChangeText={setFrom}></TextInput>
     </View>
 
     <View style={styles.mid}></View>
 
     <View style={styles.low}>
     <Text style={{fontSize:12, color:'#B8B8B8', margin:5, fontFamily:'Inter-Regular'}}>To</Text>
-    <TextInput style={styles.input} value={destination} onChangeText={setDestination}></TextInput>
+    <TextInput style={styles.input} value={to} onChangeText={setTo}></TextInput>
     </View>
 
     </View>
@@ -69,21 +95,26 @@ const search = () => {
       thumbTintColor="#0C3B2E"
     />
 
-    <View style={{flexDirection:'row' , width:"90%",justifyContent:'space-between' , alignItems:'center'}}>
-    <Text style={styles.ratingText}>Rating</Text>
-    <Picker
-        selectedValue={rating}
-        style={styles.picker}
-        onValueChange={(itemValue) => setRating(itemValue)}
-      >
-        <Picker.Item label="1 Star" value={1} />
-        <Picker.Item label="2 Stars" value={2} />
-        <Picker.Item label="3 Stars" value={3} />
-        <Picker.Item label="4 Stars" value={4} />
-        <Picker.Item label="5 Stars" value={5} />
-      </Picker>
+    <View style={styles.dateContainer}>
+    <Text style={styles.dateText}>Departure Date</Text>
+    <View style={styles.date}>
+    <Text style={styles.dateItself}> {date}</Text>
+    <TouchableOpacity style={styles.dateSelector} onPress={() => setShow(true)}>
+        <Image source={require('../../assets/icons/calendar.png')} style={{height:'100%',width:'100%'}}/>
+      </TouchableOpacity>
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode="date"
+          display="default"
+          onChange={onChange}
+        />
+      )}
     </View>
-    <TouchableOpacity style={styles.searchBtn}>
+
+    </View>
+    <TouchableOpacity style={styles.searchBtn} onPress={searchTrips}>
     <Text style={{fontSize:20,color:'white',fontFamily: 'Inter-SemiBold',}}>Search</Text>
     </TouchableOpacity>
 
@@ -186,7 +217,7 @@ const styles = StyleSheet.create({
   },
   priceRange:{
     width: '90%',
-    margin:15,
+    marginTop: 10,
     color: 'black',
     fontSize: 20,
     fontFamily: 'Inter-Regular',
@@ -195,9 +226,10 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 25,
   },
-  ratingText:{
-    fontSize: 20,
-    color: 'black',
+  dateText:{
+    height: '30%',
+    fontSize: 12,
+    color: 'gray',
     fontFamily: 'Inter-Regular',
   },
   picker: {
@@ -207,11 +239,36 @@ const styles = StyleSheet.create({
   },
   searchBtn:{
     backgroundColor: '#0C3B2E',
-    marginTop: 20,
+    marginTop: 10,
     height: 40,
     width: '50%',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
+  },
+  dateContainer:{
+    height: 60,
+    width:"90%",
+    margin:10,
+    borderBottomWidth:1,
+    borderBlockColor:'gray',
+  },
+  date:{
+    flexDirection:'row',
+    height: '70%',
+    width: '100%',
+    alignItems:'center',
+  },
+  dateItself:{
+    width: '90%',
+    fontSize: 20,
+    color: '#0C3B2E',
+    fontFamily: 'Inter-SemiBold',
+  },
+  dateSelector:{
+    height: '80%',
+    width: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })

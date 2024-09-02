@@ -61,7 +61,7 @@ const login = () => {
 
   const fetchData = () => {
     try{
-      axios.post(`http://192.168.1.108:8000/api/login`, form)
+      axios.post(`http://172.34.132.104:8000/api/login`, form)
       .then(res => {
         const result =res.data.message;
         AsyncStorage.setItem('Message', "res.data.message");

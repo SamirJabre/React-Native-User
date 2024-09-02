@@ -17,7 +17,7 @@ export default function buses() {
   const [trips, setTrips] = useState([]);
 
   useEffect(()=>{
-    axios.get('http://192.168.1.108:8000/api/trips')
+    axios.get('http://172.34.132.104:8000/api/trips')
     .then(res=>setTrips(res.data))
   },[])
 
@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
     height: '70%',
     width: '100%',
     backgroundColor: '#E5E5E5',
-    borderRadius: 30,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     marginTop: 20,
   },
 });
