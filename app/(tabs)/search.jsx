@@ -9,6 +9,7 @@ import axios from 'axios';
 import { BASE_URL } from '@env';
 
 const search = () => {
+  
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [price, setPrice] = useState('');
@@ -17,8 +18,10 @@ const search = () => {
   const [data,setData]=useState([])
 
   const switchInputs = () => {
-    setDepature(destination);
-    setDestination(depature);
+    setFrom(to);
+    setTo(from);
+    console.log(data);
+    
   } 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -27,20 +30,28 @@ const search = () => {
     alert(date);
   };
 
-  const searchTrips=()=>{
+  const searchTrips=async()=>{
     try{
-      axios.post(`${BASE_URL}/search`, {
+       await axios.post(`${BASE_URL}/search`, {
         from: from,
         to: to,
         price: price,
         date: date,
       })
-      .then(res=> setData(res.data) );
-      router.push('/result?data=${data}')
+      .then(res=>{
+        setData(res.data)
+        router.push('/result')
+      });
+      
     }
     catch(error){
       console.log(error)
     }
+  }
+  const routePage=()=>{
+    console.log(data);
+    
+    // 
   }
 
   return (
