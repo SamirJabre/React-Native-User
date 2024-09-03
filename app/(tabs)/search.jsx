@@ -9,10 +9,10 @@ import axios from 'axios';
 import { BASE_URL } from '@env';
 
 const search = () => {
-  const [from, setFrom] = useState();
-  const [to, setTo] = useState();
-  const [price, setPrice] = useState();
-  const [date, setDate] = useState();
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
+  const [price, setPrice] = useState('');
+  const [date, setDate] = useState('');
   const [show, setShow] = useState(false);
   const [data,setData]=useState([])
 
@@ -35,7 +35,7 @@ const search = () => {
         price: price,
         date: date,
       })
-      .then(res=> console.log(res) );
+      .then(res=> setData(res.data) );
       router.push('/result?data=${data}')
     }
     catch(error){
@@ -87,7 +87,7 @@ const search = () => {
     <Slider
       style={styles.slider}
       minimumValue={0}
-      maximumValue={100}
+      maximumValue={3}
       step={1}
       value={price}
       onValueChange={setPrice}
