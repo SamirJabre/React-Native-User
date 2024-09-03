@@ -1,19 +1,19 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const BusBox = ({from, to, price, seats, driver, day, departure, rating}) => {
+const BusBox = ({from, to, price, seats, driver, date, departure, rating, onpress}) => {
   return (
-    <TouchableOpacity style={styles.bus}>
+    <TouchableOpacity onPress={onpress} style={styles.bus}>
             <View style={styles.left}>
               <Text style={styles.busInfo}>From: {from}</Text>
               <Text style={styles.busInfo}>To: {to}</Text>
               <Text style={styles.busInfo}>Driver: {driver}</Text>
-              <Text style={styles.busInfo}>Day: {day}</Text>
+              <Text style={styles.busInfo}>Date: {date}</Text>
             </View>
 
             <View style={styles.right}>
-              <Text style={styles.busInfo2}>Price: {price}$</Text>
-              <Text style={styles.busInfo2}>Seats: {seats}</Text>
+              <Text style={styles.busInfo2}>Price: {price} ticket/s</Text>
+              <Text style={styles.busInfo2}>Seats left: {seats}</Text>
               <View style={styles.images}>
               {Array.from({ length: rating }, (_, i) => (
                 <Image key={i} source={require('../assets/icons/star.png')} style={styles.image} />

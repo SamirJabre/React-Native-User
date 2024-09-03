@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet , Text , View , SafeAreaView , ScrollView , FlatList } from 'react-native';
 import {  useState , useEffect } from 'react';
+import { router } from 'expo-router';
 import * as React from 'react';
 import FilterToggle from '../../components/FilterToggle';
 import NavigationBar from '../../components/NavigationBar';
@@ -43,9 +44,10 @@ export default function buses() {
           price={trip.price} 
           seats={trip.passenger_load}
           driver={trip.name}
-          day={trip.day}
+          date={trip.date}
           departure={trip.departure_time}
           rating={trip.rating}
+          onpress={()=>router.push(`/tripInfo?tripId=${trip.id}`)}
           />
         })}
         </ScrollView>

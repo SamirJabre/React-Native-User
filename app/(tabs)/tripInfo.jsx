@@ -1,15 +1,43 @@
 import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NavigationBar from '../../components/NavigationBar'
+import { BASE_URL } from '@env';
+import axios from 'axios';
+import { router, useLocalSearchParams } from 'expo-router';
 
 const tripInfo = () => {
+  const [from,setFrom] = useState('');
+  const [to,setTo] = useState('');
+  const [driver,setDriver] = useState('');
+  const [date,setDate] = useState('');
+  const [departure,setDeparture] = useState('');
+  const [tickets,setTickets] = useState('');
+  const {  tripId  } = useLocalSearchParams();
+
+  useEffect(()=>{
+    axios.post(`${BASE_URL}/tripinfo` ,
+      {
+      id:tripId
+      }
+    )
+    .then(res=>{
+      setFrom(res.data.from)
+      setTo(res.data.to)
+      setDriver(res.data.name)
+      setDate(res.data.date)
+      setDeparture(res.data.departure_time)
+      setTickets(res.data.price)
+
+    })
+  },[])
+
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>
     
     <View style={styles.upperBox}>
         <View style={styles.upperPart}>
-            <TouchableOpacity style={styles.backBtn}>
+            <TouchableOpacity style={styles.backBtn} onPress={()=>router.back()}>
               <Image source={require('../../assets/icons/back_arrow.png')} style={{height:30,width:30}}/>
             </TouchableOpacity>
             <Text style={styles.busText}>Bus Booking</Text>
@@ -36,34 +64,35 @@ const tripInfo = () => {
 
         <View style={styles.left}>
           <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/start.png')} style={{height:40,width:40 , margin:10}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>:  Tripoli</Text>
+          <Image source={require('../../assets/icons/start.png')} style={{height:30,width:30 , margin:5}}/>
+          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {from}</Text>
           </View>
           <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/destination.png')} style={{height:40,width:40 , margin:10}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>:  Beirut</Text>
+          <Image source={require('../../assets/icons/destination.png')} style={{height:30,width:30 , margin:5}}/>
+          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {to}</Text>
           </View>
           <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/driver.png')} style={{height:40,width:40 , margin:10}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>:  Samir</Text>
+          <Image source={require('../../assets/icons/driver.png')} style={{height:30,width:30 , margin:5}}/>
+          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {driver}</Text>
           </View>
         </View>
 
         <View style={styles.right}>
         <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/calendar.png')} style={{height:40,width:40 , margin:10}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>:  20-9-2024</Text>
+          <Image source={require('../../assets/icons/calendar.png')} style={{height:30,width:30 , margin:5}}/>
+          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {date}</Text>
           </View>
           <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/time.png')} style={{height:40,width:40 , margin:10}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>:  Monday</Text>
+          <Image source={require('../../assets/icons/time.png')} style={{height:30,width:30 , margin:5}}/>
+          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {departure}</Text>
           </View>
           <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/tickets.png')} style={{height:40,width:40 , margin:10}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>:  2</Text>
+          <Image source={require('../../assets/icons/tickets.png')} style={{height:30,width:30 , margin:5}}/>
+          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {tickets}</Text>
           </View>
         </View>
       </View>
+      <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText}>Book Now!</Text></TouchableOpacity>
     </View>
 
     </View>
@@ -116,7 +145,7 @@ const styles = StyleSheet.create({
     height:'50%',
     width:'100%',
     flexDirection:'row',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
   },
   checked:{
@@ -153,10 +182,11 @@ const styles = StyleSheet.create({
     height:'45%',
     backgroundColor:'#ECECEC',
     alignItems:'center',
+    justifyContent:'center',
   },
   details:{
     width:'90%',
-    height:'70%',
+    height:'60%',
     marginHorizontal:'5%',
     marginVertical:'5%',
     flexDirection:'row',
@@ -173,5 +203,18 @@ const styles = StyleSheet.create({
     height:'100%',
     alignItems:'flex-start',
     justifyContent:'space-evenly',
+  },
+  bookBtn:{
+    width:'90%',
+    height:'15%',
+    backgroundColor:'#0C3B2E',
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:10,
+  },
+  bookText:{
+    color:'white',
+    fontSize:20,
+    fontFamily:'Inter-SemiBold',
   }
 })
