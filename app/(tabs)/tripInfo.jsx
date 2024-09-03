@@ -4,8 +4,15 @@ import NavigationBar from '../../components/NavigationBar'
 import { BASE_URL } from '@env';
 import axios from 'axios';
 import { router, useLocalSearchParams } from 'expo-router';
+import MapView, { Polyline, Marker } from 'react-native-maps';
+
 
 const tripInfo = () => {
+
+  const fromPoint = { latitude: 33.8938, longitude:35.5018 };
+  const toPoint = { latitude: 34.4346, longitude: 35.8362 };
+
+
   const [from,setFrom] = useState('');
   const [to,setTo] = useState('');
   const [driver,setDriver] = useState('');
@@ -57,7 +64,33 @@ const tripInfo = () => {
         </View>
     </View>
 
-    <View style={styles.mapContainer}></View>
+    <View style={styles.mapContainer}>
+    <MapView
+        style={StyleSheet.absoluteFillObject}
+        initialRegion={{
+          latitude: (fromPoint.latitude + toPoint.latitude) / 2,
+          longitude: (fromPoint.longitude + toPoint.longitude) / 2,
+          latitudeDelta: Math.abs(fromPoint.latitude - toPoint.latitude) * 2,
+          longitudeDelta: Math.abs(fromPoint.longitude - toPoint.longitude) * 2,
+        }}
+      >
+        <Marker coordinate={fromPoint} />
+        <Marker coordinate={toPoint} />
+        <Polyline
+          coordinates={[fromPoint, toPoint]}
+          strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
+          strokeColors={[
+            '#7F0000',
+            '#00000000', // no color, creates a "gradient" effect
+            '#B24112',
+            '#E5845C',
+            '#238C23',
+            '#7F0000'
+          ]}
+          strokeWidth={6}
+        />
+      </MapView>
+    </View>
 
     <View style={styles.info}>
       <View style={styles.details}>
@@ -110,11 +143,12 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     marginTop: 0,
     justifyContent: 'space-between',
+    backgroundColor:"#ECECEC"
   },
   container:{
     width : '100%',
     height: '92%',
-    backgroundColor:'blue',
+    alignItems: 'center',
   },
   upperBox:{
     height:'15%',
@@ -173,9 +207,10 @@ const styles = StyleSheet.create({
     fontFamily:'Inter-Regular',
   },
   mapContainer:{
-    width:'100%',
+    width:'90%',
     height:'40%',
-    backgroundColor:'red',
+    marginTop:10,
+    borderRadius:20,
   },
   info:{
     width:'100%',
@@ -216,5 +251,5 @@ const styles = StyleSheet.create({
     color:'white',
     fontSize:20,
     fontFamily:'Inter-SemiBold',
-  }
+  },
 })
