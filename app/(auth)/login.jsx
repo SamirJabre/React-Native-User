@@ -7,7 +7,6 @@ import Checkbox from 'expo-checkbox';
 import Authback from '../../components/Authback'
 import { router } from 'expo-router'
 import axios from 'axios'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { BASE_URL } from '@env';
 
 
