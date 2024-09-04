@@ -12,26 +12,33 @@ const search = () => {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [price, setPrice] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    setDate(currentDate);
+  };
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString('en-CA', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric'
+    });
+  };
 
   const switchInputs = () => {
     setFrom(to);
     setTo(from);
   } 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(false);
-    setDate(currentDate);
-    alert(date);
-  };
+  
 
   const searchTrips=()=>{
-        router.push(`/result?from=${from}&to=${to}&ticket=${price}&date=${date}`)
+        router.push(`/result?from=${from}&to=${to}&ticket=${price}&date=${formatDate(date)}`)
       }
       
-    
-
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>
@@ -88,19 +95,18 @@ const search = () => {
     <View style={styles.dateContainer}>
     <Text style={styles.dateText}>Departure Date</Text>
     <View style={styles.date}>
-    <Text style={styles.dateItself}> {date}</Text>
+    <Text style={styles.dateItself}>{formatDate(date)}</Text>
     <TouchableOpacity style={styles.dateSelector} onPress={() => setShow(true)}>
         <Image source={require('../../assets/icons/calendar.png')} style={{height:'100%',width:'100%'}}/>
       </TouchableOpacity>
       {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode="date"
-          display="default"
-          onChange={onChange}
-        />
-      )}
+            <DateTimePicker
+              value={date}
+              mode="date"
+              display="default"
+              onChange={onChange}
+            />
+          )}
     </View>
 
     </View>

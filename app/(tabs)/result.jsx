@@ -19,6 +19,7 @@ export default function result() {
   const [trips, setTrips] = useState([]);
 
   useEffect(()=>{
+    
     axios.post(`${BASE_URL}/search` ,{
       from: from,
       to: to,
