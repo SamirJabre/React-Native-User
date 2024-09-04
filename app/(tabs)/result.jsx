@@ -27,7 +27,7 @@ export default function result() {
     })
     .then(res=>setTrips(res.data))
   },[])
-  
+
   return (
     <SafeAreaView style={styles.safearea}>
       <View style={styles.container}>
@@ -66,7 +66,6 @@ export default function result() {
     </SafeAreaView>
   );
 }
-export default result
 
 const styles = StyleSheet.create({
   safearea:{
