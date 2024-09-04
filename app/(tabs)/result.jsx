@@ -10,13 +10,13 @@ import BusBox from '../../components/BusBox';
 import axios from 'axios';
 import { BASE_URL } from '@env';
 
-const result = () => {
-  return (
-    <View>
-      <Text>result</Text>
-    </View>
-  )
-}
+export default function result() {
+  const {  from , to , ticket , date  } = useLocalSearchParams();
+  const [price, setPrice] = useState(false);
+  const [time, setTime] = useState(false);
+  const [latest, setLatest] = useState(false);
+  const [rating, setRating] = useState(false);
+  const [trips, setTrips] = useState([]);
 
 export default result
 
