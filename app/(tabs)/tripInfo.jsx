@@ -5,6 +5,7 @@ import { BASE_URL } from '@env';
 import axios from 'axios';
 import { router, useLocalSearchParams } from 'expo-router';
 import TripInfo from '../../components/TripInfo';
+import Reviews from '../../components/Reviews';
 // import MapView, { Polyline, Marker } from 'react-native-maps';
 
 
@@ -31,6 +32,7 @@ const tripInfo = () => {
   const [date,setDate] = useState('');
   const [departure,setDeparture] = useState('');
   const [tickets,setTickets] = useState('');
+  const [driverId,setDriverId] = useState('');
   const {  tripId  } = useLocalSearchParams();
 
   useEffect( () => {
@@ -46,15 +48,22 @@ const tripInfo = () => {
       setDate(res.data.date)
       setDeparture(res.data.departure_time)
       setTickets(res.data.price)
-      axios.post(`${BASE_URL}/coordinates` ,{
-        from:res.data.from,
-        to:res.data.to
+      setDriverId(res.data.driver_id)
+      console.log(res.data.driver_id);
+      
+      console.log(res.data.to);
+      
+      axios.post(`${BASE_URL}/coordinates`,{
+        from:from,
+        to:to,
       }).then(res=>{
-        fromPoint.latitude=res.data[0].latitude
-        fromPoint.longitude=res.data[0].longitude
+        console.log(res.data);
+        
+        // fromPoint.latitude=res.data[0].latitude
+        // fromPoint.longitude=res.data[0].longitude
   
-        toPoint.latitude=res.data[1].latitude
-        toPoint.longitude=res.data[1].longitude
+        // toPoint.latitude=res.data[1].latitude
+        // toPoint.longitude=res.data[1].longitude
       });
     })
   },[])
@@ -97,7 +106,7 @@ const tripInfo = () => {
     {
       selectedTab == 'TripInfo' ? <TripInfo from={from} to={to} driver={driver} date={date} departure={departure} tickets={tickets}/> 
       : selectedTab == 'Seats' ? <Text>Seats</Text>
-      : <Text>Reviews</Text>
+      : <Reviews driverId={driverId}/>
     }
 
     </View>
