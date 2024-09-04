@@ -4,7 +4,7 @@ import NavigationBar from '../../components/NavigationBar'
 import { BASE_URL } from '@env';
 import axios from 'axios';
 import { router, useLocalSearchParams } from 'expo-router';
-// import MapView, { Polyline, Marker } from 'react-native-maps';
+import MapView, { Polyline, Marker } from 'react-native-maps';
 
 
 const tripInfo = () => {
@@ -92,7 +92,7 @@ const tripInfo = () => {
     </View>
 
     <View style={styles.mapContainer}>
-    {/* <MapView
+    <MapView
         style={StyleSheet.absoluteFillObject}
         initialRegion={{
           latitude: (fromPoint.latitude + toPoint.latitude) / 2,
@@ -101,7 +101,7 @@ const tripInfo = () => {
           longitudeDelta: Math.abs(fromPoint.longitude - toPoint.longitude) * 2,
         }}
       >
-      </MapView> */}
+      </MapView>
     </View>
 
     <View style={styles.info}>

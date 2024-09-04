@@ -6,7 +6,7 @@ import Slider from '@react-native-community/slider';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { router } from 'expo-router';
 import axios from 'axios';
-
+import { BASE_URL } from '@env';
 
 const search = () => {
   
@@ -30,11 +30,29 @@ const search = () => {
     alert(date);
   };
 
-  const searchTrips=()=>{
-        router.push(`/result?from=${from}&to=${to}&ticket=${price}&date=${date}`)
-      }
+  const searchTrips=async()=>{
+    try{
+       await axios.post(`${BASE_URL}/search`, {
+        from: from,
+        to: to,
+        price: price,
+        date: date,
+      })
+      .then(res=>{
+        setData(res.data)
+        router.push('/result')
+      });
       
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+  const routePage=()=>{
+    console.log(data);
     
+    // 
+  }
 
   return (
     <SafeAreaView style={styles.safearea}>
