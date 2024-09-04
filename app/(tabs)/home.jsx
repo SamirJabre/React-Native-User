@@ -8,7 +8,6 @@ import NavigationBar from '../../components/NavigationBar';
 const home = () => {
   const [message, setMessage] = useState('')
   useEffect(() => {
-    AsyncStorage.getItem('Message')
     const backAction = () => {
       return true;
     };
