@@ -27,3 +27,8 @@ const search = () => {
     setDate(currentDate);
     alert(date);
   };
+
+  const searchTrips=()=>{
+    router.push(`/result?from=${from}&to=${to}&ticket=${price}&date=${date}`)
+  }
+  
