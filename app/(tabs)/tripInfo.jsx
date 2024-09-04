@@ -10,6 +10,8 @@ import TripInfo from '../../components/TripInfo';
 
 const tripInfo = () => {
 
+  const [selectedTab, setSelectedTab] = useState('TripInfo');
+
 
   // // const fromPoint = { latitude: 33.8938, longitude:35.5018 };
   // // const toPoint = { latitude: 34.4346, longitude: 35.8362 };
@@ -80,19 +82,23 @@ const tripInfo = () => {
         </View>
 
         <View style={styles.lowerPart}>
-        <TouchableOpacity style={styles.checked}>
-          <Text style={styles.checkedText}>Trip Info</Text>
+        <TouchableOpacity style={selectedTab == 'TripInfo' ? styles.checked : styles.notChecked} onPress={()=>setSelectedTab('TripInfo')}>
+          <Text style={selectedTab == 'TripInfo' ? styles.checkedText : styles.notCheckedText}>Trip Info</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.notChecked}>
-          <Text style={styles.notCheckedText}>Seats</Text>
+        <TouchableOpacity style={selectedTab == 'Seats' ? styles.checked : styles.notChecked} onPress={()=>setSelectedTab('Seats')}>
+          <Text style={selectedTab == 'Seats' ? styles.checkedText : styles.notCheckedText}>Seats</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.notChecked}>
-          <Text style={styles.notCheckedText}>Reviews</Text>
+        <TouchableOpacity style={selectedTab == 'Reviews' ? styles.checked : styles.notChecked} onPress={()=>setSelectedTab('Reviews')}>
+          <Text style={selectedTab == 'Reviews' ? styles.checkedText : styles.notCheckedText}>Reviews</Text>
         </TouchableOpacity>
         </View>
     </View>
 
-    <TripInfo from={from} to={to} driver={driver} date={date} departure={departure} tickets={tickets}/>
+    {
+      selectedTab == 'TripInfo' ? <TripInfo from={from} to={to} driver={driver} date={date} departure={departure} tickets={tickets}/> 
+      : selectedTab == 'Seats' ? <Text>Seats</Text>
+      : <Text>Reviews</Text>
+    }
 
     </View>
     <NavigationBar/>    
