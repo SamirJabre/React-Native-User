@@ -18,6 +18,16 @@ export default function result() {
   const [rating, setRating] = useState(false);
   const [trips, setTrips] = useState([]);
 
+  useEffect(()=>{
+    axios.post(`${BASE_URL}/search` ,{
+      from: from,
+      to: to,
+      price: ticket,
+      date: date
+    })
+    .then(res=>setTrips(res.data))
+  },[])
+
 export default result
 
 const styles = StyleSheet.create({})
