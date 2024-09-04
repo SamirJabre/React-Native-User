@@ -19,7 +19,6 @@ const ReviewBox = ({userName,user_pp,comment,created_at}) => {
     </View>
   )
 }
-
 export default ReviewBox
 
 const styles = StyleSheet.create({})
