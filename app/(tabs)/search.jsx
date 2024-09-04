@@ -21,3 +21,9 @@ const search = () => {
     console.log(data);
     
   } 
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    setDate(currentDate);
+    alert(date);
+  };
