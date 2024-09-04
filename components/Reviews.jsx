@@ -31,4 +31,12 @@ const Reviews = ({driverId}) => {
 
 export default Reviews
 
-const styles = StyleSheet.create({})
+export default Reviews
+
+const styles = StyleSheet.create({
+    reviewsContianer:{
+        height:'85%',
+        width:'100%',
+    },
+    
+})
