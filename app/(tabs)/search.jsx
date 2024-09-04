@@ -14,13 +14,10 @@ const search = () => {
   const [price, setPrice] = useState('');
   const [date, setDate] = useState('');
   const [show, setShow] = useState(false);
-  const [data,setData]=useState([])
 
   const switchInputs = () => {
     setFrom(to);
     setTo(from);
-    console.log(data);
-    
   } 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
