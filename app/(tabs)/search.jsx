@@ -5,3 +5,12 @@ import { StatusBar } from 'expo-status-bar'
 import Slider from '@react-native-community/slider';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { router } from 'expo-router';
+
+const search = () => {
+  
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
+  const [price, setPrice] = useState('');
+  const [date, setDate] = useState('');
+  const [show, setShow] = useState(false);
+  const [data,setData]=useState([])
