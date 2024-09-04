@@ -18,7 +18,8 @@ const Reviews = ({driverId}) => {
 
   return (
     <View style={styles.reviewsContianer}>
-    {reviews.map((review)=>{
+    {reviews.length===0 ? <Text style={styles.noReviews}>No Reviews Yet</Text>
+    :reviews.map((review)=>{
           return <ReviewBox 
           key={review.id} 
           userName={review.user_name} 
@@ -26,7 +27,8 @@ const Reviews = ({driverId}) => {
           comment={review.comment} 
           created_at={review.created_at}
           />
-        })}
+        })
+    }
     </View>
   )
 }
@@ -38,5 +40,11 @@ const styles = StyleSheet.create({
         height:'85%',
         width:'100%',
     },
-    
+    noReviews:{
+        color:'#0C3B2E',
+        fontSize:25,
+        fontFamily:'Inter-SemiBold',
+        textAlign:'center',
+        marginTop:50,
+    }
 })
