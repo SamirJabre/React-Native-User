@@ -44,3 +44,34 @@ const search = () => {
     </View>
     <Image source={require('../../assets/bus-background.png')} style={styles.image}/>
     </View>
+    Image source={require('../../assets/bus-background.png')} style={styles.image}/>
+    </View>
+
+    <View style={styles.inputContainer}>
+    <View style={styles.left}>
+
+    <View style={styles.top}>
+    <Text style={{fontSize:12, color:'#B8B8B8', margin:5 , fontFamily:'Inter-Regular'}}>From</Text>
+    <TextInput style={styles.input} value={from} onChangeText={setFrom}></TextInput>
+    </View>
+
+    <View style={styles.mid}></View>
+
+    <View style={styles.low}>
+    <Text style={{fontSize:12, color:'#B8B8B8', margin:5, fontFamily:'Inter-Regular'}}>To</Text>
+    <TextInput style={styles.input} value={to} onChangeText={setTo}></TextInput>
+    </View>
+
+    </View>
+
+
+    <View style={styles.right}>
+      <TouchableOpacity style={{height:35,width:35}} onPress={switchInputs}>
+      <Image source={require('../../assets/icons/switch.png')} style={{height:"100%",width:"100%"}}/>
+      </TouchableOpacity>
+    </View>
+
+    </View>
+
+
+    <Text style={styles.priceRange}>Price Range : {price}</Text>
