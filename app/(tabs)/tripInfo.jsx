@@ -9,9 +9,18 @@ import MapView, { Polyline, Marker } from 'react-native-maps';
 
 const tripInfo = () => {
 
-  const fromPoint = { latitude: 33.8938, longitude:35.5018 };
-  const toPoint = { latitude: 34.4346, longitude: 35.8362 };
 
+  // // const fromPoint = { latitude: 33.8938, longitude:35.5018 };
+  // // const toPoint = { latitude: 34.4346, longitude: 35.8362 };
+  // const [fromPointLatitude,setFromPointLatitude]=useState();
+  // const [fromPointLongitude,setFromPointLongitude]=useState();
+  // const [toPointLatitude,setToPointLatitude]=useState();
+  // const [toPointLongitude,setToPointLongitude]=useState();
+  // const [fromPoint, setFromPoint] = useState({});
+  // const [toPoint, setToPoint] = useState({});
+
+  var fromPoint = { latitude: 37.78825, longitude: -122.4324 };
+  var toPoint = { latitude: 37.75825, longitude: -122.4624 };
 
   const [from,setFrom] = useState('');
   const [to,setTo] = useState('');
@@ -21,7 +30,7 @@ const tripInfo = () => {
   const [tickets,setTickets] = useState('');
   const {  tripId  } = useLocalSearchParams();
 
-  useEffect(()=>{
+  useEffect( () => {
     axios.post(`${BASE_URL}/tripinfo` ,
       {
       id:tripId
@@ -34,9 +43,27 @@ const tripInfo = () => {
       setDate(res.data.date)
       setDeparture(res.data.departure_time)
       setTickets(res.data.price)
-
+      axios.post(`${BASE_URL}/coordinates` ,{
+        from:res.data.from,
+        to:res.data.to
+      }).then(res=>{
+        fromPoint.latitude=res.data[0].latitude
+        fromPoint.longitude=res.data[0].longitude
+  
+        toPoint.latitude=res.data[1].latitude
+        toPoint.longitude=res.data[1].longitude
+      });
     })
   },[])
+
+  // const getCoordinates = () => {
+  //     axios.post(`${BASE_URL}/coordinates` ,{
+  //       from:from,
+  //       to:to
+  //     }).then(res=>{
+  //     alert(res.data[0].latitude);
+  //     });
+  // }
 
   return (
     <SafeAreaView style={styles.safearea}>
@@ -47,7 +74,7 @@ const tripInfo = () => {
             <TouchableOpacity style={styles.backBtn} onPress={()=>router.back()}>
               <Image source={require('../../assets/icons/back_arrow.png')} style={{height:30,width:30}}/>
             </TouchableOpacity>
-            <Text style={styles.busText}>Bus Booking</Text>
+            <Text style={styles.busText}>{toPoint.longitude}</Text>
             <View style={{height:'100%',width:'20%'}}></View>
         </View>
 
@@ -74,21 +101,6 @@ const tripInfo = () => {
           longitudeDelta: Math.abs(fromPoint.longitude - toPoint.longitude) * 2,
         }}
       >
-        <Marker coordinate={fromPoint} />
-        <Marker coordinate={toPoint} />
-        <Polyline
-          coordinates={[fromPoint, toPoint]}
-          strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
-          strokeColors={[
-            '#7F0000',
-            '#00000000', // no color, creates a "gradient" effect
-            '#B24112',
-            '#E5845C',
-            '#238C23',
-            '#7F0000'
-          ]}
-          strokeWidth={6}
-        />
       </MapView>
     </View>
 
