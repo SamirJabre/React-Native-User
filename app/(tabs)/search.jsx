@@ -14,3 +14,10 @@ const search = () => {
   const [date, setDate] = useState('');
   const [show, setShow] = useState(false);
   const [data,setData]=useState([])
+
+  const switchInputs = () => {
+    setFrom(to);
+    setTo(from);
+    console.log(data);
+    
+  } 
