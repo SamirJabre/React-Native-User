@@ -15,6 +15,18 @@ const Reviews = ({driverId}) => {
         }
         )
     },[])
+    return (
+        <View style={styles.reviewsContianer}>
+        {reviews.map((review)=>{
+              return <ReviewBox 
+              key={review.id} 
+              userName={review.user_name} 
+              user_pp={review.user_profile_picture} 
+              comment={review.comment} 
+              created_at={review.created_at}
+              />
+            })}
+        </View>
 }
 
 export default Reviews
