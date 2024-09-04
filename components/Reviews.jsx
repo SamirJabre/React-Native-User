@@ -4,12 +4,17 @@ import ReviewBox from './ReviewBox'
 import axios from 'axios'
 import { BASE_URL } from '@env';
 
-const Reviews = () => {
-  return (
-    <View>
-      <Text>Reviews</Text>
-    </View>
-  )
+const Reviews = ({driverId}) => {
+    const [reviews,setReviews] = useState([]);
+
+    useEffect(()=>{
+        axios.post(`${BASE_URL}/driver-reviews`,{
+            id:driverId
+        }).then(res=>{
+            setReviews(res.data);
+        }
+        )
+    },[])
 }
 
 export default Reviews
