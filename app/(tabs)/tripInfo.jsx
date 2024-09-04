@@ -239,14 +239,14 @@ const styles = StyleSheet.create({
     flexDirection:'row',
   },
   left:{
-    width:'50%',
+    width:'57%',
     height:'100%',
     alignItems:'flex-start',
     justifyContent:'space-evenly',
 
   },
   right:{
-    width:'50%',
+    width:'43%',
     height:'100%',
     alignItems:'flex-start',
     justifyContent:'space-evenly',
