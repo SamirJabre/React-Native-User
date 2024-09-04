@@ -6,6 +6,7 @@ import Slider from '@react-native-community/slider';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { router } from 'expo-router';
 
+
 const search = () => {
   
   const [from, setFrom] = useState('');
@@ -29,9 +30,10 @@ const search = () => {
   };
 
   const searchTrips=()=>{
-    router.push(`/result?from=${from}&to=${to}&ticket=${price}&date=${date}`)
-  }
-  
+        router.push(`/result?from=${from}&to=${to}&ticket=${price}&date=${date}`)
+      }
+      
+    
 
   return (
     <SafeAreaView style={styles.safearea}>
@@ -115,3 +117,151 @@ const search = () => {
     </SafeAreaView>
   )
 }
+
+export default search
+
+const styles = StyleSheet.create({
+  safearea:{
+    height:'100%',
+    width:'100%',
+    flex: 1,
+    backgroundColor:'#FFFFFF',
+    paddingTop: StatusBar.currentHeight,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+  },
+  container:{
+    height: '100%',
+    width: '100%',
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#ECECEC',
+  },
+  upperbox:{
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: '45%',
+    width: '100%',
+    backgroundColor: '#0C3B2E',
+  },
+  greeting:{
+    width: '90%',
+    height: '20%',
+    justifyContent: 'space-between',
+    marginTop: 15,
+  },
+  hello:{
+    color: 'white',
+    fontSize: 25,
+    fontFamily: 'Inter-SemiBold',
+  },
+  title:{
+    color: 'white',
+    fontSize: 15,
+    fontFamily: 'Inter-Regular',
+  },
+  image:{
+    width: '100%',
+    height: 160,
+    marginTop: 20,
+    resizeMode: 'cover',
+  },
+  inputContainer:{
+    flexDirection: 'row',
+    height: "20%",
+    width: '90%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  left:{
+    height: '100%',
+    width: '85%',
+    alignItems: 'center',
+    paddingLeft: 10,
+  },
+  top:{
+    height: '49%',
+    width: '100%',
+  },
+  mid:{
+    height: '2%',
+    width: '100%',
+    backgroundColor: '#CCCCCC',
+  },
+  low:{
+    height: '49%',
+    width: '100%',
+  },
+  input:{
+    width: '100%',
+    padding: 5,
+    fontSize: 20,
+    color:"#0C3B2E",
+    fontFamily: 'Inter-SemiBold',
+  },
+  right:{
+    width: '15%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  priceRange:{
+    width: '90%',
+    marginTop: 10,
+    color: 'black',
+    fontSize: 20,
+    fontFamily: 'Inter-Regular',
+  },
+  slider:{
+    width: '90%',
+    height: 25,
+  },
+  dateText:{
+    height: '30%',
+    fontSize: 12,
+    color: 'gray',
+    fontFamily: 'Inter-Regular',
+  },
+  picker: {
+    height: 50,
+    width: 150,
+    fontFamily: 'Inter-Regular',
+  },
+  searchBtn:{
+    backgroundColor: '#0C3B2E',
+    marginTop: 10,
+    height: 40,
+    width: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+  },
+  dateContainer:{
+    height: 60,
+    width:"90%",
+    margin:10,
+    borderBottomWidth:1,
+    borderBlockColor:'gray',
+  },
+  date:{
+    flexDirection:'row',
+    height: '70%',
+    width: '100%',
+    alignItems:'center',
+  },
+  dateItself:{
+    width: '90%',
+    fontSize: 20,
+    color: '#0C3B2E',
+    fontFamily: 'Inter-SemiBold',
+  },
+  dateSelector:{
+    height: '80%',
+    width: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+})
