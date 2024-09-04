@@ -74,4 +74,55 @@ const search = () => {
     </View>
 
 
+    <View style={styles.right}>
+      <TouchableOpacity style={{height:35,width:35}} onPress={switchInputs}>
+      <Image source={require('../../assets/icons/switch.png')} style={{height:"100%",width:"100%"}}/>
+      </TouchableOpacity>
+    </View>
+
+    </View>
+
+
     <Text style={styles.priceRange}>Price Range : {price}</Text>
+
+    <Slider
+      style={styles.slider}
+      minimumValue={0}
+      maximumValue={3}
+      step={1}
+      value={price}
+      onValueChange={setPrice}
+      minimumTrackTintColor="#6D9773"
+      maximumTrackTintColor="#d3d3d3"
+      thumbTintColor="#0C3B2E"
+    />
+
+    <View style={styles.dateContainer}>
+    <Text style={styles.dateText}>Departure Date</Text>
+    <View style={styles.date}>
+    <Text style={styles.dateItself}> {date}</Text>
+    <TouchableOpacity style={styles.dateSelector} onPress={() => setShow(true)}>
+        <Image source={require('../../assets/icons/calendar.png')} style={{height:'100%',width:'100%'}}/>
+      </TouchableOpacity>
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode="date"
+          display="default"
+          onChange={onChange}
+        />
+      )}
+    </View>
+
+    </View>
+    <TouchableOpacity style={styles.searchBtn} onPress={searchTrips}>
+    <Text style={{fontSize:20,color:'white',fontFamily: 'Inter-SemiBold',}}>Search</Text>
+    </TouchableOpacity>
+
+    </View>
+    <NavigationBar/>
+    
+    </SafeAreaView>
+  )
+}
