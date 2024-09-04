@@ -4,6 +4,7 @@ import NavigationBar from '../../components/NavigationBar'
 import { BASE_URL } from '@env';
 import axios from 'axios';
 import { router, useLocalSearchParams } from 'expo-router';
+import TripInfo from '../../components/TripInfo';
 // import MapView, { Polyline, Marker } from 'react-native-maps';
 
 
@@ -74,7 +75,7 @@ const tripInfo = () => {
             <TouchableOpacity style={styles.backBtn} onPress={()=>router.back()}>
               <Image source={require('../../assets/icons/back_arrow.png')} style={{height:30,width:30}}/>
             </TouchableOpacity>
-            <Text style={styles.busText}>{toPoint.longitude}</Text>
+            <Text style={styles.busText}>Bus Booking</Text>
             <View style={{height:'100%',width:'20%'}}></View>
         </View>
 
@@ -91,54 +92,7 @@ const tripInfo = () => {
         </View>
     </View>
 
-    <View style={styles.mapContainer}>
-    {/* <MapView
-        style={StyleSheet.absoluteFillObject}
-        initialRegion={{
-          latitude: (fromPoint.latitude + toPoint.latitude) / 2,
-          longitude: (fromPoint.longitude + toPoint.longitude) / 2,
-          latitudeDelta: Math.abs(fromPoint.latitude - toPoint.latitude) * 2,
-          longitudeDelta: Math.abs(fromPoint.longitude - toPoint.longitude) * 2,
-        }}
-      >
-      </MapView> */}
-    </View>
-
-    <View style={styles.info}>
-      <View style={styles.details}>
-
-        <View style={styles.left}>
-          <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/start.png')} style={{height:30,width:30 , margin:5}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {from}</Text>
-          </View>
-          <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/destination.png')} style={{height:30,width:30 , margin:5}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {to}</Text>
-          </View>
-          <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/driver.png')} style={{height:30,width:30 , margin:5}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {driver}</Text>
-          </View>
-        </View>
-
-        <View style={styles.right}>
-        <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/calendar.png')} style={{height:30,width:30 , margin:5}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {date}</Text>
-          </View>
-          <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/time.png')} style={{height:30,width:30 , margin:5}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {departure}</Text>
-          </View>
-          <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../../assets/icons/tickets.png')} style={{height:30,width:30 , margin:5}}/>
-          <Text style={{fontFamily:'Inter-SemiBold' , color:'#0C3B2E'}}>: {tickets}</Text>
-          </View>
-        </View>
-      </View>
-      <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText}>Book Now!</Text></TouchableOpacity>
-    </View>
+    <TripInfo from={from} to={to} driver={driver} date={date} departure={departure} tickets={tickets}/>
 
     </View>
     <NavigationBar/>    
@@ -243,7 +197,6 @@ const styles = StyleSheet.create({
     height:'100%',
     alignItems:'flex-start',
     justifyContent:'space-evenly',
-
   },
   right:{
     width:'43%',
