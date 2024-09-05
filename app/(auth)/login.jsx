@@ -98,7 +98,7 @@ const login = () => {
 
 
 
-      <AuthButton title="Log In" handlePress={handleSubmit} isLoading={isSubmitting}/>
+      <AuthButton title="LogIn" handlePress={handleSubmit} isLoading={isSubmitting}/>
       
     </View>
 
