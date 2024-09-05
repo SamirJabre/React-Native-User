@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, BackHandler , SafeAreaView, Image, TouchableOpacity} from 'react-native'
 import { useFonts } from 'expo-font';
-import { SplashScreen } from 'expo-router';
+import { router, SplashScreen } from 'expo-router';
 import NavigationBar from '../../components/NavigationBar';
 
 const home = () => {
@@ -64,8 +64,8 @@ const home = () => {
       </View>
 
 
-      <TouchableOpacity style={styles.redirect}>
-        <Text style={styles.book}>Book your next bus now!</Text>
+      <TouchableOpacity style={styles.redirect} onPress={()=>router.push('/buses')}>
+        <Text style={styles.book}>Book your next bus now</Text>
         <Image source={require('../../assets/icons/redirect.png')} style={{height:'50%' , width:'10%',marginRight:10}}/>
       </TouchableOpacity>
 
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     width: '90%',
     backgroundColor: '#0C3B2E',
     marginTop: 20,
-    borderRadius: 30,
+    borderRadius: 20,
   },
   greeting:{
     height: '45%',
@@ -163,19 +163,19 @@ const styles = StyleSheet.create({
   },
   dateContainer:{
     height: '55%',
-    width: '30%',
+    width: '100%',
     justifyContent: 'center',
-    alignItems: 'flex-start',
-    marginLeft: 20,
+    alignItems: 'flex-end',
   },
   date:{
     color: 'gray',
     color: 'white',
-    fontSize: 18,
+    fontSize: 15,
     fontFamily: 'Inter-Regular',
+    marginRight: 20,
   },
   stats:{
-    backgroundColor: '#D1D1D1',
+    backgroundColor: '#E0E0E0',
     height: '11%',
     width : '90%',
     marginTop: 15,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '15%',
     width: '90%',
-    backgroundColor: 'gray',
+    backgroundColor: '#E0E0E0',
     borderRadius: 20,
     marginTop: 10,
   },
