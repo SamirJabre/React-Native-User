@@ -6,7 +6,6 @@ import axios from 'axios';
 import { router, useLocalSearchParams } from 'expo-router';
 import TripInfo from '../../components/TripInfo';
 import Reviews from '../../components/Reviews';
-// import MapView, { Polyline, Marker } from 'react-native-maps';
 
 
 const tripInfo = () => {
@@ -14,18 +13,14 @@ const tripInfo = () => {
   const [selectedTab, setSelectedTab] = useState('TripInfo');
 
 
-  // // const fromPoint = { latitude: 33.8938, longitude:35.5018 };
-  // // const toPoint = { latitude: 34.4346, longitude: 35.8362 };
-  // const [fromPointLatitude,setFromPointLatitude]=useState();
-  // const [fromPointLongitude,setFromPointLongitude]=useState();
-  // const [toPointLatitude,setToPointLatitude]=useState();
-  // const [toPointLongitude,setToPointLongitude]=useState();
-  // const [fromPoint, setFromPoint] = useState({});
-  // const [toPoint, setToPoint] = useState({});
 
-  var fromPoint = { latitude: 37.78825, longitude: -122.4324 };
-  var toPoint = { latitude: 37.75825, longitude: -122.4624 };
+  var fromPoint = { latitude: null, longitude: null };
+  var toPoint = { latitude: null, longitude: null };
 
+  const [fromLatitude,setFromLatitude] = useState('');
+  const [fromLongitude,setFromLongitude] = useState('');
+  const [toLatitude,setToLatitude] = useState('');
+  const [toLongitude,setToLongitude] = useState('');
   const [from,setFrom] = useState('');
   const [to,setTo] = useState('');
   const [driver,setDriver] = useState('');
@@ -49,34 +44,19 @@ const tripInfo = () => {
       setDeparture(res.data.departure_time)
       setTickets(res.data.price)
       setDriverId(res.data.driver_id)
-      console.log(res.data.driver_id);
-      
-      console.log(res.data.to);
-      
       axios.post(`${BASE_URL}/coordinates`,{
-        from:from,
-        to:to,
+        from:res.data.from,
+        to:res.data.to,
       }).then(res=>{
-        console.log(res.data);
-        
-        // fromPoint.latitude=res.data[0].latitude
-        // fromPoint.longitude=res.data[0].longitude
+        setFromLatitude(res.data[0].latitude)
+        setFromLongitude(res.data[0].longitude)
   
-        // toPoint.latitude=res.data[1].latitude
-        // toPoint.longitude=res.data[1].longitude
+        setToLatitude(res.data[1].latitude)
+        setToLongitude(res.data[1].longitude)
+        
       });
     })
   },[])
-
-  // const getCoordinates = () => {
-  //     axios.post(`${BASE_URL}/coordinates` ,{
-  //       from:from,
-  //       to:to
-  //     }).then(res=>{
-  //     alert(res.data[0].latitude);
-  //     });
-  // }
-
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>
@@ -104,7 +84,8 @@ const tripInfo = () => {
     </View>
 
     {
-      selectedTab == 'TripInfo' ? <TripInfo from={from} to={to} driver={driver} date={date} departure={departure} tickets={tickets}/> 
+      selectedTab == 'TripInfo' ? 
+      <TripInfo from={from} to={to} driver={driver} date={date} departure={departure} tickets={tickets} fromLatitude={fromLatitude} fromLongitude={fromLongitude} toLatitude={toLatitude} toLongitude={toLongitude}/> 
       : selectedTab == 'Seats' ? <Text>Seats</Text>
       : <Reviews driverId={driverId}/>
     }
@@ -192,6 +173,7 @@ const styles = StyleSheet.create({
     height:'40%',
     marginTop:10,
     borderRadius:20,
+    backgroundColor:'red',
   },
   info:{
     width:'100%',

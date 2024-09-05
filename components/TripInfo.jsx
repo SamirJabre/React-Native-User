@@ -1,22 +1,23 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import MapView, { Polyline, Marker } from 'react-native-maps';
 
-const TripInfo = ({from,to,driver,date,departure,tickets,}) => {
+const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLongitude , toLatitude , toLongitude}) => {
   return (
     <View style={{height:'100%' , width:'100%'}}>
       
       <View style={styles.mapContainer}>
-    {/* <MapView
+      <MapView
         style={StyleSheet.absoluteFillObject}
         initialRegion={{
-          latitude: (fromPoint.latitude + toPoint.latitude) / 2,
-          longitude: (fromPoint.longitude + toPoint.longitude) / 2,
-          latitudeDelta: Math.abs(fromPoint.latitude - toPoint.latitude) * 2,
-          longitudeDelta: Math.abs(fromPoint.longitude - toPoint.longitude) * 2,
+          latitude: (fromLatitude + toLatitude) / 2,
+          longitude: (fromLongitude + toLongitude) / 2,
+          latitudeDelta: Math.abs(fromLatitude - toLatitude) + 0.1,
+          longitudeDelta: Math.abs(fromLongitude - toLongitude) + 0.1,
         }}
       >
-      </MapView> */}
-    </View>
+      </MapView>
+      </View>
 
     <View style={styles.info}>
       <View style={styles.details}>
@@ -66,6 +67,8 @@ const styles = StyleSheet.create({
     height:'40%',
     marginTop:10,
     borderRadius:20,
+    backgroundColor:'red',
+    alignSelf:'center',
   },
   info:{
     width:'100%',
