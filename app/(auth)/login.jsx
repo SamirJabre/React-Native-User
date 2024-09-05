@@ -83,7 +83,7 @@ const login = () => {
 
 
     <View style={styles.container}>
-      <Text style={styles.maintxt}>Log In</Text>
+      <Text style={styles.maintxt}>LogIn</Text>
       <Text style={styles.sectxt}>Enter your details to proceed further</Text>
       
 
