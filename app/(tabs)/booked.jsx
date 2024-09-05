@@ -1,6 +1,7 @@
 import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-web'
+import { router } from 'expo-router'
 
 const booked = () => {
   return (
@@ -19,7 +20,7 @@ const booked = () => {
           <Text style={styles.bookInfoText}>Booked On : 20-9-2024</Text>
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={()=>router.push('/home')}>
           <Text style={styles.home}>
             Return To Home
           </Text>
