@@ -1,13 +1,13 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import MapView, { Polyline, Marker } from 'react-native-maps';
+// import MapView, { Polyline, Marker } from 'react-native-maps';
 
 const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLongitude , toLatitude , toLongitude}) => {
   return (
     <View style={{height:'100%' , width:'100%'}}>
       
       <View style={styles.mapContainer}>
-      <MapView
+      {/* <MapView
         style={StyleSheet.absoluteFillObject}
         initialRegion={{
           latitude: (fromLatitude + toLatitude) / 2,
@@ -16,7 +16,7 @@ const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLon
           longitudeDelta: Math.abs(fromLongitude - toLongitude) + 0.1,
         }}
       >
-      </MapView>
+      </MapView> */}
       </View>
 
     <View style={styles.info}>
