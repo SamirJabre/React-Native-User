@@ -1,12 +1,13 @@
 import { StyleSheet , Text , View , SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import * as React from 'react';
+import { router } from 'expo-router';
 
 export default function prebook() {
 
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.upper}>
-    <TouchableOpacity><Image source={require('../../assets/icons/back_arrow.png')} style={{height:30,width:30}}/></TouchableOpacity>
+    <TouchableOpacity onPress={()=>router.push('/tripInfo')}><Image source={require('../../assets/icons/back_arrow.png')} style={{height:30,width:30}}/></TouchableOpacity>
     <Text style={styles.upperText}>Booking Confirmation</Text>
     <View style={{height:30,width:30}}></View>
     </View>
