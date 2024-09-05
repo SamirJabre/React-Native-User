@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { router } from 'expo-router'
 // import MapView, { Polyline, Marker } from 'react-native-maps';
 
 const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLongitude , toLatitude , toLongitude}) => {
@@ -52,7 +53,7 @@ const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLon
           </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText}>Book Now</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText} onPress={()=>router.push('/prebook')}>Book Now</Text></TouchableOpacity>
     </View>
 
     </View>
