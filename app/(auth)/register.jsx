@@ -88,7 +88,7 @@ const register = () => {
 
   return (
     <SafeAreaView>
-    <ImageBackground source={require('../../assets/two.jpg')} style={styles.img}>
+    <ImageBackground source={require('../../assets/new-bus.png')} style={styles.img}>
     <View style={styles.upper}>
     <Authback onpress={()=>router.push('/')}/>
     </View>
