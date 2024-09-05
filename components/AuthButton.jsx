@@ -23,7 +23,7 @@ button:{
     marginBottom:15,
     justifyContent:'center',
     alignItems:'center',
-    backgroundColor:'#6D9773',
+    backgroundColor:'#0C3B2E',
     borderRadius:100,
   },
 
