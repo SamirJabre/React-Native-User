@@ -52,7 +52,7 @@ const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLon
           </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText}>Book Now!</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText}>Book Now</Text></TouchableOpacity>
     </View>
 
     </View>
