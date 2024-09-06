@@ -5,6 +5,7 @@ import AuthInput from '../../components/AuthInput'
 import { StatusBar } from 'expo-status-bar'
 import Checkbox from 'expo-checkbox';
 import Authback from '../../components/Authback'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { router } from 'expo-router'
 import axios from 'axios'
 import { BASE_URL } from '@env';
@@ -64,7 +65,7 @@ const login = () => {
       axios.post(`${BASE_URL}/login`, form)
       .then(res => {
         const result =res.data.message;
-        result === 'incorrect' ? alert('Incorrect Email or Password') : result === 'unexisted' ? alert('Email does not exist') : router.push('/home');
+        result === 'incorrect' ? alert('Incorrect Email or Password') : result === 'unexisted' ? alert('Email does not exist') : router.push('/home') && saveUserId(res.data.user.id) &&  AsyncStorage.setItem('token', res.data.authorisation.token)
       }
       )
     }
@@ -72,6 +73,17 @@ const login = () => {
         alert(error);
       };
   }
+
+  const saveUserId = async (userId) => {
+    try {
+      if (userId !== undefined && userId !== null) {
+        await AsyncStorage.setItem('userId', userId.toString());
+        alert('User ID saved successfully');
+      }
+    } catch (error) {
+      alert('Error saving user ID:');
+    }
+  };
 
   return (
     <SafeAreaView>

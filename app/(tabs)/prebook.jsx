@@ -2,15 +2,27 @@ import { StyleSheet , Text , View , SafeAreaView, TouchableOpacity, Image } from
 import {useEffect, useState} from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from '@env';
+import axios from 'axios';
 
 export default function prebook() {
 
-  const [token, setToken] = useState('');
+  const [userId, setUserId] = useState('');
   const [tripId, setTripId] = useState('');
+  const [token, setToken] = useState('');
   useEffect(()=>{
-    setToken(AsyncStorage.getItem('token'))
+    setUserId(AsyncStorage.getItem('userId'))
     setTripId(AsyncStorage.getItem('tripId'))
+    setToken(AsyncStorage.getItem('token'))
   },[])
+
+  const handleBook = () => {
+    axios.post(`${BASE_URL}/book-trip` , {
+      user_id:userId,
+      trip_id:tripId
+    })
+    .then(res=>alert("Booked Successfully"))
+  }
 
     const { from , to , tickets , departure , date } = useLocalSearchParams();
     console.log(from , to , tickets , departure , date);
@@ -18,7 +30,7 @@ export default function prebook() {
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.upper}>
-    <Text style={styles.upperText}>Booking Confirmation</Text>
+    <Text style={styles.upperText}>{userId}</Text>
     </View>
     <View style={styles.mid}>
     <Text style={styles.midText}>Booking Details</Text>
@@ -47,7 +59,7 @@ export default function prebook() {
     </View>
     </View>
     <View style={styles.btnContainer}>
-    <TouchableOpacity style={styles.btn}><Text style={{fontFamily:'Inter-SemiBold' , fontSize:18,color:'white'}}>Confirm Booking</Text></TouchableOpacity>
+    <TouchableOpacity onPress={handleBook} style={styles.btn}><Text style={{fontFamily:'Inter-SemiBold' , fontSize:18,color:'white'}}>Confirm Booking</Text></TouchableOpacity>
     <TouchableOpacity onPress={()=>router.push('/buses')} style={styles.btn2}><Text style={{fontFamily:'Inter-SemiBold' , fontSize:18,color:'#0C3B2E'}}>Cancel Booking</Text></TouchableOpacity>
     </View>
     </SafeAreaView>

@@ -4,6 +4,8 @@ import {  SplashScreen , router } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as React from 'react';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 import AuthButton from '../components/AuthButton';
 import ProgressBar from '../components/ProgressBar';
 import NavigationBar from '../components/NavigationBar';
@@ -26,7 +28,7 @@ export default function App() {
   if(!fontsLoaded && !error) return null;
 
   return (
-    <>
+    <Provider store={store}>
     <View style={styles.container}>
     <View style={styles.img_container}>
       <ImageBackground source={require('../assets/one.jpg')} style={styles.img}>
@@ -49,7 +51,7 @@ export default function App() {
       </View>
       <StatusBar style='dark'/>
       <NavigationBar/>
-    </>
+    </Provider>
   );
 }
 
