@@ -18,7 +18,7 @@ export default function prebook() {
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.upper}>
-    <Text style={styles.upperText}>{tripId}</Text>
+    <Text style={styles.upperText}>Booking Confirmation</Text>
     </View>
     <View style={styles.mid}>
     <Text style={styles.midText}>Booking Details</Text>
