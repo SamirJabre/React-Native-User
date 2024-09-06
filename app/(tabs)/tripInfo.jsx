@@ -6,6 +6,7 @@ import axios from 'axios';
 import { router, useLocalSearchParams } from 'expo-router';
 import TripInfo from '../../components/TripInfo';
 import Reviews from '../../components/Reviews';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const tripInfo = () => {
@@ -31,6 +32,7 @@ const tripInfo = () => {
   const {  tripId  } = useLocalSearchParams();
 
   useEffect( () => {
+    AsyncStorage.setItem('tripId' , tripId);
     axios.post(`${BASE_URL}/tripinfo` ,
       {
       id:tripId

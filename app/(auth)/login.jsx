@@ -64,7 +64,6 @@ const login = () => {
       axios.post(`${BASE_URL}/login`, form)
       .then(res => {
         const result =res.data.message;
-        AsyncStorage.setItem('Message', "res.data.message");
         result === 'incorrect' ? alert('Incorrect Email or Password') : result === 'unexisted' ? alert('Email does not exist') : router.push('/home');
       }
       )

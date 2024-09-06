@@ -6,6 +6,7 @@ import Authback from '../../components/Authback'
 import ProgressBar from '../../components/ProgressBar'
 import { Link, router, useLocalSearchParams } from 'expo-router'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { BASE_URL } from '@env';
 
 
@@ -35,7 +36,9 @@ const verification = () => {
         email: email,
         otp: otp
     })
-    .then(res => {res.data.status === 'success' ? router.push('/home') : alert('Invalid OTP')});
+    .then(res => {res.data.status === 'success' ? 
+      router.push('/home') && AsyncStorage.setItem('token', res.data.authorisation.token) && AsyncStorage.setItem('userId', res.data.user.id)
+      : alert('Invalid OTP')});
   }
     catch(error){
       console.log(error);
