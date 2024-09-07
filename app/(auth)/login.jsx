@@ -91,9 +91,7 @@ const login = () => {
   const storeUserId = async (userID) => {
     try {
       await AsyncStorage.setItem('userId',userID.toString());
-      alert('User ID successfully saved!');
     } catch (error) {
-      alert('Failed to save the user ID to AsyncStorage');
     }
   };
 
