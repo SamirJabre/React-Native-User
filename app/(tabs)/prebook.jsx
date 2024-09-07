@@ -8,6 +8,7 @@ import axios from 'axios';
 export default function prebook() {
   const [userId, setUserId] = useState('');
   const [tripId, setTripId] = useState('');
+  const [token, setToken] = useState('');
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -16,6 +17,9 @@ export default function prebook() {
 
         const storedTripId = await AsyncStorage.getItem('tripId');
         if (storedTripId) setTripId(parseInt(storedTripId));
+
+        const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken) setToken(storedToken);
       } catch (error) {
         console.error('Error retrieving data from AsyncStorage', error);
       }
@@ -43,7 +47,7 @@ export default function prebook() {
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.upper}>
-    <Text style={styles.upperText}>Booking Confirmation</Text>
+    <Text style={styles.upperText}>{userId}</Text>
     </View>
     <View style={styles.mid}>
     <Text style={styles.midText}>Booking Details</Text>

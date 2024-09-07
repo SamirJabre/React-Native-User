@@ -36,14 +36,30 @@ const verification = () => {
         email: email,
         otp: otp
     })
-    .then(res => {res.data.status === 'success' ? 
-      router.push('/home') && AsyncStorage.setItem('token', res.data.authorisation.token) && AsyncStorage.setItem('userId', res.data.user.id)
-      : alert('Invalid OTP')});
+    .then( res => {
+      
+      if(res.data.status === 'success'){
+        const userID = res.data.user.id
+        storeUserId(userID);
+        router.push('/home');
+      }
+      else{
+        alert('Invalid OTP')
+    }
+  });
   }
     catch(error){
       console.log(error);
     }
   }
+  const storeUserId = async (userID) => {
+    try {
+      await AsyncStorage.setItem('userId',userID.toString());
+      alert('User ID successfully saved!');
+    } catch (error) {
+      alert('Failed to save the user ID to AsyncStorage');
+    }
+  };
 
 
   const handleBack = () => {

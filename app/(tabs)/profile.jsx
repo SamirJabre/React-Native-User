@@ -6,9 +6,9 @@ import { router } from 'expo-router';
 const profile = () => {
   return (
     <View>
-    <TouchableOpacity onPress={()=>{
-        AsyncStorage.removeItem('token');
-        AsyncStorage.removeItem('userId');
+    <TouchableOpacity onPress={async()=>{
+        await AsyncStorage.removeItem('token');
+        await AsyncStorage.removeItem('userId');
         router.replace('/');
     }}>
         <Text>Log Out</Text>

@@ -74,8 +74,7 @@ const register = () => {
     try{
       axios.post(`${BASE_URL}/register`, form)
       .then(res => {
-        const userID = res.data.user.id
-        AsyncStorage.setItem('userId', userID.toString());
+        
         AsyncStorage.setItem('token', res.data.authorisation.token);
       }
       )
