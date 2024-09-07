@@ -6,8 +6,22 @@ import { router, SplashScreen } from 'expo-router';
 import NavigationBar from '../../components/NavigationBar';
 
 const home = () => {
+  const [userId, setUserId] = useState('');
   const [message, setMessage] = useState('')
   useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const storedUserId = await AsyncStorage.getItem('userId');
+        if (storedUserId) setUserId(parseInt(storedUserId));
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchData();
+
+
     const backAction = () => {
       return true;
     };
@@ -29,7 +43,7 @@ const home = () => {
       <View style={styles.greeting}>
         <View style={styles.text}>
         <Text style={styles.hello}>Hello,</Text>
-        <Text style={styles.name}>Samir</Text>
+        <Text style={styles.name}>{userId}</Text>
         </View>
         <View style={styles.notificationIcon}>
         <TouchableOpacity><Image source={require('../../assets/icons/qr.png')} style={{height:'100%', width:'100%'}}/></TouchableOpacity>
