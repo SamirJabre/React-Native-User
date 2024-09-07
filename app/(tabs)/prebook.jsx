@@ -25,10 +25,16 @@ export default function prebook() {
   }, []);
 
   const handleBook = () => {
-    axios.post(`${BASE_URL}/book-trip`, {
-      user_id: userId,
-      trip_id:tripId,
-    })
+    try{
+      axios.post(`${BASE_URL}/book-trip`, {
+        user_id: userId,
+        trip_id:tripId,
+      })
+      router.push('/booked')
+    }
+    catch(error){
+      alert('Error booking trip ,Please try again');
+    }
   }
 
 
