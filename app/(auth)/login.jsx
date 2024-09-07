@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { router } from 'expo-router'
 import axios from 'axios'
 import { BASE_URL } from '@env';
+import stringify from 'postcss/lib/stringify'
 
 
 const login = () => {
@@ -63,9 +64,21 @@ const login = () => {
   const fetchData = () => {
     try{
       axios.post(`${BASE_URL}/login`, form)
-      .then(res => {
+      .then(async res => {
         const result =res.data.message;
-        result === 'incorrect' ? alert('Incorrect Email or Password') : result === 'unexisted' ? alert('Email does not exist') : router.push('/home') && saveUserId(res.data.user.id) &&  AsyncStorage.setItem('token', res.data.authorisation.token)
+
+        if(result === 'incorrect'){
+          alert('Incorrect Email or Password')
+        }
+        else if(result === 'unexisted'){
+          alert('Email does not exist')
+        }
+        else{
+          const userID = res.data.user.id
+          await storeUserId(userID);
+          AsyncStorage.setItem('token', res.data.authorisation.token)
+          router.push('/home')
+        }
       }
       )
     }
@@ -74,14 +87,12 @@ const login = () => {
       };
   }
 
-  const saveUserId = async (userId) => {
+  const storeUserId = async (userID) => {
     try {
-      if (userId !== undefined && userId !== null) {
-        await AsyncStorage.setItem('userId', userId.toString());
-        alert('User ID saved successfully');
-      }
+      await AsyncStorage.setItem('userId',userID.toString());
+      alert('User ID successfully saved!');
     } catch (error) {
-      alert('Error saving user ID:');
+      alert('Failed to save the user ID to AsyncStorage');
     }
   };
 

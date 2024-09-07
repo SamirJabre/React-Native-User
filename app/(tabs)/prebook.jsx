@@ -6,26 +6,33 @@ import { BASE_URL } from '@env';
 import axios from 'axios';
 
 export default function prebook() {
-
   const [userId, setUserId] = useState('');
   const [tripId, setTripId] = useState('');
-  const [token, setToken] = useState('');
-  useEffect(()=>{
-    setUserId(AsyncStorage.getItem('userId'))
-    setTripId(AsyncStorage.getItem('tripId'))
-    setToken(AsyncStorage.getItem('token'))
-  },[])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedUserId = await AsyncStorage.getItem('userId');
+        if (storedUserId) setUserId(parseInt(storedUserId));
+
+        const storedTripId = await AsyncStorage.getItem('tripId');
+        if (storedTripId) setTripId(parseInt(storedTripId));
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleBook = () => {
-    axios.post(`${BASE_URL}/book-trip` , {
-      user_id:userId,
-      trip_id:tripId
+    axios.post(`${BASE_URL}/book-trip`, {
+      user_id: userId,
+      trip_id:tripId,
     })
-    .then(res=>alert("Booked Successfully"))
   }
 
+
     const { from , to , tickets , departure , date } = useLocalSearchParams();
-    console.log(from , to , tickets , departure , date);
     
   return (
     <SafeAreaView style={styles.safearea}>

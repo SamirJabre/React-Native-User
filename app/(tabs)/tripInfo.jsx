@@ -32,7 +32,7 @@ const tripInfo = () => {
   const {  tripId  } = useLocalSearchParams();
 
   useEffect( () => {
-    AsyncStorage.setItem('tripId' , tripId);
+    AsyncStorage.setItem('tripId' , tripId.toString());
     axios.post(`${BASE_URL}/tripinfo` ,
       {
       id:tripId
