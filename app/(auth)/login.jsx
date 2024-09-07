@@ -78,7 +78,7 @@ const login = () => {
           const token = res.data.authorisation.token
           await storeUserId(userID);
           await AsyncStorage.setItem('token', token.toString())
-          router.push('/home')
+          router.push(`/home?id=${userID}`);
         }
       }
       )

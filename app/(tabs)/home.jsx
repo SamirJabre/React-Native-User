@@ -2,24 +2,47 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, BackHandler , SafeAreaView, Image, TouchableOpacity} from 'react-native'
 import { useFonts } from 'expo-font';
-import { router, SplashScreen } from 'expo-router';
+import { router, SplashScreen, useLocalSearchParams } from 'expo-router';
 import NavigationBar from '../../components/NavigationBar';
+import axios from 'axios';
+import { BASE_URL } from '@env';
 
 const home = () => {
-  const [userId, setUserId] = useState('');
-  const [message, setMessage] = useState('')
+  const currentDate = new Date();
+  const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
+  const year = currentDate.getFullYear();
+  const monthDay = currentDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' }).replace('/', ' ');
+  const { id } = useLocalSearchParams();
+  const [name, setName] = useState('');
   useEffect(() => {
 
     const fetchData = async () => {
       try {
         const storedUserId = await AsyncStorage.getItem('userId');
         if (storedUserId) setUserId(parseInt(storedUserId));
+        const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken) setToken(storedToken);
+        getDetails();
       } catch (error) {
         console.error('Error retrieving data from AsyncStorage', error);
       }
     };
 
     fetchData();
+
+    const getDetails = async () => {
+      try {
+        await axios.post(
+          `${BASE_URL}/getuser`,
+          {
+            id: id
+          },
+        ).then(res => setName(res.data.user.name));
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
 
 
     const backAction = () => {
@@ -43,7 +66,7 @@ const home = () => {
       <View style={styles.greeting}>
         <View style={styles.text}>
         <Text style={styles.hello}>Hello,</Text>
-        <Text style={styles.name}>{userId}</Text>
+        <Text style={styles.name}>{name}</Text>
         </View>
         <View style={styles.notificationIcon}>
         <TouchableOpacity><Image source={require('../../assets/icons/qr.png')} style={{height:'100%', width:'100%'}}/></TouchableOpacity>
@@ -51,9 +74,9 @@ const home = () => {
         </View>
 
         <View style={styles.dateContainer}>
-        <Text style={styles.date}>WED</Text>
-        <Text style={styles.date}>2024</Text>
-        <Text style={styles.date}>08 10</Text>
+        <Text style={styles.date}>{dayOfWeek}</Text>
+        <Text style={styles.date}>{year}</Text>
+        <Text style={styles.date}>{monthDay}</Text>
         </View>
 
 
@@ -64,7 +87,7 @@ const home = () => {
       <View style={styles.stats}>
 
       <View style={styles.left}>
-      <Text style={styles.uppertext}>Rides taken</Text>
+      <Text style={styles.uppertext}>Trips Booked</Text>
       <Text style={styles.lowertext}>0</Text>
       </View>
 
@@ -154,7 +177,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text:{
-    width: '30%',
+    width: '60%',
     height: '100%',
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
