@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
   notCheckedText:{
-    color:'#1C1C1C',
+    color:'white',
     fontSize:16,
     fontFamily:'Inter-Regular',
   },
