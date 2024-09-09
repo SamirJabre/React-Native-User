@@ -120,36 +120,7 @@ const home = () => {
 
       <Text style={styles.latest}>Here's your latest rides</Text>
 
-      <TouchableOpacity style={styles.recent}>
-
-      <View style={styles.fromTo}>
-      <Text style={styles.recentText}>From: </Text>
-      <Text style={styles.recentText}>To: </Text> 
-      </View>
-
-      <View style={styles.otherInfo}>
-      <Text style={styles.recentText}>Miles Traveled: </Text>
-      <Text style={styles.recentText}>Date: </Text> 
-      </View>
-
-      </TouchableOpacity>
-
-
-      <TouchableOpacity style={styles.recent}>
-
-      <View style={styles.fromTo}>
-      <Text style={styles.recentText}>From: </Text>
-      <Text style={styles.recentText}>To: </Text> 
-      </View>
-
-      <View style={styles.otherInfo}>
-      <Text style={styles.recentText}>Miles Traveled: </Text>
-      <Text style={styles.recentText}>Date: </Text> 
-      </View>
-
-      </TouchableOpacity>
-
-      
+    
       
     </View>
 
