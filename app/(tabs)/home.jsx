@@ -7,6 +7,7 @@ import NavigationBar from '../../components/NavigationBar';
 import axios from 'axios';
 import { BASE_URL } from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Recent from '../../components/Recent';
 
 const home = () => {
   const currentDate = new Date();
@@ -17,6 +18,8 @@ const home = () => {
   const [userId, setUserId] = useState('');
   const [name, setName] = useState('');
   const [tripsCount, setTripsCount] = useState(0);
+  const [tripsHistory, setTripsHistory] = useState([]);
+  const latestTrips = tripsHistory.slice(-2);
 
 
   useEffect(() => {
@@ -42,6 +45,7 @@ const home = () => {
           console.log(res.data);
           setName(res.data.user.name);
           const tripsHistory = res.data.user.trips_history;
+          setTripsHistory(JSON.parse(tripsHistory));
           console.log('Trips History:', tripsHistory);
           const tripsCount = JSON.parse(tripsHistory).length;
           console.log('Trips Count:', tripsCount);
@@ -120,7 +124,13 @@ const home = () => {
 
       <Text style={styles.latest}>Here's your latest rides</Text>
 
-    
+      {tripsCount === 1 && <Recent tripId={latestTrips[0]} />}
+      {tripsCount >= 2 && (
+        <>
+          <Recent tripId={latestTrips[0]} />
+          <Recent tripId={latestTrips[1]} />
+        </>
+      )}
       
     </View>
 
