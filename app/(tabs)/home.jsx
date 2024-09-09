@@ -6,6 +6,7 @@ import { router, SplashScreen, useLocalSearchParams } from 'expo-router';
 import NavigationBar from '../../components/NavigationBar';
 import axios from 'axios';
 import { BASE_URL } from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const home = () => {
   const currentDate = new Date();
@@ -13,9 +14,49 @@ const home = () => {
   const year = currentDate.getFullYear();
   const monthDay = currentDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' }).replace('/', ' ');
   const { id } = useLocalSearchParams();
+  const [userId, setUserId] = useState('');
   const [name, setName] = useState('');
-  useEffect(() => {
+  const [tripsCount, setTripsCount] = useState(0);
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedUserId = await AsyncStorage.getItem('userId');
+        if (storedUserId) setUserId(parseInt(storedUserId));
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (userId !== null) {
+      try {
+        axios.post(`${BASE_URL}/getuser`, {
+          id: userId
+        })
+        .then(res => {
+          console.log(res.data);
+          setName(res.data.user.name);
+          const tripsHistory = res.data.user.trips_history;
+          console.log('Trips History:', tripsHistory);
+          const tripsCount = JSON.parse(tripsHistory).length;
+          console.log('Trips Count:', tripsCount);
+          setTripsCount(tripsCount);
+        })
+        .catch(err => {
+          console.error('API call error:', err);
+        });
+      } catch (err) {
+        console.error('Error in API call:', err);
+      }
+    }
+  }, [userId]);
+
+  useEffect(() => {
     const backAction = () => {
       return true;
     };
@@ -26,8 +67,8 @@ const home = () => {
     );
 
     return () => backHandler.remove();
-  }, []);
-
+  },[]);
+  
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>
@@ -59,7 +100,7 @@ const home = () => {
 
       <View style={styles.left}>
       <Text style={styles.uppertext}>Trips Booked</Text>
-      <Text style={styles.lowertext}>0</Text>
+      <Text style={styles.lowertext}>{tripsCount}</Text>
       </View>
 
       <View style={styles.line}></View>
