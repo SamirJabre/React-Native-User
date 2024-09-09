@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '@env';
+import { router } from 'expo-router';
 
 const Recent = ({tripId}) => {
     const [from, setFrom] = useState('');
@@ -23,7 +24,7 @@ const Recent = ({tripId}) => {
 
 
   return (
-    <TouchableOpacity style={styles.recent}>
+    <TouchableOpacity onPress={()=>{router.push('/recentTrip')}} style={styles.recent}>
 
       <View style={styles.fromTo}>
       <Text style={styles.recentText}>From: {from}</Text>
