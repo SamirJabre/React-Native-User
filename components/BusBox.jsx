@@ -5,14 +5,17 @@ const BusBox = ({from, to, price, seats, driver, date, departure, rating, onpres
   return (
     <TouchableOpacity onPress={onpress} style={styles.bus}>
             <View style={styles.left}>
-              <Text style={styles.busInfo}>From: {from}</Text>
-              <Text style={styles.busInfo}>To: {to}</Text>
+              <View style={styles.rowOne}>
+              <Text style={styles.busInfo}>{from}</Text>
+              <Image source={require('../assets/icons/right_arrow.png')} style={styles.arrow} />
+              </View>
+              <Text style={styles.busInfo}>Price: {price} ticket/s</Text>
               <Text style={styles.busInfo}>Driver: {driver}</Text>
               <Text style={styles.busInfo}>Date: {date}</Text>
             </View>
 
             <View style={styles.right}>
-              <Text style={styles.busInfo2}>Price: {price} ticket/s</Text>
+            <Text style={styles.busInfo2}>{to}</Text>
               <Text style={styles.busInfo2}>Seats left: {seats}</Text>
               <View style={styles.images}>
               {Array.from({ length: rating }, (_, i) => (
@@ -72,5 +75,16 @@ const styles = StyleSheet.create({
   image:{
     height: 20,
     width: 20,
+  },
+  rowOne:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    alignItems: 'center',
+  },
+  arrow:{
+    height: 20,
+    width: 40,
+    marginRight: 20,
   },
 })
