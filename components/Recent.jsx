@@ -41,4 +41,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: 'Inter-Regular',
   },
+  otherInfo:{
+    justifyContent: 'space-around',
+    height: '100%',
+    width: '42%',
+  },
 })
