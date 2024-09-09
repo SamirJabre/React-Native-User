@@ -24,7 +24,7 @@ const Recent = ({tripId}) => {
 
 
   return (
-    <TouchableOpacity onPress={()=>{router.push('/recentTrip')}} style={styles.recent}>
+    <TouchableOpacity onPress={()=>{router.push(`/recentTrip?tripId=${tripId}`)}} style={styles.recent}>
 
       <View style={styles.fromTo}>
       <Text style={styles.recentText}>From: {from}</Text>
