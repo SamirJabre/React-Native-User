@@ -1,18 +1,38 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { BASE_URL } from '@env';
 
 const Recent = ({tripId}) => {
+    const [from, setFrom] = useState('');
+    const [to, setTo] = useState('');
+    const [date, setDate] = useState('');
+    const [miles, setMiles] = useState('');
+
+    useEffect(()=>{
+        axios.post(`${BASE_URL}/tripinfo`,{
+            id: tripId
+        })
+        .then(res=>{
+            console.log(res.data);
+            setFrom(res.data.from);
+            setTo(res.data.to);
+            setDate(res.data.date);
+        })  
+    },[])
+
+
   return (
     <TouchableOpacity style={styles.recent}>
 
       <View style={styles.fromTo}>
-      <Text style={styles.recentText}>From: {tripId}</Text>
-      <Text style={styles.recentText}>To: </Text> 
+      <Text style={styles.recentText}>From: {from}</Text>
+      <Text style={styles.recentText}>To: {to}</Text> 
       </View>
 
       <View style={styles.otherInfo}>
       <Text style={styles.recentText}>Miles Traveled: </Text>
-      <Text style={styles.recentText}>Date: </Text> 
+      <Text style={styles.recentText}>Date: {date}</Text> 
       </View>
 
       </TouchableOpacity>
