@@ -21,4 +21,14 @@ const Recent = () => {
 
 export default Recent
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    recent:{
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    height: '15%',
+    width: '90%',
+    backgroundColor: '#E0E0E0',
+    borderRadius: 20,
+    marginTop: 10,
+  },
+})
