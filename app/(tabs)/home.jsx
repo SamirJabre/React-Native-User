@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
+
 import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, BackHandler , SafeAreaView, Image, TouchableOpacity} from 'react-native'
 import { useFonts } from 'expo-font';
@@ -15,35 +15,6 @@ const home = () => {
   const { id } = useLocalSearchParams();
   const [name, setName] = useState('');
   useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-        const storedUserId = await AsyncStorage.getItem('userId');
-        if (storedUserId) setUserId(parseInt(storedUserId));
-        const storedToken = await AsyncStorage.getItem('token');
-        if (storedToken) setToken(storedToken);
-        getDetails();
-      } catch (error) {
-        console.error('Error retrieving data from AsyncStorage', error);
-      }
-    };
-
-    fetchData();
-
-    const getDetails = async () => {
-      try {
-        await axios.post(
-          `${BASE_URL}/getuser`,
-          {
-            id: id
-          },
-        ).then(res => setName(res.data.user.name));
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-
 
     const backAction = () => {
       return true;

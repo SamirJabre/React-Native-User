@@ -43,9 +43,8 @@ const search = () => {
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>
     <View style={styles.upperbox}>
-    <Text style={{marginTop:10,fontSize:20,color:'white',fontFamily:'Inter-SemiBold'}}>Book a Bus</Text>
+    <Text style={{marginTop:10,fontSize:20,color:'white',fontFamily:'Inter-SemiBold', color: '#0C3B2E',}}>Book a Bus</Text>
     <View style={styles.greeting}>
-    <Text style={styles.hello}>Hello,</Text>
     <Text style={styles.title}>Search +100 Bus For Your Journey</Text>
     </View>
     <Image source={require('../../assets/bus-background.png')} style={styles.image}/>
@@ -145,25 +144,22 @@ const styles = StyleSheet.create({
   upperbox:{
     justifyContent: 'flex-start',
     alignItems: 'center',
-    height: '45%',
+    height: '20%',
     width: '100%',
-    backgroundColor: '#0C3B2E',
+    backgroundColor: '#',
   },
   greeting:{
     width: '90%',
-    height: '20%',
-    justifyContent: 'space-between',
+    height: '16%',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 15,
-  },
-  hello:{
-    color: 'white',
-    fontSize: 25,
-    fontFamily: 'Inter-SemiBold',
   },
   title:{
     color: 'white',
     fontSize: 15,
     fontFamily: 'Inter-Regular',
+    color: '#0C3B2E',
   },
   image:{
     width: '100%',
@@ -177,7 +173,7 @@ const styles = StyleSheet.create({
     width: '90%',
     backgroundColor: 'white',
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 150,
   },
   left:{
     height: '100%',
@@ -213,7 +209,7 @@ const styles = StyleSheet.create({
   },
   priceRange:{
     width: '90%',
-    marginTop: 10,
+    marginTop: 20,
     color: 'black',
     fontSize: 20,
     fontFamily: 'Inter-Regular',
@@ -235,17 +231,16 @@ const styles = StyleSheet.create({
   },
   searchBtn:{
     backgroundColor: '#0C3B2E',
-    marginTop: 10,
-    height: 40,
-    width: '50%',
+    height: 45,
+    width: '80%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 100,
+    borderRadius: 10,
   },
   dateContainer:{
     height: 60,
     width:"90%",
-    margin:10,
+    margin:25,
     borderBottomWidth:1,
     borderBlockColor:'gray',
   },
