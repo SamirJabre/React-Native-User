@@ -31,4 +31,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginTop: 10,
   },
+  fromTo:{
+    justifyContent: 'space-around',
+    height: '100%',
+    width: '42%',
+  },
 })
