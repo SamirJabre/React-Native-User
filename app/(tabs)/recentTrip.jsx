@@ -1,31 +1,86 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
-import axios from 'axios'
-import { BASE_URL } from '@env';
+import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
+import io from 'socket.io-client';
 import { useLocalSearchParams } from 'expo-router';
+import { BASE_URL } from '@env';
+import axios from 'axios';
+import * as Location from 'expo-location';
 
-const recentTrip = () => {
-    const {tripId} = useLocalSearchParams();
-    useEffect(()=>{
-        try{
-            axios.post(`${BASE_URL}/tripinfo`,{
-                id: tripId
-            })
-            .then(res=>{
-                console.log(res.data);
-            })  
+// Socket.IO server URL
+const SOCKET_SERVER_URL = 'http://192.168.1.108:6001';
+
+const BusTracker = () => {
+  const { tripId } = useLocalSearchParams();
+  const [busId, setBusId] = useState();
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const [socket, setSocket] = useState(null);
+
+  // Fetch bus ID based on trip ID
+  useEffect(() => {
+    axios.post(`${BASE_URL}/tripinfo`, {
+      id: tripId
+    })
+    .then(res => {
+      console.log(res.data);
+      setBusId(res.data.bus_id);
+    });
+  }, [busId]);
+
+  // Initialize Socket.IO client
+  useEffect(() => {
+    const newSocket = io(SOCKET_SERVER_URL);
+    setSocket(newSocket);
+
+    return () => {
+      if (newSocket) {
+        newSocket.disconnect();
+      }
+    };
+  }, []);
+
+  // Watch position and emit location data
+  useEffect(() => {
+    if (!busId || !socket) return;
+
+    // Request location permissions
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.log('Permission to access location was denied');
+        return;
+      }
+
+      // Watch position
+      Location.watchPositionAsync(
+        {
+          accuracy: Location.Accuracy.High,
+          timeInterval: 10000,
+          distanceInterval: 10,
+        },
+        (location) => {
+          const coords = location.coords;
+          setCurrentLocation(coords);
+          console.log(coords.latitude);
+          console.log('this is the longitude '+coords.longitude);
+
+          // Emit location data to the server
+          socket.emit('updateLocation', {
+            busId: busId,
+            current_latitude: coords.latitude,
+            current_longitude: coords.longitude,
+          });
         }
-        catch(err){
-            console.error('Error in API call:', err);
-        }
-    },[tripId])
+      );
+    })();
+  }, [busId, socket]);
+
   return (
     <View>
-      <Text> id is :{tripId}</Text>
+      <Text>Bus Tracker</Text>
+      <Text>Bus ID: {busId}</Text>
+      <Text>Current Location: {currentLocation ? `${currentLocation.latitude}, ${currentLocation.longitude}` : 'Loading...'}</Text>
     </View>
-  )
-}
+  );
+};
 
-export default recentTrip
-
-const styles = StyleSheet.create({})
+export default BusTracker;

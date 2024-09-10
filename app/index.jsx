@@ -47,7 +47,7 @@ export default function App() {
       
       
       <AuthButton title="Get Started" handlePress={()=>router.push('/register')}/>
-      <AuthButton title="LogIn" handlePress={()=>router.push('/login')}/>
+      <AuthButton title="Login" handlePress={()=>router.push('/login')}/>
       </View>
       <StatusBar style='dark'/>
       <NavigationBar/>

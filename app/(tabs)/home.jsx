@@ -45,11 +45,13 @@ const home = () => {
           console.log(res.data);
           setName(res.data.user.name);
           const tripsHistory = res.data.user.trips_history;
-          setTripsHistory(JSON.parse(tripsHistory));
-          console.log('Trips History:', tripsHistory);
-          const tripsCount = JSON.parse(tripsHistory).length;
-          console.log('Trips Count:', tripsCount);
-          setTripsCount(tripsCount);
+          if (tripsHistory) {
+            setTripsHistory(JSON.parse(tripsHistory));
+            console.log('Trips History:', tripsHistory);
+            const tripsCount = JSON.parse(tripsHistory).length;
+            console.log('Trips Count:', tripsCount);
+            setTripsCount(tripsCount);
+          }
         })
         .catch(err => {
           console.error('API call error:', err);
