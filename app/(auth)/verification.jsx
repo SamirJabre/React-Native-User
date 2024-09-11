@@ -41,7 +41,7 @@ const verification = () => {
       if(res.data.status === 'success'){
         const userID = res.data.user.id
         storeUserId(userID);
-        router.push('/home');
+        router.push('/login');
       }
       else{
         alert('Invalid OTP')
