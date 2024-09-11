@@ -18,8 +18,6 @@ export default function prebook() {
         const storedTripId = await AsyncStorage.getItem('tripId');
         if (storedTripId) setTripId(parseInt(storedTripId));
 
-        const storedToken = await AsyncStorage.getItem('token');
-        if (storedToken) setToken(storedToken);
       } catch (error) {
         console.error('Error retrieving data from AsyncStorage', error);
       }
