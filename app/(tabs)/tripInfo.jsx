@@ -96,7 +96,7 @@ const tripInfo = () => {
     {
       selectedTab == 'TripInfo' ? 
       <TripInfo from={from} to={to} driver={driver} date={date} departure={departure} tickets={tickets} fromLatitude={fromLatitude} fromLongitude={fromLongitude} toLatitude={toLatitude} toLongitude={toLongitude}/> 
-      : selectedTab == 'Seats' ? <Seats busId={busId}/>
+      : selectedTab == 'Seats' ? <Seats busId={busId} from={from} to={to} date={date} departure={departure} tickets={tickets}/>
       : <Reviews driverId={driverId}/>
     }
 

@@ -40,7 +40,7 @@ export default function prebook() {
   }
 
 
-    const { from , to , tickets , departure , date } = useLocalSearchParams();
+    const { from , to , tickets , departure , date , selectedSeat } = useLocalSearchParams();
     
   return (
     <SafeAreaView style={styles.safearea}>

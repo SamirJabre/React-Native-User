@@ -6,10 +6,13 @@ const Seat = ({seatNumber,seatStatus,setSelectedSeat,selectedSeat}) => {
     const [selectSeat,setSelectSeat] = useState(false);
 
     const handleSeats = () => {
+        if (seatStatus === 'occupied') {
+            return;
+        }
         setSelectedSeat(seatNumber);
         setSelectSeat(!selectSeat);
         console.log(selectedSeat);
-    }
+    };
 
     useEffect(() => {
         if (selectedSeat !== seatNumber) {
@@ -18,7 +21,7 @@ const Seat = ({seatNumber,seatStatus,setSelectedSeat,selectedSeat}) => {
     }, [selectedSeat]);
 
   return (
-    <TouchableOpacity style={styles.seat} onPress={handleSeats}>
+        <TouchableOpacity style={styles.seat} onPress={handleSeats}>
             <Text>#{seatNumber}</Text>
             <View style={selectSeat ? styles.selected : seatStatus === 'available' ? styles.available : styles.occupied}></View>
         </TouchableOpacity>

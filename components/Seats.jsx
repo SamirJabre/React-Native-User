@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react'
 import Seat from '../components/Seat'
 import axios from 'axios'
 import { BASE_URL } from '@env'
+import { router } from 'expo-router'
 
 
-const Seats = ({busId}) => {
+const Seats = ({ busId , from , to , date , departure , tickets }) => {
 
     const [seats,setSeats] = useState([]);
     const [selectedSeat,setSelectedSeat] = useState('');
@@ -53,7 +54,8 @@ const Seats = ({busId}) => {
 
     </View>
 
-    <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText}>Book Now</Text></TouchableOpacity>
+    <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText} onPress={()=>router.push(`/prebook?from=${from}&to=${to}&tickets=${tickets}&departure=${departure}&date=${date}&selectedSeat=${selectedSeat}`)}>Book Now</Text></TouchableOpacity>
+    <TouchableOpacity onPress={()=>alert(selectedSeat)}><Text>Press me</Text></TouchableOpacity>
 
     </View>
   )
