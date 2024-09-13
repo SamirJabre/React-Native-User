@@ -7,6 +7,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import TripInfo from '../../components/TripInfo';
 import Reviews from '../../components/Reviews';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Seats from '../../components/Seats';
 
 
 const tripInfo = () => {
