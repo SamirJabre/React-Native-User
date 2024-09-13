@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, BackHandler , SafeAreaView, Image, TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View, BackHandler , SafeAreaView, Image, TouchableOpacity, Modal} from 'react-native'
 import { useFonts } from 'expo-font';
 import { router, SplashScreen, useLocalSearchParams } from 'expo-router';
 import NavigationBar from '../../components/NavigationBar';
@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Recent from '../../components/Recent';
 
 const home = () => {
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const currentDate = new Date();
   const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
   const year = currentDate.getFullYear();
@@ -74,11 +75,15 @@ const home = () => {
 
     return () => backHandler.remove();
   },[]);
+
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
   
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>
-
+    
       <View style={styles.upperbox}>
 
       <View style={styles.greeting}>
@@ -133,6 +138,25 @@ const home = () => {
           <Recent tripId={latestTrips[1]} />
         </>
       )}
+      <TouchableOpacity onPress={toggleChat} style={styles.chatButtonContainer}>
+      <Image style={{height:'70%', width:'70%'}} source={require('../../assets/icons/bot.png')}/>
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isChatOpen}
+        onRequestClose={toggleChat}
+      >
+        <View style={styles.chatPopup}>
+          <Text style={styles.chatHeader}>Chatbot</Text>
+          <Text>Welcome to our chat service!</Text>
+          {/* Add your chatbot component or iframe here */}
+          <TouchableOpacity onPress={toggleChat}>
+            <Text style={styles.closeButton}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+      
       
     </View>
 
@@ -297,5 +321,48 @@ const styles = StyleSheet.create({
     height: '10%',
     width: '100%',
     backgroundColor: 'blue',
+  },
+  chatButtonContainer:{
+    height: 50,
+    width: 50,
+    backgroundColor: '#0C3B2E',
+    borderRadius: 12,
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  chatButtonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+  chatPopup: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50,
+    marginBottom: 50,
+    marginLeft: 20,
+    marginRight: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  chatHeader: {
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  closeButton: {
+    marginTop: 20,
+    color: '#007bff',
   },
 })
