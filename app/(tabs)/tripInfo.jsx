@@ -31,6 +31,7 @@ const tripInfo = () => {
   const [departure,setDeparture] = useState('');
   const [tickets,setTickets] = useState('');
   const [driverId,setDriverId] = useState('');
+  const [busId,setBusId] = useState('');
   const {  tripId  } = useLocalSearchParams();
 
   useEffect( () => {
@@ -48,6 +49,7 @@ const tripInfo = () => {
       setDeparture(res.data.departure_time)
       setTickets(res.data.price)
       setDriverId(res.data.driver_id)
+      setBusId(res.data.bus_id)
       axios.post(`${BASE_URL}/coordinates`,{
         from:res.data.from,
         to:res.data.to,
@@ -94,7 +96,7 @@ const tripInfo = () => {
     {
       selectedTab == 'TripInfo' ? 
       <TripInfo from={from} to={to} driver={driver} date={date} departure={departure} tickets={tickets} fromLatitude={fromLatitude} fromLongitude={fromLongitude} toLatitude={toLatitude} toLongitude={toLongitude}/> 
-      : selectedTab == 'Seats' ? <Seats/>
+      : selectedTab == 'Seats' ? <Seats busId={busId}/>
       : <Reviews driverId={driverId}/>
     }
 
