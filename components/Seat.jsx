@@ -1,12 +1,27 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const Seat = () => {
+const Seat = ({seatNumber,seatStatus,setSelectedSeat,selectedSeat}) => {
+
+    const [selectSeat,setSelectSeat] = useState(false);
+
+    const handleSeats = () => {
+        setSelectedSeat(seatNumber);
+        setSelectSeat(!selectSeat);
+        console.log(selectedSeat);
+    }
+
+    useEffect(() => {
+        if (selectedSeat !== seatNumber) {
+            setSelectSeat(false);
+        }
+    }, [selectedSeat]);
+
   return (
-    <TouchableOpacity style={styles.seat}>
-        <Text>1</Text>
-        <View style={styles.status}></View>
-    </TouchableOpacity>
+    <TouchableOpacity style={styles.seat} onPress={handleSeats}>
+            <Text>#{seatNumber}</Text>
+            <View style={selectSeat ? styles.selected : seatStatus === 'available' ? styles.available : styles.occupied}></View>
+        </TouchableOpacity>
   )
 }
 
@@ -22,10 +37,22 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
     },
-    status:{
+    available:{
         height: 6,
         width: '70%',
         borderRadius: 2,
         backgroundColor: 'green',
+    },
+    occupied:{
+        height: 6,
+        width: '70%',
+        borderRadius: 2,
+        backgroundColor: 'red',
+    },
+    selected:{
+        height: 6,
+        width: '70%',
+        borderRadius: 2,
+        backgroundColor: 'yellow',
     },
 })

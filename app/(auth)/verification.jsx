@@ -39,8 +39,6 @@ const verification = () => {
     .then( res => {
       
       if(res.data.status === 'success'){
-        const userID = res.data.user.id
-        storeUserId(userID);
         router.push('/login');
       }
       else{
@@ -52,15 +50,6 @@ const verification = () => {
       console.log(error);
     }
   }
-  const storeUserId = async (userID) => {
-    try {
-      await AsyncStorage.setItem('userId',userID.toString());
-      alert('User ID successfully saved!');
-    } catch (error) {
-      alert('Failed to save the user ID to AsyncStorage');
-    }
-  };
-
 
   const handleBack = () => {
     axios.post(`${BASE_URL}/delete-unverified`,{

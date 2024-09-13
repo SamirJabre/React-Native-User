@@ -1,9 +1,28 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import Seat from './Seat'
+import React, { useEffect, useState } from 'react'
+import Seat from '../components/Seat'
+import axios from 'axios'
+import { BASE_URL } from '@env'
 
 
 const Seats = ({busId}) => {
+
+    const [seats,setSeats] = useState([]);
+    const [selectedSeat,setSelectedSeat] = useState('');
+
+
+    useEffect(()=>{
+
+        axios.post(`${BASE_URL}/get-seats`,{
+            bus_id: busId
+        })
+        .then((res)=>{
+            setSeats(res.data);
+        });
+    },[])
+
+
+
   return (
     <View style={styles.container}>
     <View style={styles.icons}>
@@ -25,7 +44,12 @@ const Seats = ({busId}) => {
     </View>
 
     <View style={styles.seatsContainer}>
-    <Seat/>
+    
+    {
+        seats.map((seat,index)=>{
+            return <Seat key={index} seatNumber={seat.seat_number} seatStatus={seat.status} setSelectedSeat={setSelectedSeat} selectedSeat={selectedSeat}/>
+    })
+    }
 
     </View>
 
@@ -90,7 +114,6 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        backgroundColor: 'gray',
     },
     bookBtn:{
     width:'90%',
@@ -99,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     borderRadius:10,
-    marginTop: 30,
+    marginTop: 20,
   },
   bookText:{
     color:'white',
