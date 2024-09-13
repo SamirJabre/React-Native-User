@@ -55,7 +55,6 @@ const Seats = ({ busId , from , to , date , departure , tickets }) => {
     </View>
 
     <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText} onPress={()=>router.push(`/prebook?from=${from}&to=${to}&tickets=${tickets}&departure=${departure}&date=${date}&selectedSeat=${selectedSeat}`)}>Book Now</Text></TouchableOpacity>
-    <TouchableOpacity onPress={()=>alert(selectedSeat)}><Text>Press me</Text></TouchableOpacity>
 
     </View>
   )
