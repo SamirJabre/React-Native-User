@@ -1,23 +1,51 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { router } from 'expo-router'
 // import MapView, { Polyline, Marker } from 'react-native-maps';
 
 const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLongitude , toLatitude , toLongitude}) => {
+
+    const latitude = fromLatitude+toLatitude/2;
+    const longitude = fromLongitude+toLongitude/2;
+  
   return (
     <View style={{height:'100%' , width:'100%'}}>
       
       <View style={styles.mapContainer}>
-      {/* <MapView
-        style={StyleSheet.absoluteFillObject}
-        initialRegion={{
-          latitude: (fromLatitude + toLatitude) / 2,
-          longitude: (fromLongitude + toLongitude) / 2,
-          latitudeDelta: Math.abs(fromLatitude - toLatitude) + 0.1,
-          longitudeDelta: Math.abs(fromLongitude - toLongitude) + 0.1,
+      
+        {/* {
+          latitude && longitude && (
+            <MapView 
+              style={StyleSheet.absoluteFillObject}
+              initialRegion={
+                {
+                  latitude: latitude,
+                  longitude: longitude,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+                }
+              }
+            />
+          )
+        } */}
+
+
+
+        {/* /* {
+          longitude && (
+          <MapView
+          style={{height:'100%', width:'100%'}}
+          initialRegion={{
+          latitude: latitude,
+          longitude: longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
         }}
-      >
-      </MapView> */}
+        >
+
+        </MapView>
+      )
+        } */}
       </View>
 
     <View style={styles.info}>

@@ -22,6 +22,7 @@ const tripInfo = () => {
   const [fromLongitude,setFromLongitude] = useState('');
   const [toLatitude,setToLatitude] = useState('');
   const [toLongitude,setToLongitude] = useState('');
+
   const [from,setFrom] = useState('');
   const [to,setTo] = useState('');
   const [driver,setDriver] = useState('');
@@ -55,10 +56,14 @@ const tripInfo = () => {
   
         setToLatitude(res.data[1].latitude)
         setToLongitude(res.data[1].longitude)
+        console.log(fromLatitude);
+        console.log(fromLongitude);
+        console.log(toLatitude);
+        console.log(toLongitude);
         
       });
     })
-  },[])
+  },[toLongitude])
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>
