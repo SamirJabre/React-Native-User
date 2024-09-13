@@ -6,9 +6,12 @@ import { BASE_URL } from '@env';
 import axios from 'axios';
 
 export default function prebook() {
+  
+  const { from , to , tickets , departure , date , selectedSeat } = useLocalSearchParams();
+
+
   const [userId, setUserId] = useState('');
   const [tripId, setTripId] = useState('');
-  const [token, setToken] = useState('');
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,6 +34,7 @@ export default function prebook() {
       axios.post(`${BASE_URL}/book-trip`, {
         user_id: userId,
         trip_id:tripId,
+        seat_number:selectedSeat,
       })
       router.push('/booked')
     }
@@ -40,7 +44,6 @@ export default function prebook() {
   }
 
 
-    const { from , to , tickets , departure , date , selectedSeat } = useLocalSearchParams();
     
   return (
     <SafeAreaView style={styles.safearea}>
