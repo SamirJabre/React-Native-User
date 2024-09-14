@@ -4,7 +4,7 @@ import axios from 'axios'
 import { BASE_URL } from '@env';
 import { router } from 'expo-router';
 
-const Recent = ({tripId}) => {
+const Recent = ({tripId ,token}) => {
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
     const [date, setDate] = useState('');
@@ -13,7 +13,13 @@ const Recent = ({tripId}) => {
     useEffect(()=>{
         axios.post(`${BASE_URL}/tripinfo`,{
             id: tripId
-        })
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
         .then(res=>{
             console.log(res.data);
             setFrom(res.data.from);

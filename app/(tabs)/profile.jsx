@@ -4,13 +4,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 
 const profile = () => {
+
+  const logOut = async () => {
+    try{
+      await AsyncStorage.removeItem('token');
+      await AsyncStorage.removeItem('userId');
+      alert('Logged out successfully');
+      router.replace('/');
+    }
+    catch(error){
+      console.error('Error logging out', error);
+    }
+  }
+
   return (
     <View>
-    <TouchableOpacity onPress={async()=>{
-        await AsyncStorage.removeItem('token');
-        await AsyncStorage.removeItem('userId');
-        router.replace('/');
-    }}>
+    <TouchableOpacity onPress={logOut}>
         <Text>Log Out</Text>
     </TouchableOpacity>
     </View>

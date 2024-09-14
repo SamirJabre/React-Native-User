@@ -15,8 +15,8 @@ const home = () => {
   const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
   const year = currentDate.getFullYear();
   const monthDay = currentDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' }).replace('/', ' ');
-  const { id } = useLocalSearchParams();
   const [userId, setUserId] = useState('');
+  const [token, setToken] = useState('');
   const [name, setName] = useState('');
   const [tripsCount, setTripsCount] = useState(0);
   const [tripsHistory, setTripsHistory] = useState([]);
@@ -28,6 +28,8 @@ const home = () => {
       try {
         const storedUserId = await AsyncStorage.getItem('userId');
         if (storedUserId) setUserId(parseInt(storedUserId));
+        const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken) setToken(storedToken);
       } catch (error) {
         console.error('Error retrieving data from AsyncStorage', error);
       }
@@ -37,11 +39,19 @@ const home = () => {
   }, []);
 
   useEffect(() => {
-    if (userId !== null) {
+    if (userId !== null && token !== null) {
       try {
+        console.log(token);
+        
         axios.post(`${BASE_URL}/getuser`, {
           id: userId
-        })
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
         .then(res => {
           console.log(res.data);
           setName(res.data.user.name);
@@ -61,7 +71,7 @@ const home = () => {
         console.error('Error in API call:', err);
       }
     }
-  }, [userId]);
+  }, [token]);
 
   useEffect(() => {
     const backAction = () => {
@@ -131,12 +141,11 @@ const home = () => {
       {tripsCount === 1 && <Recent tripId={latestTrips[0]} />}
       {tripsCount >= 2 && (
         <>
-          <Recent tripId={latestTrips[0]} />
-          <Recent tripId={latestTrips[1]} />
+          <Recent tripId={latestTrips[0]} token={token}/>
+          <Recent tripId={latestTrips[1]} token={token}/>
         </>
       )}
       
-      <ChatBot/>
       
       
     </View>

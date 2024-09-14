@@ -77,7 +77,7 @@ const login = () => {
           const userID = res.data.user.id
           const token = res.data.authorisation.token
           await storeUserId(userID);
-          await AsyncStorage.setItem('token', token.toString())
+          await storeToken(token)
           router.push(`/home?id=${userID}`);
         }
       }
@@ -91,6 +91,12 @@ const login = () => {
   const storeUserId = async (userID) => {
     try {
       await AsyncStorage.setItem('userId',userID.toString());
+    } catch (error) {
+    }
+  };
+  const storeToken = async (token) => {
+    try {
+      await AsyncStorage.setItem('token',token.toString());
     } catch (error) {
     }
   };
