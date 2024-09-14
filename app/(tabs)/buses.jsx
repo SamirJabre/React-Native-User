@@ -8,6 +8,7 @@ import NavigationBar from '../../components/NavigationBar';
 import BusBox from '../../components/BusBox';
 import axios from 'axios';
 import { BASE_URL } from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function buses() {
 
@@ -15,13 +16,33 @@ export default function buses() {
   const [time, setTime] = useState(false);
   const [latest, setLatest] = useState(false);
   const [rating, setRating] = useState(false);
+  const [token, setToken] = useState('');
 
   const [trips, setTrips] = useState([]);
 
-  useEffect(()=>{
-    axios.get(`${BASE_URL}/trips`)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken) setToken(storedToken);
+        displayBuses(storedToken);
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const displayBuses = async (token) => {
+    axios.get(`${BASE_URL}/trips`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     .then(res=>setTrips(res.data))
-  },[])
+  } 
 
 
   return (
