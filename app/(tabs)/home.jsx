@@ -8,9 +8,9 @@ import axios from 'axios';
 import { BASE_URL } from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Recent from '../../components/Recent';
+import ChatBot from '../../components/ChatBot';
 
 const home = () => {
-  const [isChatOpen, setIsChatOpen] = useState(false);
   const currentDate = new Date();
   const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
   const year = currentDate.getFullYear();
@@ -76,9 +76,6 @@ const home = () => {
     return () => backHandler.remove();
   },[]);
 
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
   
   return (
     <SafeAreaView style={styles.safearea}>
@@ -138,24 +135,8 @@ const home = () => {
           <Recent tripId={latestTrips[1]} />
         </>
       )}
-      <TouchableOpacity onPress={toggleChat} style={styles.chatButtonContainer}>
-      <Image style={{height:'70%', width:'70%'}} source={require('../../assets/icons/bot.png')}/>
-      </TouchableOpacity>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={isChatOpen}
-        onRequestClose={toggleChat}
-      >
-        <View style={styles.chatPopup}>
-          <Text style={styles.chatHeader}>Chatbot</Text>
-          <Text>Welcome to our chat service!</Text>
-          {/* Add your chatbot component or iframe here */}
-          <TouchableOpacity onPress={toggleChat}>
-            <Text style={styles.closeButton}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
+      
+      <ChatBot/>
       
       
     </View>
