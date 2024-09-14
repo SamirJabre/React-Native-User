@@ -2,6 +2,12 @@ import { FlatList, Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, 
 import React, { useState } from 'react'
 
 const ChatBot = () => {
+
+    const [isChatOpen, setIsChatOpen] = useState(false);
+    const [messages, setMessages] = useState([{ id: '1', text: 'Hello! How can I help you today?', sender: 'bot' }]);
+    const [input, setInput] = useState('');
+
+
   return (
     <View>
       <Text>ChatBot</Text>
