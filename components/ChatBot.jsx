@@ -2,14 +2,15 @@ import { FlatList, Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, 
 import React, { useState } from 'react'
 
 const ChatBot = () => {
-
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [messages, setMessages] = useState([{ id: '1', text: 'Hello! How can I help you today?', sender: 'bot' }]);
     const [input, setInput] = useState('');
 
+
     const toggleChat = () => {
         setIsChatOpen(!isChatOpen);
       };
+
 
       const sendMessage = () => {
         if (input.trim()) {
@@ -21,6 +22,8 @@ const ChatBot = () => {
           }, 1000);
         }
       };
+
+
 
 
   return (
