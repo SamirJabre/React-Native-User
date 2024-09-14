@@ -7,6 +7,10 @@ const ChatBot = () => {
     const [messages, setMessages] = useState([{ id: '1', text: 'Hello! How can I help you today?', sender: 'bot' }]);
     const [input, setInput] = useState('');
 
+    const toggleChat = () => {
+        setIsChatOpen(!isChatOpen);
+      };
+
 
   return (
     <View>
