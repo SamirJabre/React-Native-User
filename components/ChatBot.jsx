@@ -71,4 +71,88 @@ const ChatBot = () => {
 
 export default ChatBot
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+chatButtonContainer:{
+  height: 50,
+  width: 50,
+  backgroundColor: '#0C3B2E',
+  borderRadius: 12,
+  position: 'absolute',
+  bottom: 20,
+  right: 20,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+chatPopup: {
+  flex: 1,
+  backgroundColor: 'white',
+  margin: 20,
+  padding: 20,
+  borderRadius: 10,
+  justifyContent: 'space-between',
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 4,
+  elevation: 5,
+},
+chatHeader: {
+  flexDirection: 'row',
+  height: 30,
+  width: '100%',
+  fontSize: 20,
+  marginBottom: 10,
+  justifyContent: 'space-between',
+  alignItems: 'center',
+},
+headerText:{
+  color: 'black',
+  fontSize: 20,
+  fontFamily: 'Inter-SemiBold',
+},
+closeButton: {
+  width: 30,
+  height: 30,
+},
+botMessage: {
+  alignSelf: 'flex-start',
+  backgroundColor: '#e1f5fe',
+  padding: 10,
+  borderRadius: 10,
+  marginVertical: 5,
+},
+userMessage: {
+  alignSelf: 'flex-end',
+  backgroundColor: '#c8e6c9',
+  padding: 10,
+  borderRadius: 10,
+  marginVertical: 5,
+},
+inputContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+input: {
+  flex: 1,
+  borderColor: '#ccc',
+  borderWidth: 1,
+  borderRadius: 5,
+  padding: 10,
+  marginRight: 10,
+},
+sendButton: {
+  backgroundColor: '#0C3B2E',
+  padding: 10,
+  borderRadius: 5,
+},
+sendButtonText: {
+  color: 'white',
+},
+closeButtonIcon: {
+  height: '100%',
+  width: '100%',
+},
+})
