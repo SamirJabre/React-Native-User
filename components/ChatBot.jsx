@@ -1,5 +1,6 @@
 import { FlatList, Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
+import axios from 'axios';
 
 const ChatBot = () => {
     const [isChatOpen, setIsChatOpen] = useState(false);
@@ -12,18 +13,56 @@ const ChatBot = () => {
       };
 
 
-      const sendMessage = () => {
+      const sendMessage = async () => {
         if (input.trim()) {
-          setMessages([...messages, { id: Date.now().toString(), text: input, sender: 'user' }]);
+          const newMessages = [...messages, { id: Date.now().toString(), text: input, sender: 'user' }];
+          setMessages(newMessages);
           setInput('');
-          // Simulate bot response
-          setTimeout(() => {
-            setMessages(prevMessages => [...prevMessages, { id: Date.now().toString(), text: 'This is a bot response.', sender: 'bot' }]);
-          }, 1000);
+    
+          let botResponse = '';
+    
+          try {
+            // Check if the message is a query for trips
+            if (input.toLowerCase().includes('trip to')) {
+              const destination = input.split('trip to ')[1];
+              const response = await axios.get('http://192.168.1.108:8000/api/trips');
+              const trips = response.data.filter(trip => trip.to.toLowerCase() === destination.toLowerCase());
+    
+              if (trips.length > 0) {
+                botResponse = `Yes, there are ${trips.length} trips available. Here are the details:\n` +
+                  trips.map(trip => (
+                    `Trip from ${trip.from} to ${trip.to} on ${trip.date}.\nDeparture: ${trip.departure_time}, Arrival: ${trip.arrival_time}, Price: $${trip.price}. Rating: ${trip.rating} stars.\n`
+                  )).join('\n');
+              } else {
+                botResponse = 'Sorry, no trips found for the specified criteria.';
+              }
+            } else {
+              // If the message doesn't contain valid trip details, interact with the OpenAI bot
+              const { data } = await axios("https://api.openai.com/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer `,
+                },
+                data: {
+                  model: "gpt-3.5-turbo",
+                  messages: [
+                    { role: 'system', content: 'You are a travel assistant. Answer questions related to bus trips between these cities : Tripoli , Anfeh , Chekka , Batroun , Jbeil , Tabarja , Jounieh , Antelias , Beirut , and answer anything related to those cities , and if you got asked about the prices say that the prices are in tickets and each trip may cost 1 ,2 ,3 tickets depend on the distance and stuff and keep the answers short and clear'  },
+                    ...newMessages.map(msg => ({ role: msg.sender === 'bot' ? 'assistant' : 'user', content: msg.text })),
+                  ],
+                  temperature: 0.7,
+                },
+              });
+    
+              botResponse = data.choices[0].message.content;
+            }
+          } catch (error) {
+            botResponse = 'There was an error retrieving trip information. Please try again later.';
+            console.error("Error fetching trip info:", error);
+          }
+    
+          setMessages(prevMessages => [...prevMessages, { id: Date.now().toString(), text: botResponse, sender: 'bot' }]);
         }
       };
-
-
 
 
   return (
