@@ -1,10 +1,47 @@
 import { Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View ,KeyboardAvoidingView} from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/NavigationBar'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { router } from 'expo-router'
+import axios from 'axios'
+import { BASE_URL } from '@env'
 
 const profile = () => {
+  const [userId, setUserId] = useState('');
+  const [token, setToken] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedUserId = await AsyncStorage.getItem('userId');
+        if (storedUserId) setUserId(parseInt(storedUserId));
+        const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken) setToken(storedToken);
+        getUserInfo(storedUserId, storedToken);
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getUserInfo = async (storedUserId,storedToken) => {
+  await axios.post(`${BASE_URL}/getuser`,{
+    id: storedUserId
+  }, {
+    headers: {
+      Authorization: `Bearer ${storedToken}`
+    }
+  })
+  .then(res=>{
+    setName(res.data.user.name);
+    setEmail(res.data.user.email);
+  });
+  }
+  
 
 
   const logOut = async () => {
@@ -19,9 +56,6 @@ const profile = () => {
     }
   }
 
-
-
-
   return (
     <>
     <SafeAreaView style={styles.container}>
@@ -35,8 +69,8 @@ const profile = () => {
       </View>
 
       <View style={styles.userInfo}>
-      <Text style={styles.userName}>Samir Jabre</Text>
-      <Text style={styles.userEmail}>samirj49@gmail.com</Text>
+      <Text style={styles.userName}>{name}</Text>
+      <Text style={styles.userEmail}>{email}</Text>
       </View>
       
       <View style={styles.inputsContainer}>
