@@ -32,13 +32,36 @@ const tripInfo = () => {
   const [tickets,setTickets] = useState('');
   const [driverId,setDriverId] = useState('');
   const [busId,setBusId] = useState('');
+  const [token, setToken] = useState('');
   const {  tripId  } = useLocalSearchParams();
 
-  useEffect( () => {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken) setToken(storedToken);
+        diplayTripInfo(storedToken);
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  
+  const diplayTripInfo = async (storedToken) => {
+    
     AsyncStorage.setItem('tripId' , tripId.toString());
-    axios.post(`${BASE_URL}/tripinfo` ,
+    await axios.post(`${BASE_URL}/tripinfo` ,
       {
       id:tripId
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${storedToken}`
+        }
       }
     )
     .then(res=>{
@@ -50,23 +73,34 @@ const tripInfo = () => {
       setTickets(res.data.price)
       setDriverId(res.data.driver_id)
       setBusId(res.data.bus_id)
-      axios.post(`${BASE_URL}/coordinates`,{
-        from:res.data.from,
-        to:res.data.to,
-      }).then(res=>{
-        setFromLatitude(res.data[0].latitude)
-        setFromLongitude(res.data[0].longitude)
-  
-        setToLatitude(res.data[1].latitude)
-        setToLongitude(res.data[1].longitude)
-        console.log(fromLatitude);
-        console.log(fromLongitude);
-        console.log(toLatitude);
-        console.log(toLongitude);
-        
-      });
+      getCoordinates(storedToken , res.data.from , res.data.to);
     })
-  },[toLongitude])
+  }
+
+  const getCoordinates = async (token ,  from , to) => {
+    try {
+    const res = await axios.post(`${BASE_URL}/coordinates`,{
+      from :from,
+      to: to,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
+  console.log(res.data);
+    setFromLatitude(res.data[0].latitude);
+    setFromLongitude(res.data[0].longitude);
+
+    setToLatitude(res.data[1].latitude);
+    setToLongitude(res.data[1].longitude);
+  } catch (error) {
+    console.error("Error fetching coordinates:", error);
+  }
+  }
+  
+
   return (
     <SafeAreaView style={styles.safearea}>
     <View style={styles.container}>

@@ -5,6 +5,12 @@ import { router } from 'expo-router'
 
 const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLongitude , toLatitude , toLongitude}) => {
 
+  console.log(fromLatitude);
+  console.log(fromLongitude);
+  console.log(toLatitude);
+  console.log(toLongitude);
+  
+
     const latitude = fromLatitude+toLatitude/2;
     const longitude = fromLongitude+toLongitude/2;
   
@@ -81,7 +87,7 @@ const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLon
           </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText} onPress={()=>router.push(`/prebook?from=${from}&to=${to}&tickets=${tickets}&departure=${departure}&date=${date}`)}>Book Now</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.bookBtn} onPress={()=>router.push(`/prebook?from=${from}&to=${to}&tickets=${tickets}&departure=${departure}&date=${date}`)}><Text style={styles.bookText}>Book Now</Text></TouchableOpacity>
     </View>
 
     </View>
