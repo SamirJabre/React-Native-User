@@ -69,8 +69,13 @@ const profile = () => {
         email: inputEmail,
         password: inputPassword,
         profile_picture: inputProfilePicture
-      })
-      .then(res=>console.log(res.data));
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
     }
     catch(error){
       console.error('Error saving changes', error);
