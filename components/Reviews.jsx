@@ -3,18 +3,41 @@ import React, { useEffect, useState } from 'react'
 import ReviewBox from './ReviewBox'
 import axios from 'axios'
 import { BASE_URL } from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Reviews = ({driverId}) => {
     const [reviews,setReviews] = useState([]);
 
-    useEffect(()=>{
+    
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const storedToken = await AsyncStorage.getItem('token');
+            handleReview(storedToken);
+          } catch (error) {
+            console.error('Error retrieving data from AsyncStorage', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+
+    const handleReview = async (token) => {
         axios.post(`${BASE_URL}/driver-reviews`,{
             id:driverId
-        }).then(res=>{
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    ).then(res=>{
+            console.log(res.data);
             setReviews(res.data);
         }
         )
-    },[])
+    }
 
   return (
     <View style={styles.reviewsContianer}>

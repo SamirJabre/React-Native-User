@@ -87,7 +87,7 @@ const TripInfo = ({from,to,driver,date,departure,tickets, fromLatitude , fromLon
           </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.bookBtn} onPress={()=>router.push(`/prebook?from=${from}&to=${to}&tickets=${tickets}&departure=${departure}&date=${date}`)}><Text style={styles.bookText}>Book Now</Text></TouchableOpacity>
+      {/* <TouchableOpacity style={styles.bookBtn} onPress={()=>router.push(`/prebook?from=${from}&to=${to}&tickets=${tickets}&departure=${departure}&date=${date}`)}><Text style={styles.bookText}>Book Now</Text></TouchableOpacity> */}
     </View>
 
     </View>

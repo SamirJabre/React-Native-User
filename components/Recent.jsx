@@ -9,10 +9,10 @@ const Recent = ({tripId ,token}) => {
     const [to, setTo] = useState('');
     const [date, setDate] = useState('');
     const [miles, setMiles] = useState('');
-
+    const tripid=tripId.trip_id;
     useEffect(()=>{
         axios.post(`${BASE_URL}/tripinfo`,{
-            id: tripId
+            id: tripId.trip_id
         },
         {
           headers: {
@@ -30,7 +30,7 @@ const Recent = ({tripId ,token}) => {
 
 
   return (
-    <TouchableOpacity onPress={()=>{router.push(`/recentTrip?tripId=${tripId}`)}} style={styles.recent}>
+    <TouchableOpacity onPress={()=>{router.push(`/recentTrip?tripId=${tripid}&token=${token}`)}} style={styles.recent}>
 
       <View style={styles.fromTo}>
       <Text style={styles.recentText}>From: {from}</Text>

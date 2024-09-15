@@ -10,16 +10,25 @@ import * as Location from 'expo-location';
 const SOCKET_SERVER_URL = 'http://192.168.1.108:6001';
 
 const BusTracker = () => {
-  const { tripId } = useLocalSearchParams();
   const [busId, setBusId] = useState();
   const [currentLocation, setCurrentLocation] = useState(null);
   const [socket, setSocket] = useState(null);
+
+  const { tripId ,token } = useLocalSearchParams();
+
+  console.log('this is the trip id '+tripId);
+  
 
   // Fetch bus ID based on trip ID
   useEffect(() => {
     axios.post(`${BASE_URL}/tripinfo`, {
       id: tripId
-    })
+    },{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
     .then(res => {
       console.log(res.data);
       setBusId(res.data.bus_id);

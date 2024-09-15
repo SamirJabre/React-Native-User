@@ -4,23 +4,47 @@ import Seat from '../components/Seat'
 import axios from 'axios'
 import { BASE_URL } from '@env'
 import { router } from 'expo-router'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const Seats = ({ busId , from , to , date , departure , tickets }) => {
 
     const [seats,setSeats] = useState([]);
     const [selectedSeat,setSelectedSeat] = useState('');
+    const [token, setToken] = useState('');
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const storedToken = await AsyncStorage.getItem('token');
+            if (storedToken) setToken(storedToken);
+            getSeats(storedToken);
+          } catch (error) {
+            console.error('Error retrieving data from AsyncStorage', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
 
 
-    useEffect(()=>{
+    const getSeats = async (token) => { 
 
         axios.post(`${BASE_URL}/get-seats`,{
             bus_id: busId
-        })
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    )
         .then((res)=>{
+            console.log(res.data);
+            
             setSeats(res.data);
         });
-    },[])
+    }
 
 
 
@@ -54,7 +78,7 @@ const Seats = ({ busId , from , to , date , departure , tickets }) => {
 
     </View>
 
-    <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText} onPress={()=>router.push(`/prebook?from=${from}&to=${to}&tickets=${tickets}&departure=${departure}&date=${date}&selectedSeat=${selectedSeat}`)}>Book Now</Text></TouchableOpacity>
+    <TouchableOpacity style={styles.bookBtn}><Text style={styles.bookText} onPress={()=>router.push(`/prebook?from=${from}&to=${to}&tickets=${tickets}&departure=${departure}&date=${date}&selectedSeat=${selectedSeat}&token=${token}`)}>Book Now</Text></TouchableOpacity>
 
     </View>
   )

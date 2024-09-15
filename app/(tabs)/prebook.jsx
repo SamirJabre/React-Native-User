@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function prebook() {
   
-  const { from , to , tickets , departure , date , selectedSeat } = useLocalSearchParams();
+  const { from , to , tickets , departure , date , selectedSeat , token } = useLocalSearchParams();
 
 
   const [userId, setUserId] = useState('');
@@ -20,6 +20,7 @@ export default function prebook() {
 
         const storedTripId = await AsyncStorage.getItem('tripId');
         if (storedTripId) setTripId(parseInt(storedTripId));
+
 
       } catch (error) {
         console.error('Error retrieving data from AsyncStorage', error);
@@ -35,7 +36,13 @@ export default function prebook() {
         user_id: userId,
         trip_id:tripId,
         seat_number:selectedSeat,
-      })
+      },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    )
       router.push('/booked')
     }
     catch(error){

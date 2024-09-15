@@ -41,8 +41,6 @@ const home = () => {
   useEffect(() => {
     if (userId !== null && token !== null) {
       try {
-        console.log(token);
-        
         axios.post(`${BASE_URL}/getuser`, {
           id: userId
         },
@@ -138,7 +136,7 @@ const home = () => {
 
       <Text style={styles.latest}>Here's your latest rides</Text>
 
-      {tripsCount === 1 && <Recent tripId={latestTrips[0]} />}
+      {tripsCount === 1 && <Recent tripId={latestTrips[0]} token={token}/>}
       {tripsCount >= 2 && (
         <>
           <Recent tripId={latestTrips[0]} token={token}/>
@@ -147,7 +145,7 @@ const home = () => {
       )}
       
       
-      
+
     </View>
 
     <NavigationBar/>
