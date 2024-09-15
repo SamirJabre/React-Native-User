@@ -3,6 +3,23 @@ import React from 'react'
 import Navbar from '../../components/NavigationBar'
 
 const profile = () => {
+
+
+  const logOut = async () => {
+    try{
+      await AsyncStorage.removeItem('token');
+      await AsyncStorage.removeItem('userId');
+      alert('Logged out successfully');
+      router.replace('/');
+    }
+    catch(error){
+      console.error('Error logging out', error);
+    }
+  }
+
+
+
+
   return (
     <>
     <SafeAreaView style={styles.container}>
@@ -49,8 +66,8 @@ const profile = () => {
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Save Changes</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.logOutBtn}>Sign Out</Text>
+      <TouchableOpacity style={styles.button} onPress={logOut}>
+        <Text style={styles.logOutBtn}>Log Out</Text>
       </TouchableOpacity>
       </View>
       
