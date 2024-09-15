@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View ,KeyboardAvoidingView} from 'react-native'
+import { Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/NavigationBar'
 import AsyncStorage from '@react-native-async-storage/async-storage'
