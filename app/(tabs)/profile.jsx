@@ -7,8 +7,6 @@ import axios from 'axios'
 import { BASE_URL } from '@env'
 
 const profile = () => {
-  const [userId, setUserId] = useState('');
-  const [token, setToken] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -16,9 +14,7 @@ const profile = () => {
     const fetchData = async () => {
       try {
         const storedUserId = await AsyncStorage.getItem('userId');
-        if (storedUserId) setUserId(parseInt(storedUserId));
         const storedToken = await AsyncStorage.getItem('token');
-        if (storedToken) setToken(storedToken);
         getUserInfo(storedUserId, storedToken);
       } catch (error) {
         console.error('Error retrieving data from AsyncStorage', error);
