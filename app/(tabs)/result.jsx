@@ -9,6 +9,7 @@ import NavigationBar from '../../components/NavigationBar';
 import BusBox from '../../components/BusBox';
 import axios from 'axios';
 import { BASE_URL } from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function result() {
   const {  from , to , ticket , date  } = useLocalSearchParams();
@@ -17,18 +18,41 @@ export default function result() {
   const [latest, setLatest] = useState(false);
   const [rating, setRating] = useState(false);
   const [trips, setTrips] = useState([]);
+  const [token, setToken] = useState('');
 
-  useEffect(()=>{
-    
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken) setToken(storedToken);
+        searchTrips(storedToken);
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+  const searchTrips = async (token) => {
     axios.post(`${BASE_URL}/search` ,{
       from: from,
       to: to,
       price: ticket,
       date: date
-    })
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
     .then(res=>setTrips(res.data))
-  },[])
-
+  }
+    
   return (
     <SafeAreaView style={styles.safearea}>
       <View style={styles.container}>
