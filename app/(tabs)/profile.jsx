@@ -1,6 +1,8 @@
 import { Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View ,KeyboardAvoidingView} from 'react-native'
 import React from 'react'
 import Navbar from '../../components/NavigationBar'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { router } from 'expo-router'
 
 const profile = () => {
 
@@ -134,6 +136,8 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: '#fff',
     borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#8A8A8A',
     paddingHorizontal: 10,
     marginBottom: 10,
   },
