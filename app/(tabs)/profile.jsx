@@ -9,12 +9,26 @@ import { BASE_URL } from '@env'
 const profile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [profilePicture, setProfilePicture] = useState('');
+
+  const [inputName, setInputName] = useState('');
+  const [inputEmail, setInputEmail] = useState('');
+  const [inputPassword, setInputPassword] = useState('');
+  const [inputConfirmPassword, setInputConfirmPassword] = useState('');
+  const [inputProfilePicture, setInputProfilePicture] = useState('');
+
+
+  const [userId, setUserId] = useState('');
+  const [token, setToken] = useState('');
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const storedUserId = await AsyncStorage.getItem('userId');
+        if (storedUserId) setUserId(parseInt(storedUserId));
         const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken) setToken(storedToken);
         getUserInfo(storedUserId, storedToken);
       } catch (error) {
         console.error('Error retrieving data from AsyncStorage', error);
@@ -35,7 +49,32 @@ const profile = () => {
   .then(res=>{
     setName(res.data.user.name);
     setEmail(res.data.user.email);
+    setProfilePicture(res.data.user.profile_picture);
   });
+  }
+
+  const handleSubmit = () => {
+    if(inputPassword !== inputConfirmPassword){
+      alert('Passwords do not match');
+      return;
+    }
+    saveChanges(userId);
+  }
+
+
+  const saveChanges = async (user_id) => {
+    try{
+      await axios.put(`${BASE_URL}/profile/${user_id}`,{
+        name: inputName,
+        email: inputEmail,
+        password: inputPassword,
+        profile_picture: inputProfilePicture
+      })
+      .then(res=>console.log(res.data));
+    }
+    catch(error){
+      console.error('Error saving changes', error);
+    }
   }
   
 
@@ -60,7 +99,7 @@ const profile = () => {
       <View style={styles.imageContainer}>
       <Image
         style={styles.profilePicture}
-        source={{uri: 'https://www.w3schools.com/w3images/avatar2.png'}}
+        source={profilePicture}
       />
       </View>
 
@@ -74,28 +113,32 @@ const profile = () => {
         style={styles.input}
         placeholder="Name"
         placeholderTextColor="#8A8A8A"
+        onChangeText={setInputName}
       />
       <TextInput
         style={styles.input}
         placeholder="Email"
         placeholderTextColor="#8A8A8A"
         keyboardType="email-address"
+        onChangeText={setInputEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         placeholderTextColor="#8A8A8A"
+        onChangeText={setInputPassword}
       />
       <TextInput
         style={styles.input}
         placeholder="Confirm Password"
         placeholderTextColor="#8A8A8A"
+        onChangeText={setInputConfirmPassword}
       />
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Change Image</Text>
       </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Save Changes</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={logOut}>
