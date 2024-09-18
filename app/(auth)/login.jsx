@@ -110,7 +110,7 @@ const login = () => {
 
 
     <View style={styles.container}>
-      <Text style={styles.maintxt}>LogIn</Text>
+      <Text style={styles.maintxt}>Login</Text>
       <Text style={styles.sectxt}>Enter your details to proceed further</Text>
       
 
@@ -125,7 +125,7 @@ const login = () => {
 
 
 
-      <AuthButton title="LogIn" handlePress={handleSubmit} isLoading={isSubmitting}/>
+      <AuthButton title="Login" handlePress={handleSubmit} isLoading={isSubmitting}/>
       
     </View>
 

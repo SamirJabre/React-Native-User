@@ -61,12 +61,6 @@ export default function result() {
         </View>
         <Text style={styles.upcomingText}>Results</Text>
 
-        <View style={styles.filters}>
-        <FilterToggle text='Price' onpress={()=>setPrice(!price)} status={price}/>
-        <FilterToggle text='Time' onpress={()=>setTime(!time)} status={time}/>
-        <FilterToggle text='Latest' onpress={()=>setLatest(!latest)} status={latest}/>
-        <FilterToggle text='Rating' onpress={()=>setRating(!rating)} status={rating}/>
-        </View>
         <ScrollView style={styles.buses} >
         {trips.map((trip)=>{
           return <BusBox 

@@ -118,7 +118,7 @@ const register = () => {
 
 
 
-      <AuthButton title="SignUp" handlePress={handleSubmit} isLoading={isSubmitting}/>
+      <AuthButton title="Signup" handlePress={handleSubmit} isLoading={isSubmitting}/>
       
     </View>
 

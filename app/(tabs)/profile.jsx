@@ -152,7 +152,7 @@ const profile = () => {
       <View style={styles.imageContainer}>
       <Image
         style={styles.profilePicture}
-        source={profilePicture}
+        source={{uri: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg'}}
       />
       </View>
 
@@ -266,6 +266,7 @@ const styles = StyleSheet.create({
     borderColor: '#8A8A8A',
     paddingHorizontal: 10,
     marginBottom: 10,
+    fontFamily: 'Inter-Regular',
   },
   button: {
     width: '90%',
