@@ -144,6 +144,7 @@ const home = () => {
         </>
       )}
       
+      <ChatBot/>
       
 
     </View>
