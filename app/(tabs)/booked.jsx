@@ -1,8 +1,29 @@
 import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { router } from 'expo-router'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const booked = () => {
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
+  const [tripId, setTripId] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedTripId = await AsyncStorage.getItem('tripId');
+        if (storedTripId) setTripId(parseInt(storedTripId));
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
+
   return (
     <SafeAreaView style={styles.safearea}>
 
@@ -18,8 +39,8 @@ const booked = () => {
     <View style={styles.info}>
 
       <View style={styles.bookInfo}>
-        <Text style={styles.bookInfoText}>Booking ID : #</Text>
-        <Text style={styles.bookInfoText}>Booked On : 20-9-2024</Text>
+        <Text style={styles.bookInfoText}>Booking ID : #{tripId}</Text>
+        <Text style={styles.bookInfoText}>Booked On : {formattedDate}</Text>
       </View>
 
       <TouchableOpacity style={styles.button} onPress={()=>router.replace('/home')}>
