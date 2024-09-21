@@ -28,12 +28,12 @@ const booked = () => {
     <SafeAreaView style={styles.safearea}>
 
     <View style={{width:'100%' , height:'30%', alignItems:'center' , justifyContent:'flex-end'}}>
-      <Image source={require('../../assets/success.png')}/>
+      <Image style={styles.successImage} source={require('../../assets/successImage.png')}/>
     </View>
 
     <View style={styles.textContainer}>
       <Text style={styles.congrats}>Congratulations</Text>
-      <Text style={styles.text}>Your tickets are successfully booked</Text>
+      <Text style={styles.text}>Your trip are successfully booked</Text>
     </View>
 
     <View style={styles.info}>
