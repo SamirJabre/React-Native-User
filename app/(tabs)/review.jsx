@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   input: {
+    textAlign:'center',
     width: '90%',
     height: 100,
     borderColor: '#ced4da',

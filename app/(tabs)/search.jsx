@@ -55,14 +55,14 @@ const search = () => {
 
     <View style={styles.top}>
     <Text style={{fontSize:12, color:'#B8B8B8', margin:5 , fontFamily:'Inter-Regular'}}>From</Text>
-    <TextInput style={styles.input} value={from} onChangeText={setFrom}></TextInput>
+    <TextInput style={styles.input} value={from} onChangeText={setFrom} placeholder='Enter Origin City' placeholderTextColor='#888'></TextInput>
     </View>
 
     <View style={styles.mid}></View>
 
     <View style={styles.low}>
     <Text style={{fontSize:12, color:'#B8B8B8', margin:5, fontFamily:'Inter-Regular'}}>To</Text>
-    <TextInput style={styles.input} value={to} onChangeText={setTo}></TextInput>
+    <TextInput style={styles.input} value={to} onChangeText={setTo} placeholder='Enter Destination City' placeholderTextColor='#888'></TextInput>
     </View>
 
     </View>
