@@ -1,6 +1,7 @@
 import { FlatList, Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import axios from 'axios';
+import { OPENAI_API_KEY } from '@env';
 
 const ChatBot = () => {
     const [isChatOpen, setIsChatOpen] = useState(false);
@@ -41,12 +42,12 @@ const ChatBot = () => {
               const { data } = await axios("https://api.openai.com/v1/chat/completions", {
                 method: "POST",
                 headers: {
-                  Authorization: `Bearer `,
+                  Authorization: `Bearer ${OPENAI_API_KEY}`,
                 },
                 data: {
                   model: "gpt-3.5-turbo",
                   messages: [
-                    { role: 'system', content: 'You are a travel assistant. Answer questions related to bus trips between these cities : Tripoli , Anfeh , Chekka , Batroun , Jbeil , Tabarja , Jounieh , Antelias , Beirut , and answer anything related to those cities , and if you got asked about the prices say that the prices are in tickets and each trip may cost 1 ,2 ,3 tickets depend on the distance and stuff and keep the answers short and clear'  },
+                    { role: 'system', content: "You are a travel assistant specialized in providing information about bus trips between the following cities in Lebanon: Tripoli, Anfeh, Chekka, Batroun, Jbeil, Tabarja, Jounieh, Antelias, and Beirut. Your role is to assist users by answering questions related to bus schedules, routes, travel times, and any other relevant information about these cities.When asked about bus trip prices, explain that the prices are measured in tickets, with each trip costing between 1 to 3 tickets depending on the distance and other factors. Ensure that your responses are concise, clear, and helpful. Additionally, you should be able to provide information about tourist attractions, local amenities, and general travel advice for these cities.Remember to keep your answers short and to the point, providing only the necessary information to address the user's query effectively."  },
                     ...newMessages.map(msg => ({ role: msg.sender === 'bot' ? 'assistant' : 'user', content: msg.text })),
                   ],
                   temperature: 0.7,
