@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text , Image, SafeAreaView , StyleSheet} from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { BASE_URL } from '@env';
 import QRCode from 'react-native-qrcode-svg';
 import * as Svg from 'react-native-svg';
 // import MapView, { Marker } from 'react-native-maps';
 
 import axios from 'axios';
+import NavigationBar from '../../components/NavigationBar';
+import TripNavigation from '../../components/TripNavigation';
 
 const BusTracker = () => {
   const [busId, setBusId] = useState();
@@ -141,50 +143,59 @@ const BusTracker = () => {
   return (
       <SafeAreaView style={styles.safearea}>
 
+      <View style={styles.container}>
+      <View style={styles.tripNavigationContainer}>
+        <TripNavigation title="Trip Info" onpress={()=>router.push('/recentTrip')}/>
+        <TripNavigation title="Seats" onpress={()=>router.push(`/seats?busId=${busId}`)}/>
+        <TripNavigation title="Leave a Review" onpress={()=>router.push(`/review?busId=${busId}`)}/>
+        </View>
+      
       <View style={styles.mapContainer}>
 
-        {/* {
-          currentLatitude && currentLongitude && (
-            <MapView
-        style={StyleSheet.absoluteFillObject}
-        initialRegion={{
-          latitude: currentLatitude,
-          longitude: currentLongitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-        >
-        <Marker
-          coordinate={{
-          latitude: currentLatitude,
-          longitude: currentLongitude,
-        }}
-        title="Bus"
-        description="Bus location"
-        />
-        </MapView>
-          )
-        } */}
+{/* {
+  currentLatitude && currentLongitude && (
+    <MapView
+style={StyleSheet.absoluteFillObject}
+initialRegion={{
+  latitude: currentLatitude,
+  longitude: currentLongitude,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+}}
+>
+<Marker
+  coordinate={{
+  latitude: currentLatitude,
+  longitude: currentLongitude,
+}}
+title="Bus"
+description="Bus location"
+/>
+</MapView>
+  )
+} */}
 
-      </View>
+</View>
 
 
-      <View style={styles.qrcodeContainer}>
-      <QRCode
-        value={qrCodeData}
-        size={100}
-        color="black"
-        backgroundColor="white"
-      />
-      </View>
+<View style={styles.qrcodeContainer}>
+<QRCode
+value={qrCodeData}
+size={100}
+color="black"
+backgroundColor="white"
+/>
+</View>
 
-      <View style={styles.tripInfoContainer}>
-      <Text style={styles.infoText}>Bus ID: {busId}</Text>
-      <Text style={styles.infoText}>Approximate Duration: {arrivalTime} h</Text>
+<View style={styles.tripInfoContainer}>
+<Text style={styles.infoText}>Bus ID: {busId}</Text>
+<Text style={styles.infoText}>Approximate Arrival Time: {arrivalTime}</Text>
 
+</View>
       </View>
               
 
+      <NavigationBar/>
 
       
       </SafeAreaView>
@@ -203,6 +214,12 @@ const styles = StyleSheet.create({
   safearea:{
     flex: 1,
     backgroundColor: '#E5E5E5',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  container:{
+    height: '92%',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
@@ -232,5 +249,13 @@ const styles = StyleSheet.create({
   infoText:{
     fontSize: 15,
     fontFamily: 'Inter-SemiBold',
-  }
+  },
+  tripNavigationContainer:{
+    width: '100%',
+    height: '10%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#0C3B2E',
+  },
 });
