@@ -50,7 +50,6 @@ export default function App() {
       <AuthButton title="Login" handlePress={()=>router.push('/login')}/>
       </View>
       <StatusBar style='dark'/>
-      <NavigationBar/>
     </Provider>
   );
 }
